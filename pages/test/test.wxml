@@ -1,0 +1,10 @@
+<!--pages/test/test.wxml-->
+<block wx:for="{{testArr}}" wx:for-index='idx' wx:for-item='itemName'>
+  {{idx}}:{{itemName}}
+</block>
+
+<view wx:for="{{objTest}}" wx:for-index='idx' wx:for-item='itemName'>
+  {{idx}}:{{itemName}}
+</view>
+
+<view wx:if="{{isShow}}">content</view>

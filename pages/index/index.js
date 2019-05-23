@@ -43,6 +43,11 @@ Page({
       })
     }
   },
+  onReady:function(){
+    wx.navigateTo({
+      url:'../test/test'
+    });
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
