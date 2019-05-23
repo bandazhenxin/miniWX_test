@@ -1,2 +1,2 @@
-# miniWX_test
+# __miniWX_test__
 小程序测试demo
