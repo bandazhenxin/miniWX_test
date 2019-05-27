@@ -44,9 +44,9 @@ Page({
     }
   },
   onReady:function(){
-    wx.navigateTo({
-      url:'../test/test'
-    });
+    // wx.navigateTo({
+    //   url:'../test/test'
+    // });
   },
   getUserInfo: function(e) {
     console.log(e)
