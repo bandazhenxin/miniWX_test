@@ -21,6 +21,7 @@ webClient.prototype = {
   removeHeader: function (key) {
     delete this.header[key];
   },
+  //get通信
   get: function (url, callback, busyText, onlyCallbackOnSuccess) {
     this.method = 'GET';
     this.url = url;
@@ -30,6 +31,7 @@ webClient.prototype = {
     this.onlyCallbackOnSuccess = onlyCallbackOnSuccess == null ? false : onlyCallbackOnSuccess;
     this.execute();
   },
+  //post通信
   post: function (url, data, callback, busyText, onlyCallbackOnSuccess) {
     this.method = 'POST';
     this.url = url;
@@ -39,6 +41,11 @@ webClient.prototype = {
     this.onlyCallbackOnSuccess = onlyCallbackOnSuccess == null ? false : onlyCallbackOnSuccess;
     this.execute();
   },
+  //上传文件
+  upload: function (url,callback){
+    
+  },
+  //基础通信
   execute: function () {
     var me = this;
     if (this.busyText != null && this.busyText !== '') {

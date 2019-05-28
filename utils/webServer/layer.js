@@ -1,4 +1,4 @@
-const weixin = {
+const layer = {
   _busyTimer: null,
   _busyDelay: 1500,
   toast: function (message, icon) {
