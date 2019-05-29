@@ -12,16 +12,24 @@ function service(){
 }
 
 //业务初始化，获取token
-service.prototype.initGet = function (that){
+service.prototype.initGet = function (that,callback){
   wxAsyn.login().then(res => {
     let params = this.urlList.miniInitUrl + '?code=' + res.code;
     return api.get(params);
-  }).then(res => {
+  }).then(res => {//后端初始化
     console.log(res);
+    return wxAsyn.getSetting();
   },msg => {
     layer.busy(msg);
-  }).catch(msg => {
-    layer.busy(msg);
+  }).then(res => {//判断授权登录
+    console.log(res);
+    if (res.authSetting['scope.userInfo']){
+      console.log(res.authSetting['scope.userInfo']);
+    }
+    return wxAsyn.getUserInfo();
+  }).then(res => {//获取用户信息 
+    console.log(res);
+    (typeof callback === "function") && callback();
   });
 } 
 
