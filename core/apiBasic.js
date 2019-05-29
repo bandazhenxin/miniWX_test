@@ -1,4 +1,4 @@
-const client = require('../utils/webServer/webClient.js');
+const client = require('../utils/webServer/asyn/wxClient.js');
 
 //继承基础通信交互方法
 function apiBasic(){
@@ -7,6 +7,6 @@ function apiBasic(){
 apiBasic.prototype = new client();
 
 //接口路径
-api.prototype.urlList = {};
+apiBasic.prototype.urlList = {};
 
 module.exports = apiBasic;

@@ -10,7 +10,7 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 初始化登录
-    service.initGet();
+    service.initGet(this);
 
     // 获取用户信息
     wx.getSetting({
