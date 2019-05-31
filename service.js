@@ -1,4 +1,4 @@
-//通信层启动
+//reply
 const apiBasic = require('core/apiBasic.js');
 const layer = require('utils/webServer/layer.js');
 const wxAsyn = require('utils/webServer/asyn/wxAsyn.js');

@@ -2,6 +2,9 @@
 @import 'style/weui.wxss';
 
 /**app.wxss**/
+view{
+  display:block;
+}
 .container {
   height: 100%;
   display: flex;
@@ -11,3 +14,7 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+.page_block{
+  padding-bottom: 10rpx;
+}

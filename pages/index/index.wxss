@@ -19,3 +19,26 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.moveContainer{
+  position: fixed;
+  height: 134%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+movable-area movable-view{
+  width: 100%;
+  display: block;
+}
+.moveContainer .moveContainer_top{
+  height: 25%;
+}
+.moveContainer .moveContainer_bottom{
+  position:relative;
+  top:25%;
+  height: 75%;
+}

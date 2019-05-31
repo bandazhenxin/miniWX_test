@@ -76,3 +76,5 @@ pageBasic.prototype = {
 
   }
 };
+
+module.exports = pageBasic;

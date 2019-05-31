@@ -1,7 +1,10 @@
 <!--index.wxml-->
-<view class="container">
+<!-- <view class="container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称      </button>
+    <block wx:if="{{!hasUserInfo && canIUseUser}}">
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取头像昵称</button>
+    <block wx:elseif="{{!hasUserInfo && canIUsePhone}}">
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
@@ -10,4 +13,25 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
-</view>
+</view> -->
+
+<!--首页静态ui-->
+<movable-area class='moveContainer'>
+  <!--header-->
+  <movable-view direction="none" class="page_block moveContainer_top">
+    <view><text>一二三</text></view>
+  </movable-view>
+
+  <!--content-->
+  <movable-view 
+    direction="vertical" 
+    damping="1000" 
+    inertia="true" 
+    friction="1"
+    class="page_block moveContainer_bottom"
+    bindchange="backTop"
+    disabled="{{isMove?true:false}}"
+  >
+    <view><text>四五六</text></view>
+  </movable-view>
+</movable-area>
