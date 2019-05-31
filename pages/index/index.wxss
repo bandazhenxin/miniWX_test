@@ -42,3 +42,9 @@ movable-area movable-view{
   top:25%;
   height: 75%;
 }
+
+scroll-view{
+  height: 100%;
+  overflow:scroll;
+  white-space:nowrap;
+}

@@ -26,7 +26,7 @@ pageBasic.prototype = {
     var data = {};
     for (var p in this.vm) {
       var value = this.vm[p];
-      if (!this.vm.hasOwnProperty(p)) { 
+      if (!this.vm.hasOwnProperty(p) || p == 'db') { 
         continue;
       }
       if (value == null || typeof (value) === 'function') {

@@ -1,5 +1,4 @@
 //获取应用实例
-console.log('ddd');
 const app = getApp();
 const serviceClass = require('service.js');
 const pageBasic = require('../../core/pageBasic.js');
@@ -8,23 +7,22 @@ const service = new serviceClass();
 //继承基类
 function IndexPage(title) {
   pageBasic.call(this,title);
+  this.vm = {
+    db:{},
+    isMove: true,
+    isScroll:false,
+    motto: 'Hello World',
+    userInfo: {},
+    hasUserInfo: false,
+    hasUserPhone: false,
+    canIUseUser: wx.canIUse('button.open-type.getUserInfo'),
+    canIUsePhone: wx.canIUse('button.open-type.getPhoneNumber')
+  }
 };
 IndexPage.prototype = new pageBasic();
 
-//数据初始化
-IndexPage.vm = {
-  isMove: true,
-  motto: 'Hello World',
-  userInfo: {},
-  hasUserInfo: false,
-  hasUserPhone: false,
-  canIUseUser: wx.canIUse('button.open-type.getUserInfo'),
-  canIUsePhone: wx.canIUse('button.open-type.getPhoneNumber')
-}
-
 //逻辑初始化
 IndexPage.prototype.onPreload = function(option){
-  console.log(q);
   this.render()
   if (app.globalData.userInfo) {
     this.setData({
@@ -55,7 +53,7 @@ IndexPage.prototype.onPreload = function(option){
 }
 
 //点击头像跳转日志记录页
-IndexPage.prototype.onPreload = function () {
+IndexPage.prototype.bindViewTap = function () {
   wx.navigateTo({
     url: '../logs/logs'
   })
@@ -71,17 +69,13 @@ IndexPage.prototype.getUserInfo = function (e) {
   })
 }
 
-//拉到顶部固定
+//拉到顶部固定 释放滑动
 IndexPage.prototype.backTop = function(event){
   let y = event.detail.y;
   let top = event.currentTarget.offsetTop;
-  y = y * (-1);
-  if (y == top) {
-    this.setData({
-      isMove: false
-    })
-    this.data.isMove = false;
-  }
+  // this.vm.isMove = false;
+  this.vm.isScroll = (y * (-1) == top);
+  this.render();
 }
 
 Page(new IndexPage('悠聘'));
