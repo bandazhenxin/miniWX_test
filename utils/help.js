@@ -220,7 +220,9 @@ function b64MD5w(str) { return binl2b64(coreMD5(strw2binl(str))) }
 /* Backward compatibility */
 function calcMD5(str) { return binl2hex(coreMD5(str2binl(str))) } 
 
-//判断是否是数字
+/**
+ * 严格字符串判断
+ */
 function isNumber(val){
   if (typeof (val) == 'string'){
     let regPos = /^\d+(\.\d+)?$/; //非负浮点数
@@ -240,10 +242,36 @@ function isNumber(val){
   }
 }
 
-//u聘加签
-function sign(key,params){
-  if (Object.prototype.toString.call(params) !== '[Object Object]') return false;
-  //是否是字符串
+/**
+ * 严格对象类型判断
+ */
+function isObj(obj){
+  return Object.prototype.toString.call(obj) === '[object Object]';
+}
+
+/**
+ * 严格字符串判断
+ */
+function isString(str){
+  return (typeof str == 'string') && str.constructor == String;
+}
+
+/**
+ * u聘加签
+ */
+function sign(params){
+  //validata
+  if (!isObj(params)) return false;
+  
+  //sign
+  let key = 'GhU6G4FK5iiyeCRoLw';
+  let arr = [];
+  for (let i in params){
+    if (i !== 'sign') arr.push(params[i]);
+  }
+  arr.push(key);
+
+  return hexMD5(arr.join('.'));
 }
 
 //exports
@@ -254,5 +282,8 @@ module.exports = {
   hexMD5w: hexMD5w,
   b64MD5: b64MD5,
   b64MD5w: b64MD5w,
-  isNumber: isNumber
+  isNumber: isNumber,
+  isObj: isObj,
+  isString: isString,
+  sign: sign
 }
