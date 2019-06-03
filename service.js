@@ -7,27 +7,31 @@ const api = new apiBasic();
 function service(){
   //接口路径
   this.urlList = {
-    miniInitUrl: 'https://coolthings.goho.co/get/miniInit'
+    init: 'https://coolthings.goho.co/get/miniInit'
   };
 }
 
 //业务初始化，获取token
 service.prototype.initGet = function (that,callback){
-  wxAsyn.login().then(res => {
-    let params = this.urlList.miniInitUrl + '?code=' + res.code;
-    return api.get(params);
+  var code = null;
+  wxAsyn.getSetting().then(res => {
+    code = res.code;
+    return wxAsyn.getUserInfo();
   }).then(res => {//后端初始化
     console.log(res);
     return wxAsyn.getSetting();
   },msg => {
     layer.busy(msg);
   }).then(res => {//判断授权登录
+    console.log('授权：');
     console.log(res);
+    console.log(res.authSetting['scope.userLocation']);
     if (res.authSetting['scope.userInfo']){
       console.log(res.authSetting['scope.userInfo']);
+      return wxAsyn.getUserInfo(); 
     }
-    return wxAsyn.getUserInfo();
   }).then(res => {//获取用户信息 
+    console.log('getuserinfo:')
     console.log(res);
     (typeof callback === "function") && callback();
   });

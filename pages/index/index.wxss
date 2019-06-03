@@ -1,25 +1,19 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+/**授权按钮**/
+.auth{
+  display: block;
+  position: fixed;
+  width:100%;
+  height: 100%;
+}
+.auth-btn{
+  position:relative;
+  width: 70%;
+  top:25%;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
-
+/**主ui**/
 .moveContainer{
   position: fixed;
   height: 134%;
@@ -42,7 +36,6 @@ movable-area movable-view{
   top:25%;
   height: 75%;
 }
-
 scroll-view{
   height: 100%;
   overflow:scroll;

@@ -1,8 +1,11 @@
-//获取应用实例
+//reply
 const app = getApp();
 const serviceClass = require('service.js');
 const pageBasic = require('../../core/pageBasic.js');
+
+//instance
 const service = new serviceClass();
+
 
 //继承基类
 function IndexPage(title) {
@@ -13,7 +16,7 @@ function IndexPage(title) {
     isScroll:false,
     motto: 'Hello World',
     userInfo: {},
-    hasUserInfo: false,
+    hasBasicUserInfo: false,
     hasUserPhone: false,
     canIUseUser: wx.canIUse('button.open-type.getUserInfo'),
     canIUsePhone: wx.canIUse('button.open-type.getPhoneNumber')
@@ -61,15 +64,21 @@ IndexPage.prototype.bindViewTap = function () {
 
 //获取用户信息
 IndexPage.prototype.getUserInfo = function (e) {
-  console.log(e)
-  app.globalData.userInfo = e.detail.userInfo
-  this.setData({
-    userInfo: e.detail.userInfo,
-    hasUserInfo: true
-  })
+  service.init(app, this, e.detail.userInfo);
+  // console.log(e)
+  // app.globalData.userInfo = e.detail.userInfo
+  // this.setData({
+  //   userInfo: e.detail.userInfo,
+  //   hasUserInfo: true
+  // })
 }
 
-//拉到顶部固定 释放滑动
+//获取用户手机信息
+IndexPage.prototype.getPhoneNumber = function(e){
+
+}
+
+//释放滑动判断
 IndexPage.prototype.backTop = function(event){
   let y = event.detail.y;
   let top = event.currentTarget.offsetTop;

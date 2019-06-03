@@ -1,115 +1,124 @@
-<!--index.wxml-->
-<!-- <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{!hasUserInfo && canIUseUser}}">
-      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取头像昵称</button>
-    <block wx:elseif="{{!hasUserInfo && canIUsePhone}}">
-      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<!--获取头像昵称-->
+<block wx:if="{{!hasBasicUserInfo && canIUseUser}}">
+  <view class='auth'>
+    <button 
+      type="primary" 
+      class='auth-btn weui-btn button-hover' 
+      open-type="getUserInfo" 
+      bindgetuserinfo="getUserInfo"
+    >获取头像昵称</button>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+</block>
+
+<!--获取手机号-->
+<block wx:elif="{{!hasUserPhone && canIUsePhone}}">
+  <view class='auth'>
+    <button 
+      type="primary"
+      class='auth-btn weui-btn button-hover' 
+      open-type="getPhoneNumber" 
+      bindgetuserinfo="getPhoneNumber"
+    >获取手机号</button>
   </view>
-</view> -->
+</block>
 
-<!--首页静态ui-->
-<movable-area class='moveContainer'>
-  <!--header-->
-  <movable-view direction="none" class="page_block moveContainer_top">
-    <view><text>一二三</text></view>
-  </movable-view>
+<!--首页搜索列表-->
+<block wx:else>
+  <movable-area class='moveContainer'>
+    <!--header-->
+    <movable-view direction="none" class="page_block moveContainer_top">
+      <view><text>一二三</text></view>
+    </movable-view>
 
-  <!--content-->
-  <movable-view 
-    direction="vertical" 
-    damping="0" 
-    inertia="true" 
-    friction="0.01"
-    class="page_block moveContainer_bottom"
-    bindchange="backTop"
-    disabled="{{isMove?false:true}}"
-  >
-    <view><text>四五六</text></view>
-    <scroll-view scroll-y="{{isScroll?true:false}}" scroll-top="0">
-      <view><text>七八九</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-      <view><text>十十一</text></view>
-    </scroll-view>
-  </movable-view>
-</movable-area>
+    <!--content-->
+    <movable-view 
+      direction="vertical" 
+      damping="0" 
+      inertia="true" 
+      friction="0.01"
+      class="page_block moveContainer_bottom"
+      bindchange="backTop"
+      disabled="{{isMove?false:true}}"
+    >
+      <view><text>四五六</text></view>
+      <scroll-view scroll-y="{{isScroll?true:false}}" scroll-top="0">
+        <view><text>七八九</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+        <view><text>十十一</text></view>
+      </scroll-view>
+    </movable-view>
+  </movable-area>
+</block>
