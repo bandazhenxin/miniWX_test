@@ -1,39 +1,67 @@
 //reply
-const apiBasic = require('core/apiBasic.js');
-const layer = require('utils/webServer/layer.js');
-const wxAsyn = require('utils/webServer/asyn/wxAsyn.js');
-const api = new apiBasic();
+const config       = require('config/request.js');
+const apiBasic     = require('core/apiBasic.js');
+const storageClass = require('core/storage.js');
+const layer        = require('utils/webServer/layer.js');
+const wxAsyn       = require('utils/webServer/asyn/wxAsyn.js');
+const help         = require('utils/help.js');
+
+//instance
+const api        = new apiBasic();
+const signMd5    = help.sign;
+const isFunction = help.isFunction;
+const storage    = new storageClass();
 
 function service(){
   //接口路径
   this.urlList = {
-    init: 'https://coolthings.goho.co/get/miniInit'
+    init: config.initUrl
   };
 }
 
 //业务初始化，获取token
-service.prototype.initGet = function (that,callback){
+service.prototype.initGet = function (that){
   var code = null;
+  var pass = false;
   wxAsyn.getSetting().then(res => {
-    code = res.code;
-    return wxAsyn.getUserInfo();
-  }).then(res => {//后端初始化
-    console.log(res);
-    return wxAsyn.getSetting();
-  },msg => {
-    layer.busy(msg);
-  }).then(res => {//判断授权登录
-    console.log('授权：');
-    console.log(res);
-    console.log(res.authSetting['scope.userLocation']);
     if (res.authSetting['scope.userInfo']){
-      console.log(res.authSetting['scope.userInfo']);
-      return wxAsyn.getUserInfo(); 
+      pass = true;
+      return wxAsyn.login();
     }
-  }).then(res => {//获取用户信息 
-    console.log('getuserinfo:')
-    console.log(res);
-    (typeof callback === "function") && callback();
+  }).then(res => {
+    if (pass){
+      code = res.code;
+      return wxAsyn.getUserInfo();
+    }
+  }).then(res => {
+    if (pass){
+      let params = {
+        system: config.system,
+        version: config.version,
+        sign: null,
+        code: code,
+        raw_data: res.rawData,
+        signature: res.signature,
+        encrypted_data: res.encryptedData,
+        iv: res.iv
+      };
+      let url = this.urlList.init;
+      let sign = signMd5(config.key, params);
+      params.sign = sign;
+      console.log(JSON.stringify(params))
+      return api.post(url, params);
+    }
+  }).then(res => { 
+    if(pass){
+      console.log(res);
+      if(res.status_code == 200){
+        storage.setData('unionid', res.data.union_id);
+        // that.globalData.userBasicInfo = res.data
+        if (isFunction(that.userInfoReadyCallback)) that.userInfoReadyCallback(res);
+      }else{
+        layer.busy(res.message);
+      }
+    }
   });
 } 
 

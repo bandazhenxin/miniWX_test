@@ -257,14 +257,21 @@ function isString(str){
 }
 
 /**
+ * 严格函数类型判断
+ */
+function isFunction(fn){
+  return Object.prototype.toString.call(fn) === '[object Function]';
+}
+
+/**
  * u聘加签
  */
-function sign(params){
+function sign(key,params){
   //validata
   if (!isObj(params)) return false;
+  if (!isString(key)) return false;
   
   //sign
-  let key = 'GhU6G4FK5iiyeCRoLw';
   let arr = [];
   for (let i in params){
     if (i !== 'sign') arr.push(params[i]);
@@ -285,5 +292,6 @@ module.exports = {
   isNumber: isNumber,
   isObj: isObj,
   isString: isString,
+  isFunction: isFunction,
   sign: sign
 }

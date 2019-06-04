@@ -1,5 +1,8 @@
+<!--reply-->
+<import src='../common/positionItem.wxml' />
+
 <!--获取头像昵称-->
-<block wx:if="{{!hasBasicUserInfo && canIUseUser}}">
+<!-- <block wx:if="{{!hasBasicUserInfo && canIUseUser}}">
   <view class='auth'>
     <button 
       type="primary" 
@@ -8,10 +11,10 @@
       bindgetuserinfo="getUserInfo"
     >获取头像昵称</button>
   </view>
-</block>
+</block> -->
 
 <!--获取手机号-->
-<block wx:elif="{{!hasUserPhone && canIUsePhone}}">
+<!-- <block wx:elif="{{!hasUserPhone && canIUsePhone}}">
   <view class='auth'>
     <button 
       type="primary"
@@ -20,14 +23,32 @@
       bindgetuserinfo="getPhoneNumber"
     >获取手机号</button>
   </view>
-</block>
+</block> -->
 
 <!--首页搜索列表-->
-<block wx:else>
+<!-- <block wx:else> -->
   <movable-area class='moveContainer'>
     <!--header-->
-    <movable-view direction="none" class="page_block moveContainer_top">
-      <view><text>一二三</text></view>
+    <movable-view direction="none" class="weui-flex moveContainer_top">
+      <view class='top_position weui-flex'>
+        <image
+          src='../../style/images/icon/weizhi.png'
+          mode='aspectFit'
+          class='iconfont'
+        >位置</image>
+        <text>上海市</text>
+        <image
+          src='../../style/images/icon/xiala.png'
+          mode='aspectFit'
+          class='iconfont'
+        >下拉</image>
+      </view>
+      <view class='top_banner'>
+        <image
+          src='../../style/images/banner/indexBanner.png'
+          mode='widthFix'
+        >banner</image>
+      </view>
     </movable-view>
 
     <!--content-->
@@ -42,6 +63,7 @@
     >
       <view><text>四五六</text></view>
       <scroll-view scroll-y="{{isScroll?true:false}}" scroll-top="0">
+        <template is="positionItem" data="{{position_item}}"/>
         <view><text>七八九</text></view>
         <view><text>十十一</text></view>
         <view><text>十十一</text></view>
@@ -121,4 +143,4 @@
       </scroll-view>
     </movable-view>
   </movable-area>
-</block>
+<!-- </block> -->

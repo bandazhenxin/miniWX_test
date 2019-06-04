@@ -1,11 +1,10 @@
-//reply
+ //reply
 const app = getApp();
 const serviceClass = require('service.js');
 const pageBasic = require('../../core/pageBasic.js');
 
 //instance
 const service = new serviceClass();
-
 
 //继承基类
 function IndexPage(title) {
@@ -19,40 +18,31 @@ function IndexPage(title) {
     hasBasicUserInfo: false,
     hasUserPhone: false,
     canIUseUser: wx.canIUse('button.open-type.getUserInfo'),
-    canIUsePhone: wx.canIUse('button.open-type.getPhoneNumber')
+    canIUsePhone: wx.canIUse('button.open-type.getPhoneNumber'),
+    position_item: []
   }
 };
 IndexPage.prototype = new pageBasic();
 
 //逻辑初始化
 IndexPage.prototype.onPreload = function(option){
-  this.render()
-  if (app.globalData.userInfo) {
-    this.setData({
-      userInfo: app.globalData.userInfo,
-      hasUserInfo: true
-    })
-  } else if (this.data.canIUseUser) {
-    // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    // 所以此处加入 callback 以防止这种情况
+  //授权判断
+  if (app.globalData.userBasicInfo){
+    this.vm.hasBasicUserInfo = true;
+  }else{
+    //注册初始化回调
     app.userInfoReadyCallback = res => {
-      this.setData({
-        userInfo: res.userInfo,
-        hasUserInfo: true
-      })
+      this.vm.hasBasicUserInfo = true;
+      this.render();
     }
-  } else {
-    // 在没有 open-type=getUserInfo 版本的兼容处理
-    wx.getUserInfo({
-      success: res => {
-        app.globalData.userInfo = res.userInfo
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
   }
+  if (app.globalData.userPhone) this.vm.hasUserPhone = true;
+
+  //职位初始渲染
+  service.jobListIndex(this);
+
+  //这个可以在职位初始渲染里渲染，这边可以去掉
+  this.render();
 }
 
 //点击头像跳转日志记录页
@@ -65,17 +55,11 @@ IndexPage.prototype.bindViewTap = function () {
 //获取用户信息
 IndexPage.prototype.getUserInfo = function (e) {
   service.init(app, this, e.detail.userInfo);
-  // console.log(e)
-  // app.globalData.userInfo = e.detail.userInfo
-  // this.setData({
-  //   userInfo: e.detail.userInfo,
-  //   hasUserInfo: true
-  // })
 }
 
 //获取用户手机信息
 IndexPage.prototype.getPhoneNumber = function(e){
-
+  service.getPhone();
 }
 
 //释放滑动判断

@@ -16,28 +16,55 @@
 /**主ui**/
 .moveContainer{
   position: fixed;
-  height: 134%;
+  height: 127%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  box-sizing: border-box;
 }
 movable-area movable-view{
   width: 100%;
   display: block;
 }
 .moveContainer .moveContainer_top{
-  height: 25%;
+  height: 21.3%;
+  padding-left: 44rpx;
+  padding-right: 44rpx; 
+  padding-bottom: 22rpx;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 .moveContainer .moveContainer_bottom{
   position:relative;
-  top:25%;
-  height: 75%;
+  top:21.3%;
+  height: 78.7%;
 }
 scroll-view{
   height: 100%;
   overflow:scroll;
   white-space:nowrap;
+}
+
+/*顶部*/
+.top_position{
+  justify-content: flex-start;
+  line-height: 40rpx;
+}
+.top_position text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.top_banner{
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.top_banner image{
+  width: 100%;
+  height: auto;
 }

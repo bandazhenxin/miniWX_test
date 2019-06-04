@@ -1,0 +1,20 @@
+<template name='positionItem'>
+  <view class='scroll_item'>
+    <view class='item_title'>
+      <text class='title'>{{title}}</text>
+      <text class='position'>{{position}}</text>
+    </view>
+    <view class='item_condition'>
+      <text class='condition'>{{consition_list_text}}</text>
+    </view>
+    <view class='item_company'>
+      <text class='label' wx:if="{{isHr}}">HR</text>
+      <text class='company'>{{company_info}}</text>
+    </view>
+    <view class='item_tags'>
+      <block wx:for="{{tags_list}}" wx:key="*this">
+        <text class='tags_item'>{{item}}</text>
+      </block>
+    </view>
+  </view>
+</template>
