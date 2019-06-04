@@ -8,9 +8,10 @@ const help         = require('utils/help.js');
 
 //instance
 const api        = new apiBasic();
+const storage    = new storageClass();
 const signMd5    = help.sign;
 const isFunction = help.isFunction;
-const storage    = new storageClass();
+const mergeObj   = help.mergeObj;
 
 function service(){
   //接口路径
@@ -56,9 +57,11 @@ service.prototype.initGet = function (that){
       console.log(res);
       if(res.status_code == 200){
         storage.setData('unionid', res.data.union_id);
+        console.log(mergeObj(res.data.sys_user_info, res.data.wx_user_info));
         // that.globalData.userBasicInfo = res.data
         if (isFunction(that.userInfoReadyCallback)) that.userInfoReadyCallback(res);
       }else{
+        pass = false;
         layer.busy(res.message);
       }
     }

@@ -11,6 +11,7 @@ function IndexPage(title) {
   pageBasic.call(this,title);
   this.vm = {
     db:{},
+    isGo:false,//是否可跳转，只有与重定向页面有关的异步调用结束后才可以跳转
     isMove: true,
     isScroll:false,
     motto: 'Hello World',
@@ -39,7 +40,7 @@ IndexPage.prototype.onPreload = function(option){
   if (app.globalData.userPhone) this.vm.hasUserPhone = true;
 
   //职位初始渲染
-  service.jobListIndex(this);
+  service.jobListIndex(app,this);
 
   //这个可以在职位初始渲染里渲染，这边可以去掉
   this.render();

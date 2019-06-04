@@ -264,6 +264,18 @@ function isFunction(fn){
 }
 
 /**
+ * 对象合并
+ */
+function mergeObj(preObj1, preObj2){
+  if (!isObj(preObj1)) return false;
+  if (!isObj(preObj2)) return false;
+
+  let newObj = {};
+  Object.assign(newObj, preObj1, preObj2);
+  return newObj;
+}
+
+/**
  * u聘加签
  */
 function sign(key,params){
@@ -293,5 +305,6 @@ module.exports = {
   isObj: isObj,
   isString: isString,
   isFunction: isFunction,
+  mergeObj: mergeObj,
   sign: sign
 }

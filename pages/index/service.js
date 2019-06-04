@@ -53,16 +53,13 @@ service.prototype = {
   /**
    * 职位初始渲染
    */
-  jobListIndex:function(that){
+  jobListIndex:function(app,that){
+    let code = '';
     let params = {
       system: config.system,
       version: config.version,
       sign: null,
-      code: code,
-      rawData: res.rawData,
-      signature: res.signature,
-      encryptedData: res.encryptedData,
-      iv: res.iv
+      code: code
     };
     let url = this.urlList.job_list;
     let sign = signMd5(config.key, params);
