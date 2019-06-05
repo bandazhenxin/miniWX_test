@@ -76,8 +76,11 @@ movable-area movable-view{
 }
 .moveContainer .moveContainer_bottom{
   position:relative;
+  padding-left: 44rpx;
+  padding-right: 44rpx; 
   top:21.3%;
   height: 78.7%;
+  background-color: #FFFFFF;
 }
 scroll-view{
   height: 100%;
@@ -105,4 +108,57 @@ scroll-view{
 .top_banner image{
   width: 100%;
   height: auto;
+}
+
+/*职位*/
+.scroll_item{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 22rpx;
+  padding-bottom: 22rpx; 
+}
+.scroll_item .item{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.scroll_item .item_title .title{
+  font-size: 34rpx;
+  color: #5D5D5D;
+}
+.scroll_item .item_title .position{
+  font-size: 26rpx;
+  color:#545454;
+}
+.scroll_item .item_condition .condition{
+  font-size: 26rpx;
+  color:#FF8914;
+}
+.scroll_item .item_company,.scroll_item .item_tags{
+  justify-content: flex-start;
+  padding-top: 6rpx;
+  padding-bottom: 6rpx; 
+}
+.scroll_item .item_company .label{
+  font-size: 16rpx;
+  color: #FFFFFF;
+  background-color: #149D4C;
+  display: block;
+  padding: 2rpx;
+  margin-right: 10rpx;
+}
+.scroll_item .item_company .company{
+  color: #C2C2C2;
+  font-size: 22rpx;
+}
+.scroll_item .item_tags .tags_item{
+  border: 2rpx solid #149D4C;
+  font-size: 16rpx;
+  padding-left:6rpx; 
+  padding-right:6rpx; 
+  margin-right: 10rpx;
 }

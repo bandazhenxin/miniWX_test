@@ -30,6 +30,7 @@ function service() {
    * 职位信息数据格式处理
    */
   this.handleJobInfo = function(info){
+    console.log(info);
     return info;
   }
 }
