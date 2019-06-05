@@ -1,9 +1,11 @@
 //reply
 const config       = require('../../config/request.js');
+const basic        = require('../../config/basic.js');
 const apiBasic     = require('../../core/apiBasic.js');
 const storageClass = require('../../core/storage.js');
 const layer        = require('../../utils/webServer/layer.js');
 const wxAsyn       = require('../../utils/webServer/asyn/wxAsyn.js');
+const QQMapWX      = require('../../utils/webServer/qqmap-wx-jssdk.js');
 const help         = require('../../utils/help.js');
 
 //instance
@@ -11,15 +13,25 @@ const api      = new apiBasic();
 const storage  = new storageClass();
 const signMd5  = help.sign;
 const mergeObj = help.mergeObj;
+const mergeArr = help.mergeArr;
 
 //private
 function service() {
-  //接口路径
+  /**
+   * 接口路径
+   */
   this.urlList = {
     init:config.initUrl,
     getMobile: config.get_mobile,
     job_list: config.job_list
   };
+
+  /**
+   * 职位信息数据格式处理
+   */
+  this.handleJobInfo = function(info){
+    return info;
+  }
 }
 
 //public
@@ -73,12 +85,13 @@ service.prototype = {
         app.globalData.userBasicInfo = mergeObj(res.data.sys_user_info, res.data.wx_user_info);
         app.globalData.token = res.data.token;
         that.vm.hasBasicUserInfo = true;
+        that.vm.isGo = true;
         if (app.globalData.userBasicInfo.hasOwnProperty('mobile')) that.vm.hasUserPhone = true;
         layer.busy(false);
         that.render();
 
         //职位初始渲染与初始定位
-        this.indexRender(app, that);
+        this.indexRender(that);
       } else {
         layer.busy(false);
         layer.toast(res.message);
@@ -133,7 +146,9 @@ service.prototype = {
    * 职位初始渲染与初始定位
    * 不强制授权
    */
-  indexRender:function(app,that){
+  indexRender:function(that){
+    var self = this;
+
     //auth
     wx.getSetting({
       success: res => {
@@ -141,58 +156,66 @@ service.prototype = {
           layer.alert('请求授权当前位置', '需要获取您的地理位置，请确认授权', function (res) {
             if (res.cancel) {
               layer.toast('拒绝授权');
-              this.indexJobRender(app, that);
+              self.indexJobRender(app, that);
             } else if (res.confirm) {
               wx.openSetting({
                 success: function (dataAu) {
                   if (dataAu.authSetting["scope.userLocation"] == true) {
                     layer.toast('授权成功');
-                    this.indexRenderContinue(app, that);
+                    self.indexRenderContinue(that);
                   } else {
                     layer.toast('授权失败');
-                    this.indexJobRender(app, that);
+                    self.indexJobRender(that);
                   }
                 }
               })
             }
           });
         }else{
-          this.indexRenderContinue(app, that);
+          self.indexRenderContinue(that);
         }
       }
     });
-
-    // let params = {
-    //   system: config.system,
-    //   version: config.version,
-    //   sign: null,
-    //   unionid: storage.getData('unionid'),
-    //   page: 1,
-    //   city_name: '上海',
-    //   province_name: '上海'
-    // };
-    // let url = this.urlList.job_list;
-    // let sign = signMd5(config.key, params);
-    // params.sign = sign;
-    // console.log(params);
   },
 
   /**
    * 继续初始渲染
    */
-  indexRenderContinue: function (app, that) {
+  indexRenderContinue: function (that) {
+    var self = this;
     wx.getLocation({
       type: 'wgs84',
       success: function (res) {
-        console.log(JSON.stringify(res))
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy;
-        that.getLocal(latitude, longitude)
+        console.log(res);
+        that.vm.latitude = res.latitude;
+        that.vm.longitude = res.longitude;
+        that.vm.speed = res.speed;
+        that.vm.accuracy = res.accuracy;
+
+        //腾讯地图获取地址
+        let qqmapsdk = new QQMapWX({ key: basic.qqmap_key});
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: that.vm.latitude,
+            longitude: that.vm.longitude
+          },
+          success: function (res) {
+            console.log(res);
+            let province = res.result.ad_info.province
+            let city = res.result.ad_info.city
+            that.vm.province = province;
+            that.vm.city = city;
+            self.indexJobRender(that);
+          },
+          fail: function (res) {
+            layer.toast(res.message);
+            self.indexJobRender(that);
+          }
+        });
       },
       fail: function (res) {
-        console.log('fail' + JSON.stringify(res))
+        layer.toast(res.errMsg);
+        self.indexJobRender(that);
       }
     })
   },
@@ -200,8 +223,38 @@ service.prototype = {
   /**
    * 初始职位渲染
    */
-  indexJobRender: function (app, that){
+  indexJobRender: function (that){
+    //init
+    var self = this;
 
+    //construct
+    let params = {
+      system: config.system,
+      version: config.version,
+      sign: null,
+      unionid: storage.getData('unionid'),
+      page: 1,
+      city_name: that.vm.city,
+      province_name: that.vm.province
+    };
+    let url = this.urlList.job_list;
+    let sign = signMd5(config.key, params);
+    params.sign = sign;
+    api.post(url, params).then(res => {
+      if (res.status_code == 200){
+        let listArr = self.handleJobInfo(res.data.list);
+        that.vm.position_item = mergeArr(that.data.position_item,listArr);
+        console.log(that.vm.position_item);
+      }else{
+        layer.toast(res.message);
+      }
+      that.render();
+
+      console.log(that.data);
+    },msg => {
+      layer.toast(msg.message);
+      that.render();
+    });
   },
 };
 

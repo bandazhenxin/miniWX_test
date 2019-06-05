@@ -264,6 +264,13 @@ function isFunction(fn){
 }
 
 /**
+ * 严格判断数组类型
+ */
+function isArr(arr){
+  return Object.prototype.toString.call(arr) === '[object Array]';
+}
+
+/**
  * 空类型判断
  */
 function isEmpty(param){
@@ -285,6 +292,19 @@ function mergeObj(preObj1, preObj2){
   let newObj = {};
   Object.assign(newObj, preObj1, preObj2);
   return newObj;
+}
+
+/**
+ * 数组合并
+ */
+function mergeArr(arr1,arr2){
+  if (isEmpty(arr1)) arr1 = [];
+  if (isEmpty(arr2)) arr2 = [];
+  if (!isArr(arr1)) return false;
+  if (!isArr(arr2)) return false;
+
+  let c = arr1.concat(arr2);
+  return c;
 }
 
 /**
@@ -317,7 +337,9 @@ module.exports = {
   isObj: isObj,
   isString: isString,
   isFunction: isFunction,
+  isArr: isArr,
   isEmpty: isEmpty,
   mergeObj: mergeObj,
+  mergeArr: mergeArr,
   sign: sign
 }

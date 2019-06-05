@@ -78,7 +78,7 @@
           mode='aspectFit'
           class='iconfont'
         >位置</image>
-        <text>上海市</text>
+        <text>{{city}}</text>
         <image
           src='../../style/images/icon/xiala.png'
           mode='aspectFit'

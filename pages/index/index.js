@@ -4,6 +4,7 @@ const serviceClass = require('service.js');
 const pageBasic    = require('../../core/pageBasic.js');
 const layer        = require('../../utils/webServer/layer.js');
 const help         = require('../../utils/help.js');
+const config       = require('../../config/basic.js');
 
 //instance
 const service = new serviceClass();
@@ -14,14 +15,19 @@ function IndexPage(title) {
   pageBasic.call(this,title);
   this.vm = {
     db:{},
-    isGo: true,//是否可跳转，只有与重定向页面有关的异步调用结束后才可以跳转
+    isGo: false,//是否可跳转，只有与重定向页面有关的异步调用结束后才可以跳转
     isOpen: false,//是否可以打开页面
     isScroll: false,
     motto: 'Hello World',
     userInfo: {},
     hasBasicUserInfo: false,
     hasUserPhone: false,
-    position_item: []
+    position_item: [],
+    latitude: config.latitude,
+    longitude: config.longitude,
+    accuracy: config.accuracy,
+    province: config.province,
+    city: config.city
   }
 };
 IndexPage.prototype = new pageBasic();
@@ -47,12 +53,13 @@ IndexPage.prototype.onPreload = function(option){
   app.initCallback = res => {
     this.vm.hasBasicUserInfo = true;
     this.vm.isOpen = true;
+    this.vm.isGo = true;
     if (app.globalData.userBasicInfo.hasOwnProperty('mobile')) this.vm.hasUserPhone = true;
     layer.busy(false);
     this.render();
     
     //职位初始渲染与初始定位
-    service.indexRender(app, this);
+    service.indexRender(this);
   }
 }
 
