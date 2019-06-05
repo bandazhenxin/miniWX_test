@@ -264,12 +264,24 @@ function isFunction(fn){
 }
 
 /**
+ * 空类型判断
+ */
+function isEmpty(param){
+  if(!param) return true;
+  if (Array.prototype.isPrototypeOf(param) && param.length === 0) return true;
+  if (Object.prototype.isPrototypeOf(param) && Object.keys(param).length === 0) return true;
+  return false;
+}
+
+/**
  * 对象合并
  */
 function mergeObj(preObj1, preObj2){
+  if (isEmpty(preObj1)) preObj1 = {};
+  if (isEmpty(preObj2)) preObj2 = {};
   if (!isObj(preObj1)) return false;
   if (!isObj(preObj2)) return false;
-
+  
   let newObj = {};
   Object.assign(newObj, preObj1, preObj2);
   return newObj;
@@ -305,6 +317,7 @@ module.exports = {
   isObj: isObj,
   isString: isString,
   isFunction: isFunction,
+  isEmpty: isEmpty,
   mergeObj: mergeObj,
   sign: sign
 }

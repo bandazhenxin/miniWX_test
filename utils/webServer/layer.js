@@ -39,7 +39,7 @@ const layer = {
       showCancel: false,
       confirmText: "确定",
       success: res => {
-        callback && callback();
+        callback && callback(res);
       }
     });
   },

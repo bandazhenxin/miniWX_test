@@ -22,19 +22,39 @@ function service(){
 
 //业务初始化，获取token
 service.prototype.initGet = function (that){
+  //init
   var code = null;
   var pass = false;
+  layer.busy('',0);
+  
+  //get
+  //授权登录
   wxAsyn.getSetting().then(res => {
     if (res.authSetting['scope.userInfo']){
       pass = true;
       return wxAsyn.login();
+    }else{
+      pass = false;
+      if (isFunction(that.initBack)) that.initBack(res);
+      layer.busy(false);
     }
-  }).then(res => {
+  },msg => {
+    layer.busy(false);
+    layer.toast(msg.errMsg);
+  })
+  //获取用户信息
+  .then(res => {
     if (pass){
       code = res.code;
+      that.globalData.code = code;
       return wxAsyn.getUserInfo();
     }
-  }).then(res => {
+  },msg => {
+    layer.busy(false);
+    layer.toast('登录失败');
+  })
+  //初始化
+  .then(res => {
     if (pass){
       let params = {
         system: config.system,
@@ -49,22 +69,29 @@ service.prototype.initGet = function (that){
       let url = this.urlList.init;
       let sign = signMd5(config.key, params);
       params.sign = sign;
-      console.log(JSON.stringify(params))
       return api.post(url, params);
     }
-  }).then(res => { 
+  },msg => {
+    layer.busy(false);
+    layer.toast('登录失败');
+  })
+  //数据初始化
+  .then(res => { 
     if(pass){
       console.log(res);
       if(res.status_code == 200){
         storage.setData('unionid', res.data.union_id);
-        console.log(mergeObj(res.data.sys_user_info, res.data.wx_user_info));
-        // that.globalData.userBasicInfo = res.data
-        if (isFunction(that.userInfoReadyCallback)) that.userInfoReadyCallback(res);
+        that.globalData.userBasicInfo = mergeObj(res.data.sys_user_info, res.data.wx_user_info);
+        that.globalData.token = res.data.token;
+        if (isFunction(that.initCallback)) that.initCallback(res);
       }else{
         pass = false;
-        layer.busy(res.message);
+        layer.busy(false);
       }
     }
+  },msg => {
+    layer.busy(false);
+    layer.toast('初始化失败');
   });
 } 
 

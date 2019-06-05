@@ -1,32 +1,74 @@
 <!--reply-->
 <import src='../common/positionItem.wxml' />
 
-<!--获取头像昵称-->
-<!-- <block wx:if="{{!hasBasicUserInfo && canIUseUser}}">
-  <view class='auth'>
-    <button 
-      type="primary" 
-      class='auth-btn weui-btn button-hover' 
-      open-type="getUserInfo" 
-      bindgetuserinfo="getUserInfo"
-    >获取头像昵称</button>
+<!--封面-->
+<block wx:if="{{!isOpen}}">
+  <view class='default'>
+    <image
+      src='../../style/images/banner/default.png'
+      mode='widthFix'
+    >default</image>
   </view>
-</block> -->
+</block>
+
+<!--获取头像昵称-->
+<block wx:elif="{{!hasBasicUserInfo}}">
+  <view class='default'>
+    <image
+      src='../../style/images/banner/default.png'
+      mode='widthFix'
+    >default</image>
+  </view>
+  <view class='display'>
+    <view class='auth'>
+      <view class='title'>
+        <image
+          src='../../style/images/banner/default.png'
+          mode='widthFix'
+          class='iconfont'
+        >logo</image>
+        <text>申请使用</text>
+      </view>
+      <button 
+        type="primary" 
+        class='auth-btn weui-btn button-hover' 
+        open-type="getUserInfo" 
+        bindgetuserinfo="getUserInfo"
+      >获取头像昵称</button>
+    </view>
+  </view>
+</block>
 
 <!--获取手机号-->
-<!-- <block wx:elif="{{!hasUserPhone && canIUsePhone}}">
-  <view class='auth'>
-    <button 
-      type="primary"
-      class='auth-btn weui-btn button-hover' 
-      open-type="getPhoneNumber" 
-      bindgetuserinfo="getPhoneNumber"
-    >获取手机号</button>
+<!-- <block wx:elif="{{!hasUserPhone}}">
+  <view class='default'>
+    <image
+      src='../../style/images/banner/default.png'
+      mode='widthFix'
+    >default</image>
+  </view>
+  <view class='display'>
+    <view class='auth'>
+      <view class='title'>
+        <image
+          src='../../style/images/banner/default.png'
+          mode='widthFix'
+          class='iconfont'
+        >logo</image>
+        <text>申请使用</text>
+      </view>
+      <button 
+        type="primary" 
+        class='auth-btn weui-btn button-hover' 
+        open-type="getPhoneNumber" 
+        bindgetuserinfo="getPhoneNumber"
+      >获取手机号</button>
+    </view>
   </view>
 </block> -->
 
 <!--首页搜索列表-->
-<!-- <block wx:else> -->
+<block wx:else>
   <movable-area class='moveContainer'>
     <!--header-->
     <movable-view direction="none" class="weui-flex moveContainer_top">
@@ -59,88 +101,13 @@
       friction="0.01"
       class="page_block moveContainer_bottom"
       bindchange="backTop"
-      disabled="{{isMove?false:true}}"
     >
       <view><text>四五六</text></view>
       <scroll-view scroll-y="{{isScroll?true:false}}" scroll-top="0">
-        <template is="positionItem" data="{{position_item}}"/>
-        <view><text>七八九</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
-        <view><text>十十一</text></view>
+        <block wx:for="{{position_item}}" wx:key="id">
+          <template is="positionItem" data="{{item}}"/>
+        </block>
       </scroll-view>
     </movable-view>
   </movable-area>
-<!-- </block> -->
+</block>
