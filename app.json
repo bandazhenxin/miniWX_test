@@ -1,8 +1,40 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/test/test"
+    "pages/news/news",
+    "pages/signUp/signUp",
+    "pages/personal/personal"
   ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "style/images/icon/home.png",
+        "selectedIconPath": "style/images/icon/homeEd.png"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "消息",
+        "iconPath": "style/images/icon/news.png",
+        "selectedIconPath": "style/images/icon/newsEd.png"
+      },
+      {
+        "pagePath": "pages/signUp/signUp",
+        "text": "报名",
+        "iconPath": "style/images/icon/sign.png",
+        "selectedIconPath": "style/images/icon/signEd.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "我的",
+        "iconPath": "style/images/icon/my.png",
+        "selectedIconPath": "style/images/icon/myEd.png"
+      }
+    ],
+    "selectedColor": "#FF850B",
+    "borderStyle": "black"
+  },
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"

@@ -1,18 +1,11 @@
-const appInstance = getApp();
-
-// pages/test/test.js
+// pages/news/news.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    testArr:[1,2,3,4],
-    objTest:{
-      'name':'htmeow',
-      'age':18
-    },
-    isShow:true
+
   },
 
   /**
@@ -26,7 +19,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log(appInstance.globalData);
+
   },
 
   /**

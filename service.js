@@ -25,7 +25,7 @@ service.prototype.initGet = function (that){
   //init
   var code = null;
   var pass = false;
-  layer.busy('',0);
+  layer.busy(' ',0);
   
   //get
   //授权登录

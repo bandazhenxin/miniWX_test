@@ -39,6 +39,10 @@ pageBasic.prototype = {
     }
     this.setData(data);
   },
+  //局部渲染
+  renderDeatil: function(obj){
+    this.setData(obj);
+  },
   //页面重定向
   go: function (url, addToHistory) {
     if (addToHistory === false) {

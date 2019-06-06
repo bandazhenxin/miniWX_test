@@ -101,12 +101,52 @@
       friction="0.2"
       class="page_block moveContainer_bottom"
       bindchange="backTop"
+      out-of-bounds="true"
+      y='{{list_position}}'
     >
-      <view><text>四五六</text></view>
+      <!--搜索区-->
+      <view class='search'>
+        <view class='search-input item'>
+          <view class="item-input">
+            <view class="weui-search-bar__box">
+              <icon class="weui-icon-search_in-box" size="14" type="search"></icon>
+              <input class="weui-search-bar__input" bindtap='roof' placeholder="搜索" type="text">搜索</input>
+            </view>
+          </view>
+          <view class='screen'>
+            <image 
+              src='../../style/images/icon/shaixuan.png'
+              mode='aspectFit'
+              class='iconfont'
+            >筛选</image>
+            <text>筛选</text>
+          </view>
+        </view>
+        <view class='search-sort item'>
+          <text class='{{sort_active == 1?"color_active":""}}' data-id='1' data-sortNmae='is_recommend' data-sort='0' bindtap='sortSearch'>最新推荐</text>
+          <text data-id='2' data-sortNmae='is_recommend' data-sort='0' bindtap='sortSearch'>薪资排序</text>
+          <text data-id='3' data-sortNmae='is_recommend' data-sort='0' bindtap='sortSearch'>补贴排序</text>
+          <text data-id='4' data-sortNmae='is_recommend' data-sort='0' bindtap='sortSearch'>赏金排序</text>
+        </view>
+        <scroll-view  
+          class='search-tags item'
+          scroll-x='true'
+        >
+          <text>提供住宿</text>
+          <text>加班补贴</text>
+          <text>交通补助</text>
+          <text>餐补</text>
+          <text>包吃包住</text>
+        </scroll-view >
+      </view>
+      <!--职位列表-->
       <scroll-view scroll-y="{{isScroll?true:false}}" scroll-top="0">
         <block wx:for="{{position_item}}" wx:key="id">
           <template is="positionItem" data="{{...item}}"/>
         </block>
+        <view id='displayBlock'>
+          
+        </view>
       </scroll-view>
     </movable-view>
   </movable-area>

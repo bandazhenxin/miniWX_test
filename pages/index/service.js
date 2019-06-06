@@ -250,11 +250,11 @@ service.prototype = {
         layer.toast(res.message);
       }
       that.render();
-
-      console.log(that.data);
+      wx.showTabBar();
     },msg => {
       layer.toast(msg.message);
       that.render();
+      wx.showTabBar();
     });
   },
 };

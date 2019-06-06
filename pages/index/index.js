@@ -27,10 +27,16 @@ function IndexPage(title) {
     longitude: config.longitude,
     accuracy: config.accuracy,
     province: config.province,
-    city: config.city
+    city: config.city,
+    list_position: 320,
+    sort_name: '',
+    sort: '',
+    sort_active: 0
   }
 };
 IndexPage.prototype = new pageBasic();
+
+
 
 /** 业务逻辑控制 **/
 
@@ -39,6 +45,7 @@ IndexPage.prototype = new pageBasic();
  */
 IndexPage.prototype.onPreload = function(option){
   //init
+  wx.hideTabBar();
   if (!isEmpty(app.globalData.userBasicInfo)) this.vm.hasBasicUserInfo = true;
   if (app.globalData.userBasicInfo.hasOwnProperty('mobile')) this.vm.hasUserPhone = true;
   this.render();
@@ -46,6 +53,7 @@ IndexPage.prototype.onPreload = function(option){
   //初始回调
   app.initBack = res => {
     this.vm.isOpen = true;
+    layer.busy(false);
     this.render();
   }
 
@@ -77,6 +85,22 @@ IndexPage.prototype.getPhoneNumber = function(e){
   service.getMobile(app, this, e.detail);
 }
 
+/**
+ * 排序事件搜索搜索
+ */
+IndexPage.prototype.sortSearch = function(e){
+  let data = e.currentTarget.dataset;
+  this.vm.sort_name = data.sortNmae;
+  this.vm.sort = data.sort;
+  this.renderDeatil({
+    sort_name: this.vm.sort_name,
+    sort: this.vm.sort
+  });
+}
+
+
+
+
 /** ui逻辑控制 **/
 
 /**
@@ -84,8 +108,17 @@ IndexPage.prototype.getPhoneNumber = function(e){
  */
 IndexPage.prototype.backTop = function(event){
   let y = event.detail.y;
-  let top = event.currentTarget.offsetTop;
-  this.vm.isScroll = (y * (-1) == top);
+  this.vm.isScroll = (parseFloat(y) <= 0);
+  this.renderDeatil({
+    isScroll: this.vm.isScroll
+  });
+}
+
+/**
+ * 点击搜索框置顶
+ */
+IndexPage.prototype.roof = function(){
+  this.vm.list_position = 0;
   this.render();
 }
 
