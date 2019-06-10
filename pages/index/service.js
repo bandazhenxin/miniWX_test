@@ -251,7 +251,6 @@ service.prototype = {
       if (res.status_code == 200){
         let listArr = self.handleJobInfo(res.data.list);
         that.vm.position_item = mergeArr(that.data.position_item,listArr);
-        console.log(that.vm.position_item);
       }else{
         layer.toast(res.message);
       }
@@ -261,6 +260,47 @@ service.prototype = {
       layer.toast(msg.message);
       that.render();
       wx.showTabBar();
+    });
+  },
+  
+  /**
+   * 基本渲染
+   */
+  basicRender: function (that){
+    //init
+    var self = this;
+
+    //construct
+    let params = {
+      system: config.system,
+      version: config.version,
+      sign: null,
+      unionid: storage.getData('unionid'),
+      page: 1,
+      city_name: that.vm.city,
+      province_name: that.vm.province
+    };
+    if(that.vm.sort_name) params[that.vm.sort_name] = that.vm.sort; //sort
+    let url = this.urlList.job_list;
+    let sign = signMd5(config.key, params);
+    params.sign = sign;
+
+    //render
+    layer.busy('加载中', 0);
+    api.post(url, params).then(res => {
+      layer.busy(false);
+      if (res.status_code == 200) {
+        let listArr = self.handleJobInfo(res.data.list);
+        that.vm.position_item = listArr;
+        that.renderDeatil({
+          position_item: listArr
+        });
+      } else {
+        layer.toast(res.message);
+      }
+    }, msg => {
+      layer.busy(false);
+      layer.toast(msg.message);
     });
   },
 };

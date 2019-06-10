@@ -123,15 +123,32 @@
           </view>
         </view>
         <view class='search-sort item'>
-          <view class="{{(sort_name === 'is_recommend')?'color_active':''}}" data-sortname='is_recommend' data-sort='{{sort_is_recommend}}' bindtap='sortSearch'>最新推荐</view>
-          <view class="{{(sort_name === 'salary_order')?'color_active':''}}" data-sortname='salary_order' data-sort='{{sort_salary_order}}' bindtap='sortSearch'>薪资排序</view>
-          <view class="{{(sort_name === 'subsidy_order')?'color_active':''}}" data-sortname='subsidy_order' data-sort='{{sort_subsidy_order}}' bindtap='sortSearch'>补贴排序</view>
-          <view class="{{(sort_name === 'reward_order')?'color_active':''}}" data-sortname='reward_order' data-sort='{{sort_reward_order}}' bindtap='sortSearch'>赏金排序</view>
+          <view 
+            class="{{(sort_name === 'is_recommend')?'color_active':''}}" 
+            data-sortname='is_recommend' 
+            data-sort='{{sort_is_recommend}}' 
+            bindtap='sortSearch'
+          >最新推荐</view>
+          <view 
+            class="{{(sort_name === 'salary_order')?'color_active':''}}" 
+            data-sortname='salary_order' 
+            data-sort='{{sort_salary_order}}' 
+            bindtap='sortSearch'
+          >薪资排序</view>
+          <view
+            class="{{(sort_name === 'subsidy_order')?'color_active':''}}" 
+            data-sortname='subsidy_order' 
+            data-sort='{{sort_subsidy_order}}' 
+            bindtap='sortSearch'
+          >补贴排序</view>
+          <view 
+            class="{{(sort_name === 'reward_order')?'color_active':''}}" 
+            data-sortname='reward_order' 
+            data-sort='{{sort_reward_order}}' 
+            bindtap='sortSearch'
+          >赏金排序</view>
         </view>
-        <scroll-view  
-          class='search-tags item'
-          scroll-x='true'
-        >
+        <scroll-view class='search-tags item' scroll-x='true'>
           <text>提供住宿</text>
           <text>加班补贴</text>
           <text>交通补助</text>

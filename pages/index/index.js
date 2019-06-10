@@ -31,10 +31,10 @@ function IndexPage(title) {
     list_position: 320,
     sort_name: '',
     sort: '',
-    sort_is_recommend: 0,
-    sort_salary_order: 0,
-    sort_subsidy_order: 0,
-    sort_reward_order: 0
+    sort_is_recommend: 1,
+    sort_salary_order: 1,
+    sort_subsidy_order: 1,
+    sort_reward_order: 1
   }
 };
 IndexPage.prototype = new pageBasic();
@@ -93,27 +93,23 @@ IndexPage.prototype.getPhoneNumber = function(e){
  */
 IndexPage.prototype.sortSearch = function(e){
   //init
-  let datail = e.currentTarget.dataset;
+  let datail   = e.currentTarget.dataset;
   let sortname = datail.sortname;
-  if (datail.sort === 0){
-    let sort = 1;
-  } else {
-    let sort = 0;
-  }
+  let sort     = (datail.sort === 0)?1:0;
+  let dataObj  = {
+    sort_name: sortname,
+    sort: sort
+  };
 
   //控制样式
   this.vm.sort_name = sortname;
   this.vm.sort = sort;
   this.vm['sort_' + sortname] = sort;
-  let dataObj = {
-    sort_name: this.vm.sort_name,
-    sort: this.vm.sort
-  };
   dataObj['sort_' + sortname] = sort;
   this.renderDeatil(dataObj);
 
   //渲染职位列表
-  // service.
+  service.basicRender(this);
 }
 
 
