@@ -123,10 +123,10 @@
           </view>
         </view>
         <view class='search-sort item'>
-          <text class='{{sort_active == 1?"color_active":""}}' data-id='1' data-sortNmae='is_recommend' data-sort='0' bindtap='sortSearch'>最新推荐</text>
-          <text data-id='2' data-sortNmae='is_recommend' data-sort='0' bindtap='sortSearch'>薪资排序</text>
-          <text data-id='3' data-sortNmae='is_recommend' data-sort='0' bindtap='sortSearch'>补贴排序</text>
-          <text data-id='4' data-sortNmae='is_recommend' data-sort='0' bindtap='sortSearch'>赏金排序</text>
+          <view class="{{(sort_name === 'is_recommend')?'color_active':''}}" data-sortname='is_recommend' data-sort='{{sort_is_recommend}}' bindtap='sortSearch'>最新推荐</view>
+          <view class="{{(sort_name === 'salary_order')?'color_active':''}}" data-sortname='salary_order' data-sort='{{sort_salary_order}}' bindtap='sortSearch'>薪资排序</view>
+          <view class="{{(sort_name === 'subsidy_order')?'color_active':''}}" data-sortname='subsidy_order' data-sort='{{sort_subsidy_order}}' bindtap='sortSearch'>补贴排序</view>
+          <view class="{{(sort_name === 'reward_order')?'color_active':''}}" data-sortname='reward_order' data-sort='{{sort_reward_order}}' bindtap='sortSearch'>赏金排序</view>
         </view>
         <scroll-view  
           class='search-tags item'

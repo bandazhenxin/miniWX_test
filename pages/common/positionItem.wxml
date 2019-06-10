@@ -5,10 +5,10 @@
       <text class='position'>{{province_name}} {{city_name}}</text>
     </view>
     <view class='item_condition item'>
-      <text class='condition'>{{salary_base}}</text>
+      <text class='condition'>{{condition_text_list}}</text>
     </view>
     <view class='item_company item'>
-      <text class='label' wx:if="{{true}}">HR</text>
+      <text class='label'>{{partner_role}}</text>
       <text class='company'>{{job_partner_name}} | {{is_full_time}}</text>
     </view>
     <view class='item_tags item'>

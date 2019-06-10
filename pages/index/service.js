@@ -30,7 +30,13 @@ function service() {
    * 职位信息数据格式处理
    */
   this.handleJobInfo = function(info){
-    console.log(info);
+    for(let val of info){
+      //入职待遇
+      val.condition_text_list = [val.salary_base];
+      val.share_reward && val.condition_text_list.push(val.share_reward);
+      val.entry_reward && val.condition_text_list.push(val.entry_reward);
+      val.condition_text_list = val.condition_text_list.join(' | ');
+    }
     return info;
   }
 }

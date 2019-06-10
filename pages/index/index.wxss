@@ -174,6 +174,7 @@ scroll-view{
   margin-bottom: 8px;
 }
 .search-sort text{
+  display: block;
   font-size: 32rpx;
   color: #202020;
 }
@@ -212,9 +213,22 @@ scroll-view{
   font-size: 30rpx;
   color:#545454;
 }
+.scroll_item .item_condition{
+  flex-wrap: wrap;
+}
 .scroll_item .item_condition .condition{
   font-size: 30rpx;
   color:#FF8914;
+  width: 100%;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient: vertical;
+  word-wrap:break-word;
+  word-break:break-all;
+  white-space:pre-wrap
 }
 .scroll_item .item_company,.scroll_item .item_tags{
   justify-content: flex-start;

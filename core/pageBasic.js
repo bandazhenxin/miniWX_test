@@ -2,6 +2,9 @@
  * 基类控制器
  */
 const app = getApp();
+const help = require('../utils/help.js');
+
+const isFunction = help.isFunction;
 
 function pageBasic(title){
   this.vm = null;
@@ -40,8 +43,12 @@ pageBasic.prototype = {
     this.setData(data);
   },
   //局部渲染
-  renderDeatil: function(obj){
-    this.setData(obj);
+  renderDeatil: function(obj,fn){
+    if (isFunction(fn)){
+      this.setData(obj, fn);
+    }else{
+      this.setData(obj);
+    }
   },
   //页面重定向
   go: function (url, addToHistory) {
