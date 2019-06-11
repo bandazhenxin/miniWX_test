@@ -1,0 +1,77 @@
+/* 布局 */
+.container{
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22rpx 0;
+}
+
+/* 搜索区 */
+.search{
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22rpx;
+  padding: 0 44rpx;
+}
+.search .weui-search-bar__box{
+  border-radius: 5px;
+  width: 70%;
+  background-color: #F1F1F1;
+  height: 30px;
+  border: 1px solid #e6e6ea;
+}
+.search button{
+  color: #fff;
+  background-color: #FF9123;
+}
+
+/* 历史记录 & 热门搜索 */
+.history{
+  margin-top: 11rpx;
+  padding: 0 44rpx;
+}
+.history .history_top{
+  align-items: center;
+  justify-content: space-between;
+}
+.history .history_top .title{
+  font-size: 30rpx;
+}
+.history .history_top .top_del{
+  justify-content: flex-start;
+  align-items: center;
+}
+.top_del image{
+  width: 30rpx;
+  margin-right: 6rpx;
+}
+.top_del text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #4D4D4D;
+}
+.history .history_tags{
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 22rpx 0;
+}
+.history .history_tags text{
+  display: inline-block;
+  line-height: 40rpx;
+  height: 60rpx;
+  padding: 10rpx 30rpx;
+  border-radius: 30rpx;
+  background-color: #F1F1F1;
+  color: #4D4D4D;
+  font-size: 28rpx;
+  margin-right: 30rpx;
+}
+.hot{
+  border-top: 8rpx solid #F5F5F5;
+  padding-top: 22rpx;
+}

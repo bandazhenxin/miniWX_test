@@ -43,7 +43,7 @@ pageBasic.prototype = {
     this.setData(data);
   },
   //局部渲染
-  renderDeatil: function(obj,fn){
+  renderDetail: function(obj,fn){
     if (isFunction(fn)){
       this.setData(obj, fn);
     }else{

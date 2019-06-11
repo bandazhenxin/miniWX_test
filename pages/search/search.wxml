@@ -1,0 +1,57 @@
+<!--pages/search/search.wxml-->
+<view class='container'>
+  <!--搜索区-->
+  <form bindsubmit="formSubmit">
+    <view class='search weui-flex'>
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" size="14" type="search"></icon>
+        <input class="weui-search-bar__input" placeholder="搜索" type="text" focus='{{true}}' confirm-type='done' />
+      </view>
+      <button
+        size='mini'
+        form-type='submit'
+        lang='zh_CN'
+      >搜索</button>
+    </view>
+  </form>
+
+  <!--历史记录-->
+  <view class='history'>
+    <view class='history_top weui-flex'>
+      <text class='title'>历史记录</text>
+      <view class='top_del weui-flex'>
+        <image
+          src='../../style/images/icon/shanchu_1.png'
+          mode='widthFix'
+          class='iconfont'
+        >清除</image>
+        <text>清除</text>
+      </view>
+    </view>
+
+    <view class='history_tags weui-flex'>
+      <text>富士康 </text>
+      <text>华为 </text>
+    </view>
+  </view>
+
+  <!--热门搜索-->
+  <view class='history hot'>
+    <view class='history_top weui-flex'>
+      <text class='title'>热门搜索</text>
+      <view class='top_del weui-flex'>
+        <image
+          src='../../style/images/icon/shaixuan.png'
+          mode='widthFix'
+          class='iconfont'
+        >筛选</image>
+        <text>筛选</text>
+      </view>
+    </view>
+
+    <view class='history_tags weui-flex'>
+      <text>富士康 </text>
+      <text>华为 </text>
+    </view>
+  </view>
+</view>

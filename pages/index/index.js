@@ -5,6 +5,7 @@ const pageBasic    = require('../../core/pageBasic.js');
 const layer        = require('../../utils/webServer/layer.js');
 const help         = require('../../utils/help.js');
 const config       = require('../../config/basic.js');
+const lang         = require('../../config/lang.js');
 
 //instance
 const service = new serviceClass();
@@ -14,27 +15,34 @@ const isEmpty = help.isEmpty;
 function IndexPage(title) {
   pageBasic.call(this,title);
   this.vm = {
-    db:{},
-    isGo: false,//是否可跳转，只有与重定向页面有关的异步调用结束后才可以跳转
-    isOpen: false,//是否可以打开页面
-    isScroll: false,
-    motto: 'Hello World',
-    userInfo: {},
+    db:{
+      page: 1,
+    },
+
+    isOpen:    false,//是否可以打开页面
+    isScroll:  false,
+    bottom_is: true,
+
+    userInfo:         {},
     hasBasicUserInfo: false,
-    hasUserPhone: false,
-    position_item: [],
-    latitude: config.latitude,
-    longitude: config.longitude,
-    accuracy: config.accuracy,
-    province: config.province,
-    city: config.city,
-    list_position: 320,
-    sort_name: '',
-    sort: '',
-    sort_is_recommend: 1,
-    sort_salary_order: 1,
+    hasUserPhone:     false,
+    position_item:    [],
+    latitude:         config.latitude,
+    longitude:        config.longitude,
+    accuracy:         config.accuracy,
+    province:         config.province,
+    city:             config.city,
+    list_position:    320,
+
+    sort_name:          '',
+    sort:               '',
+    sort_is_recommend:  1,
+    sort_salary_order:  1,
     sort_subsidy_order: 1,
-    sort_reward_order: 1
+    sort_reward_order:  1,
+
+    tags_list:  {},
+    tags_select: [],
   }
 };
 IndexPage.prototype = new pageBasic();
@@ -64,7 +72,6 @@ IndexPage.prototype.onPreload = function(option){
   app.initCallback = res => {
     this.vm.hasBasicUserInfo = true;
     this.vm.isOpen = true;
-    this.vm.isGo = true;
     if (app.globalData.userBasicInfo.hasOwnProperty('mobile')) this.vm.hasUserPhone = true;
     layer.busy(false);
     this.render();
@@ -72,6 +79,9 @@ IndexPage.prototype.onPreload = function(option){
     //职位初始渲染与初始定位
     service.indexRender(this);
   }
+
+  //渲染标签列表
+  service.tagsRender(this);
 }
 
 /**
@@ -93,23 +103,67 @@ IndexPage.prototype.getPhoneNumber = function(e){
  */
 IndexPage.prototype.sortSearch = function(e){
   //init
-  let datail   = e.currentTarget.dataset;
-  let sortname = datail.sortname;
-  let sort     = (datail.sort === 0)?1:0;
+  let detail   = e.currentTarget.dataset;
+  let sortname = detail.sortname;
+  let sort     = (detail.sort === 0)?1:0;
   let dataObj  = {
     sort_name: sortname,
     sort: sort
   };
 
-  //控制样式
+  //ui
   this.vm.sort_name = sortname;
   this.vm.sort = sort;
   this.vm['sort_' + sortname] = sort;
   dataObj['sort_' + sortname] = sort;
-  this.renderDeatil(dataObj);
+  this.renderDetail(dataObj);
 
-  //渲染职位列表
-  service.basicRender(this);
+  //service
+  service.basicRender(this,0);
+}
+
+/**
+ * 标签事件控制
+ */
+IndexPage.prototype.tagsSearch = function(e){
+  //init
+  let detail  = e.currentTarget.dataset;
+  let tags    = detail.tagsname;
+  let id      = detail.id;
+  
+  //ui
+  this.vm.tags_select[id] = tags;
+  this.renderDetail({
+    tags_select: this.vm.tags_select
+  });
+
+  //service
+  service.basicRender(this,0);
+}
+
+/**
+ * 撤除标签
+ */
+IndexPage.prototype.delTags = function(e){
+  //init
+  let detail = e.currentTarget.dataset;
+  let id = detail.id;
+
+  //ui
+  if (this.vm.tags_select[id]) this.vm.tags_select.splice(id, 1);
+  this.renderDetail({
+    tags_select: this.vm.tags_select
+  });
+
+  //service
+  service.basicRender(this, 0);
+}
+
+/**
+ * 滚动翻页
+ */
+IndexPage.prototype.pageRender = function (event){
+  service.basicRender(this,1);
 }
 
 
@@ -123,7 +177,7 @@ IndexPage.prototype.sortSearch = function(e){
 IndexPage.prototype.backTop = function(event){
   let y = event.detail.y;
   this.vm.isScroll = (parseFloat(y) <= 0);
-  this.renderDeatil({
+  this.renderDetail({
     isScroll: this.vm.isScroll
   });
 }
@@ -132,8 +186,14 @@ IndexPage.prototype.backTop = function(event){
  * 点击搜索框置顶
  */
 IndexPage.prototype.roof = function(){
+  //本页置顶
   this.vm.list_position = 0;
-  this.render();
+  this.renderDetail({
+    list_position: 0
+  });
+
+  //重定向至下一页
+  this.go('/pages/search/search');
 }
 
-Page(new IndexPage('悠聘'));
+Page(new IndexPage(lang.up));

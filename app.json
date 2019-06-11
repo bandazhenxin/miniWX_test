@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/news/news",
     "pages/signUp/signUp",
-    "pages/personal/personal"
+    "pages/personal/personal",
+    "pages/search/search"
   ],
   "tabBar": {
     "list": [

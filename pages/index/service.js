@@ -14,6 +14,7 @@ const storage  = new storageClass();
 const signMd5  = help.sign;
 const mergeObj = help.mergeObj;
 const mergeArr = help.mergeArr;
+const isEmpty  = help.isEmpty;
 
 //private
 function service() {
@@ -21,9 +22,10 @@ function service() {
    * 接口路径
    */
   this.urlList = {
-    init:config.initUrl,
+    init:      config.initUrl,
     getMobile: config.get_mobile,
-    job_list: config.job_list
+    job_list:  config.job_list,
+    tags_list: config.tags_list
   };
 
   /**
@@ -37,6 +39,14 @@ function service() {
       val.entry_reward && val.condition_text_list.push(val.entry_reward);
       val.condition_text_list = val.condition_text_list.join(' | ');
     }
+    return info;
+  }
+
+  /**
+   * 处理标签信息格式
+   */
+  this.handleTagsInfo = function(info){
+    
     return info;
   }
 }
@@ -92,7 +102,6 @@ service.prototype = {
         app.globalData.userBasicInfo = mergeObj(res.data.sys_user_info, res.data.wx_user_info);
         app.globalData.token = res.data.token;
         that.vm.hasBasicUserInfo = true;
-        that.vm.isGo = true;
         if (app.globalData.userBasicInfo.hasOwnProperty('mobile')) that.vm.hasUserPhone = true;
         layer.busy(false);
         that.render();
@@ -262,11 +271,11 @@ service.prototype = {
       wx.showTabBar();
     });
   },
-  
+
   /**
-   * 基本渲染
+   * 标签渲染
    */
-  basicRender: function (that){
+  tagsRender: function(that){
     //init
     var self = this;
 
@@ -274,26 +283,80 @@ service.prototype = {
     let params = {
       system: config.system,
       version: config.version,
+      sign: null
+    };
+
+    //sign
+    let url = this.urlList.tags_list;
+    let sign = signMd5(config.key, params);
+    params.sign = sign;
+
+    //post
+    api.post(url, params).then(res => {
+      console.log('cdd');
+      console.log(res);
+      if (res.status_code == 200) {
+        let listArr = self.handleTagsInfo(res.data);
+        that.vm.tags_list = listArr;
+        that.renderDetail({
+          tags_list: listArr
+        });
+      } else {
+        layer.toast(res.message);
+      }
+    }, msg => {
+      layer.toast('网络错误');
+    });
+  },
+  
+  /**
+   * 基本渲染
+   */
+  basicRender: function (that, type){
+    //init
+    var self = this;
+    let page = type === 1 ? that.vm.db.page + 1:1;
+
+    //construct
+    let params = {
+      system: config.system,
+      version: config.version,
       sign: null,
       unionid: storage.getData('unionid'),
-      page: 1,
+      page: page,
       city_name: that.vm.city,
       province_name: that.vm.province
     };
-    if(that.vm.sort_name) params[that.vm.sort_name] = that.vm.sort; //sort
+    if (that.vm.sort_name) params[that.vm.sort_name] = that.vm.sort; //sort
+    if (that.vm.tags_select){
+      let tags_ids = '';
+      that.vm.tags_select.forEach(function (val, index) {
+        tags_ids += tags_ids ? ',' + index : index;
+      });
+      params.benefits_tag = tags_ids;
+    }
     let url = this.urlList.job_list;
     let sign = signMd5(config.key, params);
     params.sign = sign;
 
     //render
-    layer.busy('加载中', 0);
+    if (type !== 1) layer.busy('加载中', 0);
     api.post(url, params).then(res => {
       layer.busy(false);
       if (res.status_code == 200) {
         let listArr = self.handleJobInfo(res.data.list);
+        let bottom_is = (listArr.length < 10) ? false : true;
+        if(type === 1){
+          that.vm.db.page += 1;
+          listArr = mergeArr(that.data.position_item, listArr)
+        }else{
+          that.vm.db.page = 1;
+        }
         that.vm.position_item = listArr;
-        that.renderDeatil({
-          position_item: listArr
+        that.vm.bottom_is = bottom_is;
+        that.renderDetail({
+          position_item: listArr,
+          bottom_is: bottom_is
         });
       } else {
         layer.toast(res.message);

@@ -95,7 +95,14 @@ scroll-view{
 #displayBlock{
   display: block;
   width: 100%;
-  height: 350rpx;
+  padding-bottom: 60%;
+}
+.weui-loadmore__tips_in-line{
+  position: relative;
+  top: -.9em;
+  padding: 0 .55em;
+  background-color: #FFFFFF;
+  color: #999;
 }
 
 /*顶部*/
@@ -176,16 +183,28 @@ scroll-view{
 .search-sort text{
   display: block;
   font-size: 32rpx;
-  color: #202020;
 }
-.search-tags text{
+.search-tags view{
   font-size: 24rpx;
   color: #4D4D4D;
+  margin: 6rpx 0;
   margin-right: 10px;
   padding: 5px 15px 5px 15px;
   background-color: #F1F1F1;
   border-radius: 3px;
   display: inline-block;
+  position: relative;
+}
+.search-tags view icon{
+  position:absolute;
+  top:-8rpx;
+  right:-8rpx;
+  background-color: #FFFFFF;
+}
+.search-tags .tags_active{
+  border: 1rpx solid #FF9123;
+  color: #FF9123;
+  background-color: #FFFFFF;
 }
 
 /*职位*/

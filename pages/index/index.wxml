@@ -123,46 +123,61 @@
           </view>
         </view>
         <view class='search-sort item'>
-          <view 
+          <text 
             class="{{(sort_name === 'is_recommend')?'color_active':''}}" 
             data-sortname='is_recommend' 
             data-sort='{{sort_is_recommend}}' 
             bindtap='sortSearch'
-          >最新推荐</view>
-          <view 
+          >最新推荐</text>
+          <text 
             class="{{(sort_name === 'salary_order')?'color_active':''}}" 
             data-sortname='salary_order' 
             data-sort='{{sort_salary_order}}' 
             bindtap='sortSearch'
-          >薪资排序</view>
-          <view
+          >薪资排序</text>
+          <text
             class="{{(sort_name === 'subsidy_order')?'color_active':''}}" 
             data-sortname='subsidy_order' 
             data-sort='{{sort_subsidy_order}}' 
             bindtap='sortSearch'
-          >补贴排序</view>
-          <view 
+          >补贴排序</text>
+          <text 
             class="{{(sort_name === 'reward_order')?'color_active':''}}" 
             data-sortname='reward_order' 
             data-sort='{{sort_reward_order}}' 
             bindtap='sortSearch'
-          >赏金排序</view>
+          >赏金排序</text>
         </view>
         <scroll-view class='search-tags item' scroll-x='true'>
-          <text>提供住宿</text>
-          <text>加班补贴</text>
-          <text>交通补助</text>
-          <text>餐补</text>
-          <text>包吃包住</text>
+          <block wx:for="{{tags_list}}" wx:key="id">
+            <view 
+              class="{{(tags_select[item.id])?'tags_active':''}}" 
+              data-tagsname="{{item.tag}}"
+              data-id="{{item.id}}"
+              bindtap='tagsSearch'
+            >
+              <text>{{item.tag}}</text>
+              <icon 
+                hidden="{{!tags_select[item.id]}}" 
+                size="13" 
+                type="cancel" 
+                color="#FF9123"
+                data-id="{{item.id}}"
+                catchtap='delTags'
+              ></icon>
+            </view>
+          </block>
         </scroll-view >
       </view>
       <!--职位列表-->
-      <scroll-view scroll-y="{{isScroll?true:false}}" scroll-top="0">
+      <scroll-view scroll-y="{{isScroll?true:false}}" scroll-top="0" bindscrolltolower='pageRender'>
         <block wx:for="{{position_item}}" wx:key="id">
           <template is="positionItem" data="{{...item}}"/>
         </block>
-        <view id='displayBlock'>
-          
+        <view id='displayBlock' class='weui-loadmore {{!bottom_is?"weui-loadmore_line":""}}'>
+          <view hidden='{{!bottom_is}}' class="weui-loading"></view>
+          <view hidden='{{!bottom_is}}' class="weui-loadmore__tips">正在加载</view>
+          <view hidden='{{bottom_is}}' class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多了</view>
         </view>
       </scroll-view>
     </movable-view>
