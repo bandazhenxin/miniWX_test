@@ -1,6 +1,7 @@
 //reply
 const config       = require('../../config/request.js');
 const basic        = require('../../config/basic.js');
+const lang         = require('../../config/lang.js');
 const apiBasic     = require('../../core/apiBasic.js');
 const storageClass = require('../../core/storage.js');
 const layer        = require('../../utils/webServer/layer.js');
@@ -46,7 +47,6 @@ function service() {
    * 处理标签信息格式
    */
   this.handleTagsInfo = function(info){
-    
     return info;
   }
 }
@@ -306,6 +306,60 @@ service.prototype = {
       }
     }, msg => {
       layer.toast('网络错误');
+    });
+  },
+
+  /**
+   * 下拉更新
+   */
+  refresh: function (that) {
+    //init
+    let self = this;
+    let page = 1;
+
+    //construct
+    let params = {
+      system: config.system,
+      version: config.version,
+      sign: null,
+      unionid: storage.getData('unionid'),
+      page: page,
+      city_name: that.vm.city,
+      province_name: that.vm.province
+    };
+
+    //sign
+    let url = this.urlList.job_list;
+    let sign = signMd5(config.key, params);
+    params.sign = sign;
+
+    //render 更新
+    api.post(url, params).then(res => {
+      if (res.status_code == 200) {
+        let listArr = self.handleJobInfo(res.data.list);
+        let bottom_is = (listArr.length < 10) ? false : true;
+        that.vm.db.page = 1;
+        that.renderDetail({
+          sort_name: '',
+          sort: '',
+          sort_is_recommend: 1,
+          sort_salary_order: 1,
+          sort_subsidy_order: 1,
+          sort_reward_order: 1,
+          tags_select: [],
+          position_item: listArr,
+          bottom_is: bottom_is,
+          search_text: lang.search
+        });
+      } else {
+        layer.toast(res.message);
+      }
+      that.vm.db.is_pulldown = null;
+      wx.stopPullDownRefresh();
+    }, msg => {
+      that.vm.db.is_pulldown = null;
+      wx.stopPullDownRefresh();
+      layer.toast(msg.message);
     });
   },
   

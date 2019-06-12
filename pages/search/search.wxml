@@ -5,7 +5,7 @@
     <view class='search weui-flex'>
       <view class="weui-search-bar__box">
         <icon class="weui-icon-search_in-box" size="14" type="search"></icon>
-        <input class="weui-search-bar__input" placeholder="搜索" type="text" focus='{{true}}' confirm-type='done' />
+        <input class="weui-search-bar__input" name='search_text' placeholder="搜索" type="text" focus='{{true}}' confirm-type='done' />
       </view>
       <button
         size='mini'
@@ -19,7 +19,7 @@
   <view class='history'>
     <view class='history_top weui-flex'>
       <text class='title'>历史记录</text>
-      <view class='top_del weui-flex'>
+      <view class='top_del weui-flex' bindtap='clearHistory'>
         <image
           src='../../style/images/icon/shanchu_1.png'
           mode='widthFix'
@@ -30,8 +30,12 @@
     </view>
 
     <view class='history_tags weui-flex'>
-      <text>富士康 </text>
-      <text>华为 </text>
+      <text 
+        wx:for="{{history_list}}" 
+        wx:key="*this" 
+        bindtap="wordSearch"
+        data-text="{{item}}"
+      >{{item}}</text>
     </view>
   </view>
 
@@ -50,8 +54,12 @@
     </view>
 
     <view class='history_tags weui-flex'>
-      <text>富士康 </text>
-      <text>华为 </text>
+      <text 
+        wx:for="{{hot_list}}" 
+        wx:key="*this" 
+        bindtap="wordSearch"
+        data-text="{{item}}"
+      >{{item}}</text>
     </view>
   </view>
 </view>

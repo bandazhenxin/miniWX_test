@@ -1,0 +1,61 @@
+/* pages/screen/screen.wxss */
+/* 布局 */
+.container{
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22rpx 0;
+}
+
+/* 筛选区 */
+.list{
+  padding: 0 44rpx;
+}
+.list .title{
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.list .list_display{
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 11rpx 0;
+}
+.list .list_display view{
+  position: relative;
+  border-width: 1rpx;
+  border-style: solid;
+  margin-right: 22rpx;
+  margin-bottom: 22rpx;
+  border-radius: 6rpx;
+  padding: 11rpx 22rpx;
+}
+.list .list_display button{
+  font-size: 30rpx;
+  border: 1rpx solid #FF9830;
+  color: #FF9830;
+  background-color: #FFFFFF;
+  margin-bottom: 22rpx;
+  margin-left: 0;
+  border-radius: 6rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.list .list_display view text{
+  font-size: 30rpx;
+  color: #565656;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.list .list_display view icon{
+  position: absolute;
+  background: #fff;
+  top: -12rpx;
+  right: -12rpx;
+}

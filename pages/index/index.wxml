@@ -106,14 +106,15 @@
     >
       <!--搜索区-->
       <view class='search'>
+        <!--搜索框-->
         <view class='search-input item'>
           <view class="item-input">
             <view class="weui-search-bar__box">
               <icon class="weui-icon-search_in-box" size="14" type="search"></icon>
-              <input class="weui-search-bar__input" bindtap='roof' placeholder="搜索" type="text">搜索</input>
+              <input class="weui-search-bar__input" bindtap='roof' placeholder="{{search_text}}" type="text">{{search_text}}</input>
             </view>
           </view>
-          <view class='screen'>
+          <view class='screen' bindtap='goScreen'>
             <image 
               src='../../style/images/icon/shaixuan.png'
               mode='aspectFit'
@@ -122,6 +123,22 @@
             <text>筛选</text>
           </view>
         </view>
+
+        <!--筛选标签-->
+        <view class='screen_text'>
+          <text>{{screen_text}}</text>
+
+          <view class='top_del weui-flex' bindtap='clearHistory'>
+            <image
+              src='../../style/images/icon/shanchu_1.png'
+              mode='widthFix'
+              class='iconfont'
+            >清除</image>
+            <text>清除</text>
+          </view>
+        </view>
+
+        <!--排序标签-->
         <view class='search-sort item'>
           <text 
             class="{{(sort_name === 'is_recommend')?'color_active':''}}" 
@@ -148,6 +165,8 @@
             bindtap='sortSearch'
           >赏金排序</text>
         </view>
+
+        <!--福利标签-->
         <scroll-view class='search-tags item' scroll-x='true'>
           <block wx:for="{{tags_list}}" wx:key="id">
             <view 
@@ -169,6 +188,7 @@
           </block>
         </scroll-view >
       </view>
+      
       <!--职位列表-->
       <scroll-view scroll-y="{{isScroll?true:false}}" scroll-top="0" bindscrolltolower='pageRender'>
         <block wx:for="{{position_item}}" wx:key="id">

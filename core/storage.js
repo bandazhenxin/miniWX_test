@@ -13,7 +13,6 @@ storage.prototype = {
    * 添加、修改数据
    */
   setData:function(key,value,time){
-    console.log()
     //init
     if (!typeof (key) == 'string'){
       return false;

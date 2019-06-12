@@ -17,6 +17,7 @@ function IndexPage(title) {
   this.vm = {
     db:{
       page: 1,
+      is_pulldown: null,
     },
 
     isOpen:    false,//是否可以打开页面
@@ -43,6 +44,9 @@ function IndexPage(title) {
 
     tags_list:  {},
     tags_select: [],
+    search_text: lang.search,
+    screen_text: '',
+    screen_tags: {}
   }
 };
 IndexPage.prototype = new pageBasic();
@@ -166,13 +170,19 @@ IndexPage.prototype.pageRender = function (event){
   service.basicRender(this,1);
 }
 
+/**
+ * 去筛选页面
+ */
+IndexPage.prototype.goScreen = function (event){
+  this.go('/pages/screen/screen');
+}
 
 
 
 /** ui逻辑控制 **/
 
 /**
- * 释放滑动判断
+ * 释放滑动判断 && 下拉更新
  */
 IndexPage.prototype.backTop = function(event){
   let y = event.detail.y;
@@ -180,6 +190,13 @@ IndexPage.prototype.backTop = function(event){
   this.renderDetail({
     isScroll: this.vm.isScroll
   });
+
+  //下拉更新，惰性单例
+  if(this.vm.db.is_pulldown === null && y >= 175){
+    this.vm.db.is_pulldown = true;
+    wx.startPullDownRefresh();
+    service.refresh(this);
+  }
 }
 
 /**

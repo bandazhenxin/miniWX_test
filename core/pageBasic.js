@@ -5,6 +5,7 @@ const app = getApp();
 const help = require('../utils/help.js');
 
 const isFunction = help.isFunction;
+const isObj = help.isObj;
 
 function pageBasic(title){
   this.vm = null;
@@ -44,6 +45,16 @@ pageBasic.prototype = {
   },
   //局部渲染
   renderDetail: function(obj,fn){
+    //validata
+    if (!isObj(obj)) return;
+    let self = this;
+
+    //更新vm
+    Object.keys(obj).forEach(function(key){
+      self.vm[key] = obj[key];
+    });
+
+    //渲染数据
     if (isFunction(fn)){
       this.setData(obj, fn);
     }else{

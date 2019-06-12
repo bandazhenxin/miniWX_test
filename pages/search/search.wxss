@@ -70,6 +70,7 @@
   color: #4D4D4D;
   font-size: 28rpx;
   margin-right: 30rpx;
+  margin-bottom: 30rpx
 }
 .hot{
   border-top: 8rpx solid #F5F5F5;
