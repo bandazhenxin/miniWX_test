@@ -125,9 +125,8 @@
         </view>
 
         <!--筛选标签-->
-        <view class='screen_text'>
-          <text>{{screen_text}}</text>
-
+        <view hidden='{{!screen_text}}' class='screen_text weui-flex'>
+          <text class='text'>{{screen_text}}</text>
           <view class='top_del weui-flex' bindtap='clearHistory'>
             <image
               src='../../style/images/icon/shanchu_1.png'

@@ -6,25 +6,28 @@
     <view class='list_display weui-flex'>
       <block wx:for="{{city_list}}" wx:key="name">
         <view 
-          data-key="{{item.name}}"
+          data-key="{{item.code}}"
+          data-name="{{item.name}}"
           data-selectname="city_select"
-          style="border-color:{{city_select[item.name]?'#FF9830':'#F0F0F0'}}"
+          style="border-color:{{city_select[item.code]?'#FF9830':'#F0F0F0'}}"
           bindtap='pointSelect'
         >
-          <text>{{item.name}}</text>
+          <text
+            style='color:{{city_select[item.code]?"#FF9830":"#565656"}}'
+          >{{item.name}}</text>
           <icon
-            hidden="{{!city_select[item.name]}}"
+            hidden="{{!city_select[item.code]}}"
             size="13" 
             type="cancel" 
             color="#FF9123"
             catchtap='delTags'
-            data-key="{{item.name}}"
+            data-key="{{item.code}}"
             data-selectname="city_select"
             catchtap='delSelect'
           ></icon>
         </view>
       </block>
-      <button>更多城市</button>
+      <button data-route='selectCity' bindtap='goSelect'>更多城市</button>
     </view>
   </view>
 
@@ -35,11 +38,14 @@
       <block wx:for="{{type_list}}" wx:key="type">
         <view 
           data-key="{{item.type}}"
+          data-name="{{item.name}}"
           data-selectname="type_select"
           style="border-color:{{type_select[item.type]?'#FF9830':'#F0F0F0'}}"
           bindtap='pointSelect'
         >
-          <text>{{item.name}}</text>
+          <text
+            style='color:{{type_select[item.type]?"#FF9830":"#565656"}}'
+          >{{item.name}}</text>
           <icon
             hidden="{{!type_select[item.type]}}"
             size="13" 
@@ -61,19 +67,22 @@
     <view class='list_display weui-flex'>
       <block wx:for="{{range_list}}" wx:key="var_label">
         <view 
-          data-key="{{item.var_label}}"
+          data-key="{{item.var_value}}"
+          data-name="{{item.var_label}}"
           data-selectname="range_select"
-          style="border-color:{{range_select[item.var_label]?'#FF9830':'#F0F0F0'}}"
+          style="border-color:{{range_select[item.var_value]?'#FF9830':'#F0F0F0'}}"
           bindtap='pointSelect'
         >
-          <text>{{item.var_value}}</text>
+          <text
+            style='color:{{range_select[item.var_value]?"#FF9830":"#565656"}}'
+          >{{item.var_label}}</text>
           <icon
-            hidden="{{!range_select[item.var_label]}}"
+            hidden="{{!range_select[item.var_value]}}"
             size="13" 
             type="cancel" 
             color="#FF9123"
             catchtap='delTags'
-            data-key="{{item.var_label}}"
+            data-key="{{item.var_value}}"
             data-selectname="range_select"
             catchtap='delSelect'
           ></icon>
@@ -90,11 +99,14 @@
       <block wx:for="{{catalog_list}}" wx:key="id">
         <view 
           data-key="{{item.id}}"
+          data-name="{{item.position_name}}"
           data-selectname="catalog_select"
           style="border-color:{{catalog_select[item.id]?'#FF9830':'#F0F0F0'}}"
           bindtap='pointSelect'
         >
-          <text>{{item.position_name}}</text>
+          <text
+            style='color:{{catalog_select[item.id]?"#FF9830":"#565656"}}'
+          >{{item.position_name}}</text>
           <icon
             hidden="{{!catalog_select[item.id]}}"
             size="13" 

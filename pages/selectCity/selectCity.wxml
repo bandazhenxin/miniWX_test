@@ -1,0 +1,42 @@
+<!--reply-->
+<import src='../common/cityAreaItem.wxml' />
+
+<!--pages/selectCity/selectCity.wxml-->
+<view class='container'>
+  <!--搜索区-->
+  <form bindsubmit="formSubmit">
+    <view class='search weui-flex'>
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" size="14" type="search"></icon>
+        <input class="weui-search-bar__input" name='search_text' placeholder="搜索" type="text" focus='{{true}}' confirm-type='done' />
+      </view>
+      <button
+        size='mini'
+        form-type='submit'
+        lang='zh_CN'
+      >搜索</button>
+    </view>
+  </form>
+
+  <!--索引显示区-->
+  <view id='indexes'>{{indexes}}</view>
+
+  <!--索引导航区-->
+  <view class='indexes_nav'>
+    <icon size="12" type="search"></icon>
+    <text 
+      wx:for="{{indexes_list}}" 
+      wx:key="*this"
+      style="color:{{indexes == item ? '#FFFFFF' : '#262626'}};background-color:{{indexes == item ? '#FF850B' : 'auto'}};"
+      data-indexes="{{item}}"
+      bindtap='tapArea'
+    >{{item}}</text>
+  </view>
+
+  <!--城市列表-->
+  <scroll-view scroll-y="{{true}}" bindscroll="cityScroll" scroll-into-view="area_{{indexes}}">
+    <block wx:for="{{city_list}}">
+      <template is="cityAreaItem" data="{{index: index,item: item}}"/>
+    </block>
+  </scroll-view>
+</view>

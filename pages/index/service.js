@@ -372,6 +372,7 @@ service.prototype = {
     let page = type === 1 ? that.vm.db.page + 1:1;
 
     //construct
+    //basic
     let params = {
       system: config.system,
       version: config.version,
@@ -381,7 +382,9 @@ service.prototype = {
       city_name: that.vm.city,
       province_name: that.vm.province
     };
-    if (that.vm.sort_name) params[that.vm.sort_name] = that.vm.sort; //sort
+    //sort
+    if (that.vm.sort_name) params[that.vm.sort_name] = that.vm.sort; 
+    //tags
     if (that.vm.tags_select){
       let tags_ids = '';
       that.vm.tags_select.forEach(function (val, index) {
@@ -389,6 +392,24 @@ service.prototype = {
       });
       params.benefits_tag = tags_ids;
     }
+    //screen
+    if (!isEmpty(that.vm.screen_tags)){
+      let screen_tags = that.vm.screen_tags;
+      let name_map = {
+        city_select: 'area_id',
+        type_select: 'salary_type',
+        range_select: 'salary_range',
+        catalog_select: 'position_catalog_id'
+      };
+      Object.keys(screen_tags).forEach(function (key) {
+        let value = screen_tags[key];
+        Object.keys(value).forEach(function (item_ley) {
+          params[name_map[key]] = item_ley;
+        })
+      })
+    }
+
+    //sign
     let url = this.urlList.job_list;
     let sign = signMd5(config.key, params);
     params.sign = sign;

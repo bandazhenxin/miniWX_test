@@ -144,7 +144,7 @@ scroll-view{
   align-items: center;
 }
 .search-input{
-  margin-bottom: 25px;
+  margin-bottom: 18rpx;
 }
 .search-input .item-input{
   height: 30px;
@@ -156,6 +156,34 @@ scroll-view{
 .weui-search-bar__box{
   height:100%;
   background-color: #F1F1F1;
+}
+.search .screen_text{
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 44rpx;
+  border: 1rpx solid #FF9B38;
+  border-radius: 10rpx;
+  padding: 8rpx 22rpx;
+}
+.search .screen_text .text{
+  font-size: 28rpx;
+  color: #FF9B38;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 85%;
+}
+.search .screen_text .top_del{
+  justify-content: space-between;
+  align-items: center;
+}
+.search .screen_text .top_del image{
+  width: 30rpx;
+  margin-right: 6rpx;
+}
+.search .screen_text .top_del text{
+  font-size: 24rpx;
+  color: #A0A0A0;
 }
 .search .screen{
   display: flex;

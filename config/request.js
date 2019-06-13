@@ -11,6 +11,7 @@ let request = {
   tags_list:   'https://wx.upjob.com.cn/api/v2/public/benefits_tag_List',
   hot_search:  'https://wx.upjob.com.cn/api/v2/index/index_search',
   screen_list: 'https://wx.upjob.com.cn/api/v2/index/index_screen',
+  city_list:   'https://wx.upjob.com.cn/api/v2/public/search_city_list',
 };
 
 module.exports = request;

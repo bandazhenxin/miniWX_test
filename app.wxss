@@ -11,6 +11,15 @@ view{
   display:block;
 }
 
+/**class**/
+.container{
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22rpx 0;
+}
 .page_block{
   padding-bottom: 10rpx;
 }

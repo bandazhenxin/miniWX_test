@@ -103,7 +103,7 @@ IndexPage.prototype.getPhoneNumber = function(e){
 }
 
 /**
- * 排序事件搜索搜索
+ * 排序
  */
 IndexPage.prototype.sortSearch = function(e){
   //init
@@ -127,7 +127,7 @@ IndexPage.prototype.sortSearch = function(e){
 }
 
 /**
- * 标签事件控制
+ * 添加标签
  */
 IndexPage.prototype.tagsSearch = function(e){
   //init
@@ -136,9 +136,10 @@ IndexPage.prototype.tagsSearch = function(e){
   let id      = detail.id;
   
   //ui
-  this.vm.tags_select[id] = tags;
+  let tags_select = this.vm.tags_select;
+  tags_select[id] = tags;
   this.renderDetail({
-    tags_select: this.vm.tags_select
+    tags_select: tags_select
   });
 
   //service
@@ -152,11 +153,12 @@ IndexPage.prototype.delTags = function(e){
   //init
   let detail = e.currentTarget.dataset;
   let id = detail.id;
-
+  
   //ui
-  if (this.vm.tags_select[id]) this.vm.tags_select.splice(id, 1);
+  let tags_select = this.vm.tags_select;
+  if (tags_select[id]) delete tags_select[id]; //删除元素
   this.renderDetail({
-    tags_select: this.vm.tags_select
+    tags_select: tags_select
   });
 
   //service
@@ -171,7 +173,7 @@ IndexPage.prototype.pageRender = function (event){
 }
 
 /**
- * 去筛选页面
+ * 跳转筛选页面
  */
 IndexPage.prototype.goScreen = function (event){
   this.go('/pages/screen/screen');
@@ -211,6 +213,42 @@ IndexPage.prototype.roof = function(){
 
   //重定向至下一页
   this.go('/pages/search/search');
+}
+
+/**
+ * 渲染筛选标签
+ */
+IndexPage.prototype.screenTextRender = function (){
+  //handle
+  let text = [];
+  let screen_tags = this.vm.screen_tags;
+  Object.keys(screen_tags).forEach(function (key){
+    let value = screen_tags[key];
+    Object.keys(value).forEach(function (item_ley) {
+      text.push(value[item_ley]);
+    })
+  })
+
+  //render text
+  text = text.join(' | ');
+  this.renderDetail({
+    screen_text: text
+  });
+
+  //render list
+  service.basicRender(this);
+}
+
+/**
+ * 清空筛选标签
+ */
+IndexPage.prototype.clearHistory = function (){
+  this.renderDetail({
+    screen_tags: {}
+  });
+
+  //render
+  this.screenTextRender();
 }
 
 Page(new IndexPage(lang.up));
