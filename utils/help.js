@@ -325,6 +325,64 @@ function sign(key,params){
   return hexMD5(arr.join('.'));
 }
 
+/**
+ * 计算编辑距离
+ */
+function levenshtein(s1, s2) {
+  const len1 = s1.length
+  const len2 = s2.length
+
+  let matrix = []
+
+  for (let i = 0; i <= len1; i++) {
+    // 构造二维数组
+    matrix[i] = new Array()
+    for (let j = 0; j <= len2; j++) {
+      // 初始化
+      if (i == 0) {
+        matrix[i][j] = j
+      } else if (j == 0) {
+        matrix[i][j] = i
+      } else {
+        // 进行最小值分析
+        let cost = 0
+        if (s1[i - 1] != s2[j - 1]) { // 相同为0，不同置1
+          cost = 1
+        }
+        const temp = matrix[i - 1][j - 1] + cost
+
+        matrix[i][j] = Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, temp)
+      }
+    }
+  }
+  return matrix[len1][len2] //返回右下角的值
+}
+
+/**
+ * 对象按某值排序
+ */
+function sortObj(obj, propertyName){
+  if (!isArr(obj)) return false;
+  if (!isString(propertyName)) return false;
+
+  obj.sort(compare(propertyName));
+  return obj;
+}
+//定义一个比较器
+function compare(propertyName) {
+  return function (object1, object2) {
+    var value1 = object1[propertyName];
+    var value2 = object2[propertyName];
+    if (value2 < value1) {
+      return 1;
+    } else if (value2 > value1) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+}
+
 //exports
 module.exports = {
   date: formatTime,
@@ -341,5 +399,7 @@ module.exports = {
   isEmpty: isEmpty,
   mergeObj: mergeObj,
   mergeArr: mergeArr,
-  sign: sign
+  sign: sign,
+  levenshtein: levenshtein,
+  sortObj: sortObj
 }

@@ -1,9 +1,8 @@
 //reply
-const config   = require('../../config/request.js');
-const lang     = require('../../config/lang.js');
-const layer    = require('../../utils/webServer/layer.js');
+const config = require('../../config/request.js');
+const layer = require('../../utils/webServer/layer.js');
 const apiBasic = require('../../core/apiBasic.js');
-const help     = require('../../utils/help.js');
+const help = require('../../utils/help.js');
 
 //instance
 const api = new apiBasic();
@@ -15,16 +14,16 @@ function service() {
    * 接口路径
    */
   this.urlList = {
-    city_list: config.city_list
+    salary_range: config.salary_range
   };
 }
 
 //public
 service.prototype = {
   /**
-   * 城市列表渲染
+   * 薪资列表渲染
    */
-  cityRender: function(that){
+  listRender: function (that){
     //init
     var self = this;
 
@@ -36,29 +35,19 @@ service.prototype = {
     };
 
     //sign
-    let url = this.urlList.city_list;
+    let url = this.urlList.salary_range;
     let sign = signMd5(config.key, params);
     params.sign = sign;
 
     //post
     api.post(url, params).then(res => {
+      console.log('salary');
+      console.log(res);
       if (res.status_code == 200) {
         let listArr = res.data;
-        //render
         that.renderDetail({
-          city_list: listArr
+          list: listArr
         });
-
-        //获取设置首区域高度 第一个区域的高度
-        let top_arr = [];
-        for (let list_key in listArr){
-          let query = wx.createSelectorQuery();
-          query.select('#area_' + list_key).boundingClientRect();
-          query.exec(function (res) {
-            that.vm.db.top = res[0].top;
-          })
-          return;
-        }
       } else {
         layer.toast(res.message);
       }

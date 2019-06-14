@@ -49,3 +49,13 @@
   top: -12rpx;
   right: -12rpx;
 }
+
+/* 按钮区 */
+.btn-area{
+  width: 100%;
+  padding-top: 60rpx;
+}
+.btn-area .weui-btn{
+  background-color: #FF850B;
+  width: 80%;
+}

@@ -21,7 +21,17 @@ function ScreenPage(title) {
     city_select:    {},
     type_select:    {},
     range_select:   {},
-    catalog_select: {}
+    catalog_select: {},
+    isNull:         true
+  }
+
+  /**
+   * 判断是否选择
+   */
+  this.isText = function(){
+    this.renderDetail({
+      isNull: isEmpty(this.vm.city_select) && isEmpty(this.vm.range_select) && isEmpty(this.vm.catalog_select)
+    });
   }
 
   /**
@@ -40,6 +50,7 @@ function ScreenPage(title) {
     params[vm_name] = pre;
     this.renderDetail(params);
     this.backIndex();
+    this.isText();
   }
 
   /**
@@ -52,7 +63,59 @@ function ScreenPage(title) {
     let params = {};
     params[vm_name] = pre;
     this.renderDetail(params);
+    this.linkageHack();//薪资联动检查
     this.backIndex();
+    this.isText();
+  }
+
+  /**
+   * 补充
+   * 取消薪资范围联动取消薪资类型
+   * 这是一个补充函数
+   */
+  this.linkageHack = function(){
+    if (isEmpty(this.vm.range_select)){
+      this.renderDetail({
+        type_select: {}
+      });
+    }
+  }
+
+  /**
+   * 传回筛选列表
+   */
+  this.backList = function(){
+    //instance
+    let pages = getCurrentPages();
+    let index_page = pages[pages.length - 2];
+    index_page = index_page.isCurrentPage() ? index_page : pages[pages.length - 3];
+
+    //render
+    index_page.vm.db.screen_list = {
+      city_list: this.vm.city_list,
+      type_list: this.vm.type_list,
+      range_list: this.vm.range_list,
+      catalog_list: this.vm.catalog_list
+    }
+  }
+
+  /**
+   * 同步筛选列表
+   */
+  this.synList = function(){
+    //instance
+    let pages = getCurrentPages();
+    let index_page = pages[pages.length - 2];
+    index_page = index_page.isCurrentPage() ? index_page : pages[pages.length - 3];
+
+    //render
+    let screen_list = index_page.vm.db.screen_list;
+    if (!isEmpty(screen_list)){
+      this.renderDetail(screen_list);
+      return true;
+    }else{
+      return false;
+    }
   }
 
   /**
@@ -69,7 +132,8 @@ function ScreenPage(title) {
     };
     let pages = getCurrentPages();
     let index_page = pages[pages.length - 2];
-
+    index_page = index_page.isCurrentPage() ? index_page : pages[pages.length - 3];
+    
     //render
     index_page.renderDetail({
       screen_tags: params
@@ -78,7 +142,7 @@ function ScreenPage(title) {
   }
 
   /**
-   * 同步首页数据
+   * 同步首页筛选数据
    */
   this.synData = function(){
     //get
@@ -88,6 +152,7 @@ function ScreenPage(title) {
 
     //render
     this.renderDetail(select_data);
+    this.isText();
   }
 };
 ScreenPage.prototype = new pageBasic();
@@ -101,7 +166,7 @@ ScreenPage.prototype = new pageBasic();
  */
 ScreenPage.prototype.onPreload = function (option){
   //标签渲染
-  service.tagsRender(this);
+  if (!this.synList()) service.tagsRender(this);
 
   //同步父页面数据
   this.synData();
@@ -113,6 +178,97 @@ ScreenPage.prototype.onPreload = function (option){
 ScreenPage.prototype.goSelect = function (e){
   let route = e.currentTarget.dataset.route;
   this.go('/pages/' + route + '/' + route);
+}
+
+/**
+ * 更多城市回传
+ */
+ScreenPage.prototype.backCity = function (e){
+  //init
+  let pre_city_list = this.vm.city_list;
+
+  //添加城市
+  let pass = true;
+  Object.keys(pre_city_list).forEach(function(key){//判断城市是否已存在
+    if (pre_city_list[key]['code'] == e.code) pass = false;
+  });
+  if (pass){
+    pre_city_list.push({
+      name: e.name,
+      city_name: e.city,
+      province_name: e.province,
+      code: e.code
+    });
+  }
+  this.renderDetail({
+    city_list: pre_city_list
+  });
+  this.backList();
+
+  //select
+  this.selectRender('city_select', e.code, e.name); 
+}
+
+/**
+ * 更多工种回传
+ */
+ScreenPage.prototype.backJobType = function (e){
+  //init
+  let pre_catalog_list = this.vm.catalog_list;
+
+  //添加工种
+  let pass = true;
+  Object.keys(pre_catalog_list).forEach(function (key) {//判断城市是否已存在
+    if (pre_catalog_list[key]['id'] == e.id) pass = false;
+  });
+  if (pass) {
+    pre_catalog_list.push({
+      position_name: e.name,
+      id: e.id
+    });
+  }
+  this.renderDetail({
+    catalog_list: pre_catalog_list
+  });
+  this.backList();
+
+  //select
+  this.selectRender('catalog_select', e.id, e.name); 
+}
+
+/**
+ * 更多薪资范围回传
+ */
+ScreenPage.prototype.backSalary = function (e){
+  //init
+  let pre_range_list = this.vm.range_list;
+
+  //添加薪资范围
+  let pass = true;
+  Object.keys(pre_range_list).forEach(function (key) {//判断城市是否已存在
+    if (pre_range_list[key]['var_label'] == e.label) pass = false;
+  });
+  if (pass) {
+    pre_range_list.push({
+      var_label: e.label,
+      var_value: e.value
+    });
+  }
+  this.renderDetail({
+    range_list: pre_range_list
+  });
+  this.backList();
+
+  //select
+  this.selectRender('type_select', e.type, e.type_name); 
+  this.selectRender('range_select', e.value , e.label);
+}
+
+/**
+ * 回首页
+ */
+ScreenPage.prototype.goback = function (){
+  this.goBack();
 }
 
 

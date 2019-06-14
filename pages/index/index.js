@@ -18,6 +18,7 @@ function IndexPage(title) {
     db:{
       page: 1,
       is_pulldown: null,
+      screen_list: {}
     },
 
     isOpen:    false,//是否可以打开页面
@@ -42,7 +43,7 @@ function IndexPage(title) {
     sort_subsidy_order: 1,
     sort_reward_order:  1,
 
-    tags_list:  {},
+    tags_list:   {},
     tags_select: [],
     search_text: lang.search,
     screen_text: '',
@@ -179,6 +180,23 @@ IndexPage.prototype.goScreen = function (event){
   this.go('/pages/screen/screen');
 }
 
+/**
+ * 跳转城市选择页面
+ */
+IndexPage.prototype.goSelectCity = function (){
+  this.go('/pages/selectCity/selectCity');
+}
+
+/**
+ * 城市选择回传
+ */
+IndexPage.prototype.backCity = function (e) {
+  this.renderDetail({
+    province: e.province,
+    city: e.city
+  });
+  service.basicRender(this);
+}
 
 
 /** ui逻辑控制 **/

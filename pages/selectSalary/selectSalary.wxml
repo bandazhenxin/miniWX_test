@@ -1,0 +1,43 @@
+<!--pages/selectSalary/selectSalary.wxml-->
+<view class='container'>
+  <!--基于weui的选项卡-->
+  <view class="weui-tab">
+    <!--导航栏-->
+    <view class="weui-navbar">
+      <block wx:for="{{tabs}}" wx:key="*this">
+          <view 
+            id="{{index}}" 
+            class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" 
+            bindtap="tabClick"
+          ><view class="weui-navbar__title">{{item}}</view>
+          </view>
+      </block>
+
+      <view 
+        class="weui-navbar__slider" 
+        style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+    </view>
+
+    <!--内容区-->
+    <view class="weui-tab__panel">
+      <block wx:for="{{list}}">
+        <scroll-view scroll-y="{{true}}" class="weui-tab__content" hidden="{{activeIndex != index}}">
+          <view
+            class="list_item weui-flex" 
+            wx:for="{{item}}" 
+            wx:key="var_label" 
+            wx:for-index="idx" 
+            wx:for-item="itemObj"
+            data-indexes="{{index}}"
+            data-value="{{itemObj.var_value}}"
+            data-label="{{itemObj.var_label}}"
+            bindtap='selectSalary'
+          >
+            <text style="color:{{select.label == itemObj.var_label ? '#FF850B' : '#929292'}};">{{itemObj.var_label}}</text>
+            <icon hidden='{{!(select.label == itemObj.var_label)}}' type="success_no_circle" size="14" color='#FF850B'></icon>
+          </view>
+        </scroll-view>
+      </block>
+    </view>
+  </view>
+</view>

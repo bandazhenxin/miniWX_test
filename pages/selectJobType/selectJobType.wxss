@@ -1,4 +1,4 @@
-/* pages/selectCity/selectCity.wxss */
+/* pages/selectJobType/selectJobType.wxss */
 /* 搜索区 */
 .search{
   align-items: center;
@@ -64,21 +64,21 @@ scroll-view{
   top: 3.8rem;
   z-index: -1;
 }
-scroll-view .city_area{
+scroll-view .job_area{
   padding: 0 44rpx;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 }
-scroll-view .city_area text{
+scroll-view .job_area text{
   font-size: 36rpx;
   padding: 18rpx 0;
 }
-scroll-view .city_area .indexes{
+scroll-view .job_area .indexes{
   color: #9F9F9F;
 }
-scroll-view .city_area .city_item{
+scroll-view .job_area .job_item{
   width: 100%;
   text-align: left;
   border-bottom: 1rpx solid #F4F4F4;

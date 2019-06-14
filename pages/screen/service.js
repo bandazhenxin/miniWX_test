@@ -53,6 +53,7 @@ service.prototype = {
           range_list: listArr.salary_range,
           catalog_list: listArr.job_type
         });
+        that.backList();//传回首页数据
       } else {
         layer.toast(res.message);
       }

@@ -1,7 +1,7 @@
 <!--reply-->
-<import src='../common/cityAreaItem.wxml' />
+<import src='../common/jobTypeAreaItem.wxml' />
 
-<!--pages/selectCity/selectCity.wxml-->
+<!--pages/selectJobType/selectJobType.wxml-->
 <view class='container'>
   <!--搜索区-->
   <form bindsubmit="formSubmit">
@@ -33,10 +33,10 @@
     >{{item}}</text>
   </view>
 
-  <!--城市列表-->
-  <scroll-view scroll-y="{{true}}" bindscroll="cityScroll" scroll-into-view="area_{{scroll_id}}">
-    <block wx:for="{{city_list}}">
-      <template is="cityAreaItem" data="{{index: index,item: item}}"/>
+  <!--工种列表-->
+  <scroll-view scroll-y="{{true}}" bindscroll="jobTypeScroll" scroll-into-view="area_{{scroll_id}}">
+    <block wx:for="{{job_type_list}}">
+      <template is="jobTypeAreaItem" data="{{index: index,item: item}}"/>
     </block>
   </scroll-view>
 </view>

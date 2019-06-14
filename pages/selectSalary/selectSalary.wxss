@@ -1,0 +1,33 @@
+/* pages/selectSalary/selectSalary.wxss */
+/* 导航栏 */
+.container .weui-bar__item_on{
+  color: #FF870F;
+}
+.container .weui-navbar__slider{
+  background-color: #FF870F;
+}
+.container .weui-navbar__title{
+  font-size: 32rpx;
+}
+
+/* 内容 */
+scroll-view{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 65px;
+  padding: 0 44rpx;
+}
+.weui-tab__panel{
+  padding: 0 44rpx;
+  padding-top: 50px;
+}
+.weui-tab__content .list_item{
+  text-align: left;
+  font-size: 38rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+  padding: 12rpx 0;
+  justify-content: space-between;
+  align-items: center;
+}

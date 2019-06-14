@@ -32,7 +32,7 @@
   </view>
 
   <!--薪资类型-->
-  <view class='list'>
+  <!-- <view class='list'>
     <text class='title'>薪资类型</text>
     <view class='list_display weui-flex'>
       <block wx:for="{{type_list}}" wx:key="type">
@@ -59,7 +59,7 @@
         </view>
       </block>
     </view>
-  </view>
+  </view> -->
 
   <!--薪资范围-->
   <view class='list'>
@@ -88,7 +88,7 @@
           ></icon>
         </view>
       </block>
-      <button>更多</button>
+      <button data-route='selectSalary' bindtap='goSelect'>更多</button>
     </view>
   </view>
 
@@ -119,7 +119,11 @@
           ></icon>
         </view>
       </block>
-      <button>更多</button>
+      <button data-route='selectJobType' bindtap='goSelect'>更多</button>
     </view>
+  </view>
+
+  <view hidden='{{isNull}}' class='btn-area'>
+    <button class="weui-btn" type="primary" role="button" bindtap='goback'>确定</button>
   </view>
 </view>

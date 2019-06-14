@@ -72,7 +72,7 @@
   <movable-area class='moveContainer'>
     <!--header-->
     <movable-view direction="none" class="weui-flex moveContainer_top">
-      <view class='top_position weui-flex'>
+      <view class='top_position weui-flex' bindtap='goSelectCity'>
         <image
           src='../../style/images/icon/weizhi.png'
           mode='aspectFit'

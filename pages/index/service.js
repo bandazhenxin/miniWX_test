@@ -349,7 +349,9 @@ service.prototype = {
           tags_select: [],
           position_item: listArr,
           bottom_is: bottom_is,
-          search_text: lang.search
+          search_text: lang.search,
+          screen_text: '',
+          screen_tags: {}
         });
       } else {
         layer.toast(res.message);
