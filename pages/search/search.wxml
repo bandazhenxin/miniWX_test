@@ -43,7 +43,7 @@
   <view class='history hot'>
     <view class='history_top weui-flex'>
       <text class='title'>热门搜索</text>
-      <view hidden='{{true}}' class='top_del weui-flex'>
+      <view class='top_del weui-flex' bindtap='goScreen'>
         <image
           src='../../style/images/icon/shaixuan.png'
           mode='widthFix'

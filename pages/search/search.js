@@ -56,4 +56,11 @@ SearchPage.prototype.wordSearch = function (e){
   service.pointSearch(this, search_text);
 }
 
+/**
+ * 跳转搜索页
+ */
+SearchPage.prototype.goScreen = function (){
+  this.go('/pages/screen/screen');
+}
+
 Page(new SearchPage(lang.search))

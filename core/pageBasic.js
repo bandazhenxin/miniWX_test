@@ -93,6 +93,27 @@ pageBasic.prototype = {
     let is = pages.length > 0 ? pages[0] : null;
     return this === is;
   },
+  //获取首页实例
+  getIndexPage: function (){
+    if (this.isCurrentPage()) return this;
+
+    let pages = getCurrentPages();
+    let length = pages.length;
+    let instance = this;
+    for(let i = 1;true;i++){
+      instance = pages[pages.length - i];
+      if (instance.isCurrentPage()) break;
+    }
+
+    return instance;
+  },
+  goIndex: function(){
+    let pages = getCurrentPages();
+    let length = pages.length;
+    wx.navigateBack({
+      delta: length - 1
+    })
+  },
   //初始化 初始化方法
   onPreload:function (options) {
 

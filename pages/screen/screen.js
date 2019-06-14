@@ -86,9 +86,10 @@ function ScreenPage(title) {
    */
   this.backList = function(){
     //instance
-    let pages = getCurrentPages();
-    let index_page = pages[pages.length - 2];
-    index_page = index_page.isCurrentPage() ? index_page : pages[pages.length - 3];
+    // let pages = getCurrentPages();
+    // let index_page = pages[pages.length - 2];
+    // index_page = index_page.isCurrentPage() ? index_page : pages[pages.length - 3];
+    let index_page = this.getIndexPage()
 
     //render
     index_page.vm.db.screen_list = {
@@ -104,9 +105,10 @@ function ScreenPage(title) {
    */
   this.synList = function(){
     //instance
-    let pages = getCurrentPages();
-    let index_page = pages[pages.length - 2];
-    index_page = index_page.isCurrentPage() ? index_page : pages[pages.length - 3];
+    // let pages = getCurrentPages();
+    // let index_page = pages[pages.length - 2];
+    // index_page = index_page.isCurrentPage() ? index_page : pages[pages.length - 3];
+    let index_page = this.getIndexPage()
 
     //render
     let screen_list = index_page.vm.db.screen_list;
@@ -130,9 +132,10 @@ function ScreenPage(title) {
       range_select: self.vm.range_select,
       catalog_select: self.vm.catalog_select
     };
-    let pages = getCurrentPages();
-    let index_page = pages[pages.length - 2];
-    index_page = index_page.isCurrentPage() ? index_page : pages[pages.length - 3];
+    // let pages = getCurrentPages();
+    // let index_page = pages[pages.length - 2];
+    // index_page = index_page.isCurrentPage() ? index_page : pages[pages.length - 3];
+    let index_page = this.getIndexPage()
     
     //render
     index_page.renderDetail({
@@ -146,8 +149,9 @@ function ScreenPage(title) {
    */
   this.synData = function(){
     //get
-    let pages = getCurrentPages();
-    let index_page = pages[pages.length - 2];
+    // let pages = getCurrentPages();
+    // let index_page = pages[pages.length - 2];
+    let index_page = this.getIndexPage()
     let select_data = index_page.vm.screen_tags;
 
     //render
@@ -268,7 +272,8 @@ ScreenPage.prototype.backSalary = function (e){
  * 回首页
  */
 ScreenPage.prototype.goback = function (){
-  this.goBack();
+  // this.goBack();
+  this.goIndex()
 }
 
 
