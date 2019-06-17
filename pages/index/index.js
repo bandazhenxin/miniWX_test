@@ -1,4 +1,4 @@
- //reply
+//reply
 const app          = getApp();
 const serviceClass = require('service.js');
 const pageBasic    = require('../../core/pageBasic.js');
@@ -196,6 +196,14 @@ IndexPage.prototype.backCity = function (e) {
     city: e.city
   });
   service.basicRender(this);
+}
+
+/**
+ * 跳转详情页
+ */
+IndexPage.prototype.goDetail = function (e){
+  let detail = e.currentTarget.dataset;
+  this.go('/pages/jobDetail/jobDetail?id=' + detail.id);
 }
 
 

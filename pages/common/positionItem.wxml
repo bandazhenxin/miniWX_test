@@ -1,5 +1,5 @@
 <template name='positionItem'>
-  <view class='scroll_item'>
+  <view class='scroll_item' data-id="{{id}}" bindtap='goDetail'>
     <view class='item_title item'>
       <text class='title'>{{position_name}}</text>
       <text class='position'>{{province_name}} {{city_name}}</text>

@@ -1,0 +1,139 @@
+/* pages/jobDetail/jobDetail.wxss */
+
+.container{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* 顶部卡片 */
+.container .top_card{
+  margin: 0 44rpx;
+  border-radius: 14rpx;
+  box-shadow:3px 3px 3px #EAEAEA,3px -3px 3px #EAEAEA,-3px 3px 3px #EAEAEA,-3px -3px 3px #EAEAEA;
+}
+.top_card swiper swiper-item image{
+  border-radius: 14rpx 14rpx 0 0;
+  width: 100%;
+}
+.top_card .company_info{
+  justify-content: space-between;
+  align-items: center;
+  padding: 33rpx 22rpx;
+}
+.top_card .company_info .basic_item{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.top_card .company_info .basic_item .iconfont{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  border: 1rpx solid #EAEAEA;
+}
+.top_card .company_info .basic_item .words{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 11rpx; 
+}
+.words .words-name{
+  color:#707070;
+  font-size: 30rpx;
+}
+.words .words-list{
+  font-size: 28rpx;
+  color: #898989;
+}
+.top_card .company_info .point_item{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.top_card .company_info .point_item text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #FF9C39;
+}
+
+/*职位信息*/
+.container .position{
+  padding: 44rpx;
+  padding-bottom: 22rpx;
+  border-bottom: 22rpx solid #F6F6F6;
+}
+.container .position view{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container .position .salary{
+  border-bottom: 1rpx solid #F6F6F6;
+}
+.container .position .reward{
+  padding: 8rpx 0;
+}
+.container .position .title .name{
+  font-size: 34rpx;
+}
+.container .position .title .area{
+  font-size: 28rpx;
+  color: #898989;
+}
+.container .position .salary .salary-number{
+  font-size: 30rpx;
+  color: #FF9C39;
+}
+.container .position .salary .salary-type,.container .position .reward .reward-detail{
+  font-size: 28rpx;
+  color: #898989;
+}
+.container .position .reward .reward-go{
+  font-size: 26rpx;
+  color: #4086FF;
+  text-decoration: underline;
+}
+.container .position .reward .reward-detail{
+  display: inline-block;
+  width: 70%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+/*选项卡详情*/
+/* 导航栏 */
+.container .weui-bar__item_on{
+  color: #FF870F;
+}
+.container .weui-navbar__slider{
+  background-color: #FF870F;
+}
+
+/*内容区*/
+.container .content{
+  position: relative;
+  top: 50px;
+  padding: 11rpx 44rpx;
+}
+.content .detail_area{
+  padding: 44rpx 0;
+  border-bottom: 22rpx solid #F6F6F6;
+}
+.content .detail_area .title{
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.content .detail_area .detail_area-item{
+  color:#6D6D6D;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

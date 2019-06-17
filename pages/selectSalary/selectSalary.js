@@ -14,7 +14,7 @@ function SelectSalaryPage(title) {
     db: {
       type_map: [0,1,2,3]
     },
-    tabs: ['月薪', '日薪', '周薪', '时薪'],
+    tabs: [lang.monthlySalary, lang.perDiem, lang.weeklyPay, lang.hourlyWage],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,

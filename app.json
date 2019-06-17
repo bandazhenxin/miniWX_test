@@ -8,7 +8,8 @@
     "pages/screen/screen",
     "pages/selectCity/selectCity",
     "pages/selectSalary/selectSalary",
-    "pages/selectJobType/selectJobType"
+    "pages/selectJobType/selectJobType",
+    "pages/jobDetail/jobDetail"
   ],
   "tabBar": {
     "list": [

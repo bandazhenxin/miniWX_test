@@ -107,6 +107,7 @@ pageBasic.prototype = {
 
     return instance;
   },
+  //回到首页
   goIndex: function(){
     let pages = getCurrentPages();
     let length = pages.length;
