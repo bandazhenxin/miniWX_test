@@ -83,6 +83,10 @@
 .content .detail_area{
   padding: 22rpx 44rpx;
   border-bottom: 22rpx solid #F6F6F6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 .content .detail_area:last-child{
   border: none;
@@ -93,12 +97,9 @@
   font-weight: 600;
   padding-bottom: 22rpx; 
 }
-.content .detail_area .detail_area-item{
+.content .detail_area .info{
   color:#6D6D6D;
   font-size: 28rpx;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   padding: 4rpx 0;
 }
 
@@ -170,90 +171,4 @@
 }
 #evaluate-right .tight-item .evaluate-star image{
   width: 20rpx;
-}
-
-/*代理机构*/
-.agency .show-content{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  height: 8rem;
-}
-.agency .show-content .name{
-  font-size: 30rpx;
-}
-.agency .show-content .address{
-  font-size: 26rpx;
-  padding-bottom: 22rpx;
-  color: #4D4D4D;
-}
-
-/*入职流程*/
-.process .show-content{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.process .show-content .process-item{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-.process .show-content .line{
-  width: 40rpx;
-  height: 1rpx;
-  border-bottom: 1rpx dashed #FF850B;
-  margin-top: 22rpx;
-}
-.process .show-content .process-item image{
-  width: 50rpx;
-}
-.process .show-content .process-item text{
-  font-size: 26rpx;
-  color: #111111;
-  padding-top: 6rpx;
-}
-
-/*底部banner*/
-.show .bottom_banner{
-  padding: 0 44rpx;
-  padding-bottom: 22rpx;
-  background-color: #F6F6F6; 
-}
-.show .bottom_banner image{
-  width: 100%;
-}
-
-/*操作区域*/
-.action{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 11rpx 44rpx;
-}
-.action .basic_action{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 26rpx;
-  color: #9F9F9F;
-}
-.action .basic_action image{
-  width: 30rpx;
-}
-.action button{
-  margin: 0;
-  padding: 0;
-  font-size: 30rpx;
-  color: #FFFFFF;
-  width: 6rem;
-}
-.action .recommend{
-  background-color: #069842; 
-}
-.action .signup{
-  background-color: #FF850B; 
 }

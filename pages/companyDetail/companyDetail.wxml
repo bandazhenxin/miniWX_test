@@ -52,9 +52,7 @@
       <!--内容详情-->
       <view class='detail_area' wx:for="{{reward}}" wx:key="label" id="{{item.label}}">
         <text class='title'>{{item.title}}</text>
-        <view class='detail_area-item' wx:for="{{item.info}}" wx:for-index='idx' wx:for-item='itemValue'>
-          {{idx + 1}}.{{itemValue.name}}{{itemValue.value}}
-        </view>
+        <text class='info'>{{item.info}}</text>
       </view>
     </view>
 
@@ -87,86 +85,6 @@
             </view>
           </view> 
         </view>
-      </view>
-
-      <!--代理机构-->
-      <view hidden='{{!agency}}' class='item_description agency'>
-        <text class='title'>代理机构</text>
-        <view class='show-content'>
-          <text class='name'>{{agency.name}}</text>
-          <text class='address'>{{agency.address}}</text>
-          <button class="weui-btn detail-btn" type="default" role="button" >查看机构详情</button>
-        </view>
-      </view>
-
-      <!--入职流程-->
-      <view class='item_description process'>
-        <text class='title'>入职流程</text>
-        <view class='show-content'>
-          <view class='process-item'>
-            <image
-              class='iconfont'
-              mode='widthFix'
-              src="../../style/images/icon/baomin.png"
-            >免费报名</image>
-            <text>免费报名</text>
-          </view>
-
-          <view class='line'></view>
-
-          <view class='process-item'>
-            <image
-              class='iconfont'
-              mode='widthFix'
-              src="../../style/images/icon/baoche.png"
-            >安排面试</image>
-            <text>安排面试</text>
-          </view>
-
-          <view class='line'></view>
-
-          <view class='process-item'>
-            <image
-              class='iconfont'
-              mode='widthFix'
-              src="../../style/images/icon/flag.png"
-            >集合报道</image>
-            <text>集合报道</text>
-          </view>
-
-          <view class='line'></view>
-
-          <view class='process-item'>
-            <image
-              class='iconfont'
-              mode='widthFix'
-              src="../../style/images/icon/liwu.png"
-            >领取返费</image>
-            <text>领取返费</text>
-          </view>
-        </view>
-      </view>
-
-      <!--底部banner-->
-      <view class='bottom_banner'>
-        <image mode='widthFix' src="../../style/images/banner/bottom.png">GO</image>
-      </view>
-
-      <!--操作区域-->
-      <view class='action'>
-        <view class='basic_action'>
-          <image mode='widthFix' src='../../style/images/icon/shoucang.png'>收藏</image>
-          <text>收藏</text>
-        </view>
-
-        <view class='basic_action'>
-          <image mode='widthFix' src='../../style/images/icon/dianhua.png'>咨询</image>
-          <text>咨询</text>
-        </view>
-
-        <button class='recommend' type="default" role="button" >推荐给好友</button>
-
-        <button class='signup' type="default" role="button" >立即报名</button>
       </view>
     </view>
   </view>

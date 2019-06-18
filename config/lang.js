@@ -43,6 +43,7 @@ let lang = {
   workExperience:           "工作经验",
   companyAddress:           "企业地址",
   companyDetail:            "公司详情",
+  linkPhone:                "联系电话",
 
   entryReward:              "入职补贴",
   whatEntryReward:          "什么是入职补贴",

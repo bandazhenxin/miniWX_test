@@ -31,7 +31,6 @@ function CompanyDetailPage(title) {
     ],
     banner_list: [],
     company_info: {},
-    position_info: {},
     reward: {},
     evaluate: {},
     agency: false,

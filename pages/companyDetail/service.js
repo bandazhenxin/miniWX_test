@@ -43,19 +43,6 @@ function service() {
     let obj = preObj.slice(length / 2 - num, length - num);
     return obj;
   }
-
-  /**
-   * 构造代理机构
-   */
-  this.constructAgency = function (agency) {
-    if (isEmpty(agency)) return false;
-
-    return {
-      id: agency.sp_id,
-      name: agency.custom_name,
-      address: lang.companyAddress + '：' + agency.address
-    };
-  }
 }
 
 //public
@@ -89,100 +76,28 @@ service.prototype = {
 
       if (res.status_code == 200) {
         let info = res.data;
+        console.log(info);
         that.renderDetail({
           banner_list: info.images,
           company_info: {
             logo: preData.company_info.logo,
             name: preData.company_info.name
           },
-          // position_info: {
-          //   title: info.position_name,
-          //   area: info.province_name + ' ' + info.city_name,
-          //   pay: info.salary_entry,
-          //   type: info.is_full_time,
-          //   reward: lang.reward + '：' + info.entry_reward_details,
-          //   whatReward: lang.whatReward
-          // },
-          // reward: [
-          //   {
-          //     label: 'treatment',
-          //     title: lang.treatment,
-          //     info: [
-          //       {
-          //         name: lang.payrollDay + '：',
-          //         value: info.salary_pay_date
-          //       }, {
-          //         name: lang.salaryType + '：',
-          //         value: info.salary_pay_type
-          //       }, {
-          //         name: lang.basicSalary + '：',
-          //         value: info.salary_base
-          //       }, {
-          //         name: lang.fullAttendance + '：',
-          //         value: isEmpty(parseFloat(info.entry_reward)) ? lang.none : info.entry_reward
-          //       }, {
-          //         name: lang.overtimeReward + '：',
-          //         value: isEmpty(parseFloat(info.salary_overtime)) ? lang.none : info.salary_overtime
-          //       }
-          //     ]
-          //   }, {
-          //     label: 'jobDescription',
-          //     title: lang.jobDescription,
-          //     info: [
-          //       {
-          //         name: lang.jobContent + '：',
-          //         value: info.work_content
-          //       }, {
-          //         name: lang.jobTime + '：',
-          //         value: info.work_time
-          //       }, {
-          //         name: lang.jobTimes + '：',
-          //         value: info.work_shift
-          //       }, {
-          //         name: lang.jobExplain + '：',
-          //         value: isEmpty(info.work_remark) ? lang.none : info.work_remark
-          //       }
-          //     ]
-          //   }, {
-          //     label: 'welfare',
-          //     title: lang.welfare,
-          //     info: [
-          //       {
-          //         name: lang.basicWelfare + '：',
-          //         value: info.benefits_tags
-          //       }, {
-          //         name: lang.entryDuration + '：',
-          //         value: info.full_roll_days
-          //       }, {
-          //         name: lang.returnCash + '：',
-          //         value: info.entry_reward
-          //       }
-          //     ]
-          //   }, {
-          //     label: 'admissionCondition',
-          //     title: lang.admissionCondition,
-          //     info: [
-          //       {
-          //         name: lang.sexCondition + '：',
-          //         value: info.hire_gender
-          //       }, {
-          //         name: lang.ageCondition + '：',
-          //         value: info.hire_age
-          //       }, {
-          //         name: lang.educationCondition + '：',
-          //         value: info.hire_education
-          //       }, {
-          //         name: lang.workExperience + '：',
-          //         value: info.hire_expert
-          //       }
-          //     ]
-          //   }
-          // ],
-          // evaluate: {
-          //   count: info.evaluate_statistics.count,
-          //   list: this.constructList(info.evaluate_statistics.list)
-          // },
-          // agency: this.constructAgency(info.partner_agency)
+          reward: [
+            {
+              label: 'companyDescribe',
+              title: lang.companyDescribe,
+              info: ''
+            }, {
+              label: 'linkType',
+              title: lang.linkType,
+              info: lang.companyAddress + '：' + info.address + '\n' + lang.linkPhone + ':',
+            }
+          ],
+          evaluate: {
+            count: preData.evaluate.count,
+            list: preData.evaluate.list
+          },
         });
       } else {
         layer.toast(res.message);
