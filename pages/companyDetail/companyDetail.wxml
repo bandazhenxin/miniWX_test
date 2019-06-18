@@ -1,53 +1,30 @@
-<!--pages/jobDetail/jobDetail.wxml-->
+<!--pages/companyDetail/companyDetail.wxml-->
 <scroll-view class='container' scroll-y="{{true}}" scroll-into-view="{{scroll_into}}">
   <!--banner卡片-->
-  <view class='top_card'>
-    <swiper 
-      indicator-dots="{{true}}" 
-      indicator-color="rgba(255,255,255,0.1)"
-      indicator-active-color="rgba(255,255,255,1)"
-      autoplay='{{true}}'
-    >
-      <swiper-item wx:for="{{banner_list}}" wx:key="image_url">
-        <image mode="widthFix" src='{{item.image_url}}'>{{item.image_url}}</image>
-      </swiper-item>
-    </swiper>
+  <view class='top'>
+    <view class='top_card'>
+      <swiper 
+        indicator-dots="{{true}}" 
+        indicator-color="rgba(255,255,255,0.1)"
+        indicator-active-color="rgba(255,255,255,1)"
+        autoplay='{{true}}'
+      >
+        <swiper-item wx:for="{{banner_list}}" wx:key="image_url">
+          <image mode="widthFix" src='{{item.image_url}}'>{{item.image_url}}</image>
+        </swiper-item>
+      </swiper>
 
-    <view class='company_info weui-flex' data-route='companyDetail' data-params='?id={{company_info.id}}' bindtap='goLink'>
-      <view class='basic_item weui-flex'>
-        <image
-          src='{{company_info.logo}}'
-          class='iconfont'
-        >logo</image>
-        <view class='words'>
-          <text class='words-name'>{{company_info.name}}</text>
-          <text class='words-list'>{{company_info.info_list}}</text>
+      <view class='company_info weui-flex' data-route='companyDetail' data-params='?id={{company_info.id}}' bindtap='goLink'>
+        <view class='basic_item weui-flex'>
+          <image
+            src='{{company_info.logo}}'
+            class='iconfont'
+          >logo</image>
+          <view class='words'>
+            <text class='words-name'>{{company_info.name}}</text>
+          </view>
         </view>
       </view>
-      <view class='point_item'>
-        <text>查看详情</text>
-        <image
-          src='../../style/images/icon/jiantou.png'
-          mode='widthFix'
-          class='iconfont'
-        >jiantou</image>
-      </view>
-    </view>
-  </view>
-
-  <!--基本职位信息-->
-  <view class='position'>
-    <view class='title'>
-      <text class='name'>{{position_info.title}}</text>
-      <text class='area'>{{position_info.area}}</text>
-    </view>
-    <view class='salary'>
-      <text class='salary-number'>{{position_info.pay}}</text>
-      <text class='salary-type'>{{position_info.type}}</text>
-    </view>
-    <view class='reward'>
-      <text class='reward-detail'>{{position_info.reward}}</text>
-      <text class='reward-go' data-route='entryReward' data-params='' bindtap='goLink'>{{position_info.whatReward}}</text>
     </view>
   </view>
 

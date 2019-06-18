@@ -1,0 +1,62 @@
+/* pages/entryReward/entryReward.wxss */
+.root{
+  position: relative;
+}
+
+/*banner*/
+.root .top{
+  width: 100%;
+}
+
+/*详情*/
+.root .detail_area{
+  margin: 0 auto;
+  padding: 44rpx;
+  position: absolute;
+  left: 44rpx;
+  right: 44rpx;
+  top: 120px;
+  margin-bottom: 60px;
+  border-radius: 14rpx;
+  box-shadow:3px 3px 3px #EAEAEA,3px -3px 3px #EAEAEA,-3px 3px 3px #EAEAEA,-3px -3px 3px #EAEAEA;
+  background-color: #FFFFFF;
+}
+.root .detail_area .tips{
+  font-size: 28rpx;
+  color: #FF850B;
+}
+.root .detail_area .detail-item{
+  padding-bottom: 44rpx;
+}
+.root .detail_area .detail-item .name{
+  display: inline-block;
+  border-left: 6rpx solid #FF850B;
+  padding-left: 11rpx;
+  font-weight: 600;
+  font-size: 30rpx;
+}
+.root .detail_area .detail-item .words{
+  display: block;
+  font-size: 28rpx;
+  color: #3D3D3D;
+}
+
+/*标签*/
+.root .link{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -6px 0px 8px #EAEAEA;
+  padding: 22rpx 0;
+  background-color: #FFFFFF;
+}
+.root .link button{
+  width: 80%;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  background-color: #FF850B;
+}

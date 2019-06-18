@@ -15,6 +15,7 @@ let request = {
   salary_range:    'https://wx.upjob.com.cn/api/v2/public/search_salary_List',
   job_type_list:   'https://wx.upjob.com.cn/api/v2/public/job_type_List',
   recruit_datails: 'https://wx.upjob.com.cn/api/v1/recruit_datails',
+  company_datails: 'https://wx.upjob.com.cn/api/v1/company_datails',
 };
 
 module.exports = request;

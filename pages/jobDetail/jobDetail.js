@@ -14,12 +14,30 @@ function JobDetailPage(title) {
   this.vm = {
     db: {},
 
+    scroll_into: '',
+
     id: 0,
-    tabs: [lang.treatment, lang.jobDescription, lang.welfare, lang.admissionCondition],
+    tabs: [
+      {
+        label: 'treatment',
+        value: lang.treatment
+      },{
+        label: 'jobDescription',
+        value: lang.jobDescription
+      },{
+        label: 'welfare',
+        value: lang.welfare
+      },{
+        label: 'admissionCondition',
+        value: lang.admissionCondition
+      }
+    ],
     banner_list: [],
     company_info: {},
     position_info: {},
     reward:{},
+    evaluate:{},
+    agency: false,
 
     activeIndex: 0,
     sliderOffset: 0,
@@ -58,6 +76,15 @@ JobDetailPage.prototype.onPreload = function (option) {
   service.initRender(this);
 }
 
+/**
+ * 跳转页面
+ */
+JobDetailPage.prototype.goLink = function (e){
+  let route = e.currentTarget.dataset.route;
+  let params = e.currentTarget.dataset.params;
+  this.go('/pages/' + route + '/' + route + params);
+}
+
 
 
 /** ui **/
@@ -66,9 +93,12 @@ JobDetailPage.prototype.onPreload = function (option) {
  * 选项卡事件
  */
 JobDetailPage.prototype.tabClick = function (e) {
+  let detail = e.currentTarget.dataset;
+
   this.renderDetail({
     sliderOffset: e.currentTarget.offsetLeft,
-    activeIndex: e.currentTarget.id
+    activeIndex: e.currentTarget.id,
+    scroll_into: detail.label
   });
 }
 

@@ -18,6 +18,44 @@ function service() {
   this.urlList = {
     recruit_datails: config.recruit_datails
   };
+
+  /**
+   * 构造评价列表
+   */
+  this.constructList = function (list) {
+    let arr = [];
+    for (let val of list){
+      arr.push({
+        title: val.title,
+        star: this.contructStars(val.score)
+      });
+    }
+    return arr;
+  }
+
+  /**
+   * 构造打星布尔数组
+   */
+  this.contructStars = function (num) {
+    num = parseInt(num);
+    let preObj = [1, 1, 1, 1, 1, 0, 0, 0, 0, 0];
+    let length = preObj.length;
+    let obj = preObj.slice(length/2 - num, length - num);
+    return obj;
+  }
+
+  /**
+   * 构造代理机构
+   */
+  this.constructAgency = function (agency) {
+    if (isEmpty(agency)) return false;
+
+    return {
+      id: agency.sp_id,
+      name: agency.custom_name,
+      address: lang.companyAddress + '：' + agency.address
+    };
+  }
 }
 
 //public
@@ -50,6 +88,7 @@ service.prototype = {
         that.renderDetail({
           banner_list: info.company_images,
           company_info: {
+            id: info.organ_id,
             logo: info.logo_images,
             name: info.partner_name,
             info_list: info.partner_province + info.partner_province+ '|' + info.scale + '|' + info.industry_name
@@ -68,20 +107,20 @@ service.prototype = {
               title: lang.treatment,
               info: [
                 {
-                  'name': lang.payrollDay + '：',
-                  'value': info.salary_pay_date
+                  name: lang.payrollDay + '：',
+                  value: info.salary_pay_date
                 },{
-                  'name': lang.salaryType + '：',
-                  'value': info.salary_pay_type
+                  name: lang.salaryType + '：',
+                  value: info.salary_pay_type
                 },{
-                  'name': lang.basicSalary + '：',
-                  'value': info.salary_base
+                  name: lang.basicSalary + '：',
+                  value: info.salary_base
                 },{
-                  'name': lang.fullAttendance + '：',
-                  'value': isEmpty(parseFloat(info.entry_reward)) ? lang.none : info.entry_reward
+                  name: lang.fullAttendance + '：',
+                  value: isEmpty(parseFloat(info.entry_reward)) ? lang.none : info.entry_reward
                 },{
-                  'name': lang.overtimeReward + '：',
-                  'value': isEmpty(parseFloat(info.salary_overtime)) ? lang.none : info.salary_overtime
+                  name: lang.overtimeReward + '：',
+                  value: isEmpty(parseFloat(info.salary_overtime)) ? lang.none : info.salary_overtime
                 }
               ]
             },{
@@ -89,17 +128,17 @@ service.prototype = {
               title: lang.jobDescription,
               info: [
                 {
-                  'name': lang.jobContent + '：',
-                  'value': info.work_content
+                  name: lang.jobContent + '：',
+                  value: info.work_content
                 },{
-                  'name': lang.jobTime + '：',
-                  'value': info.work_time
+                  name: lang.jobTime + '：',
+                  value: info.work_time
                 },{
-                  'name': lang.jobTimes + '：',
-                  'value': info.work_shift
+                  name: lang.jobTimes + '：',
+                  value: info.work_shift
                 },{
-                  'name': lang.jobExplain + '：',
-                  'value': isEmpty(info.work_remark) ? lang.none : info.work_remark
+                  name: lang.jobExplain + '：',
+                  value: isEmpty(info.work_remark) ? lang.none : info.work_remark
                 }
               ]
             },{
@@ -107,14 +146,14 @@ service.prototype = {
               title: lang.welfare,
               info: [
                 {
-                  'name': lang.basicWelfare + '：',
-                  'value': ''
+                  name: lang.basicWelfare + '：',
+                  value: info.benefits_tags
                 },{
-                  'name': lang.entryDuration + '：',
-                  'value': info.full_roll_days
+                  name: lang.entryDuration + '：',
+                  value: info.full_roll_days
                 },{
-                  'name': lang.returnCash + '：',
-                  'value': info.entry_reward
+                  name: lang.returnCash + '：',
+                  value: info.entry_reward
                 }
               ]
             },{
@@ -122,23 +161,29 @@ service.prototype = {
               title: lang.admissionCondition,
               info: [
                 {
-                  'name': lang.sexCondition + '：',
-                  'value': info.hire_gender
+                  name: lang.sexCondition + '：',
+                  value: info.hire_gender
                 },{
-                  'name': lang.ageCondition + '：',
-                  'value': info.hire_age
+                  name: lang.ageCondition + '：',
+                  value: info.hire_age
                 },{
-                  'name': lang.educationCondition + '：',
-                  'value': info.hire_education
+                  name: lang.educationCondition + '：',
+                  value: info.hire_education
                 },{
-                  'name': lang.workExperience + '：',
-                  'value': info.hire_expert
+                  name: lang.workExperience + '：',
+                  value: info.hire_expert
                 }
               ]
             }
-          ]
+          ],
+          evaluate: {
+            count: info.evaluate_statistics.count,
+            list: this.constructList(info.evaluate_statistics.list)
+          },
+          agency: this.constructAgency(info.partner_agency)
         });
       } else {
+        that.goBack();
         layer.toast(res.message);
       }
     }, msg => {

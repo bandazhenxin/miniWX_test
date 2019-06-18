@@ -1,0 +1,19 @@
+<!--pages/entryReward/entryReward.wxml-->
+<view class='root'>
+  <!--banner-->
+  <image class='top' mode='widthFix' src='../../style/image/banner/entryReward.png'></image>
+
+  <!--详情-->
+  <view class='detail_area'>
+    <view class='detail-item' wx:for='{{detail}}' wx:key='name'>
+      <text class='name'>{{item.name}}</text>
+      <text class='words'>{{item.words}}</text>
+    </view>
+    <text class='tips'>{{tips}}</text>
+  </view>
+
+  <!--电话-->
+  <view class='link'>
+    <button bindtap='goLink'>电话咨询</button>
+  </view>
+</view>

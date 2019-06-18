@@ -1,4 +1,4 @@
-/* pages/jobDetail/jobDetail.wxss */
+/* pages/companyDetail/companyDetail.wxss */
 
 .container{
   position: fixed;
@@ -18,6 +18,10 @@
 }
 
 /* 顶部卡片 */
+.top{
+  border-bottom: 44rpx solid #EAEAEA;
+  padding-bottom: 22rpx;
+}
 .container .top_card{
   margin: 0 44rpx;
   border-radius: 14rpx;
@@ -48,12 +52,11 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding-left: 11rpx; 
+  padding-left: 22rpx; 
   width: 80%;
 }
 .words .words-name{
-  color:#707070;
-  font-size: 30rpx;
+  font-size: 32rpx;
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
@@ -61,66 +64,6 @@
 .words .words-list{
   font-size: 28rpx;
   color: #898989;
-}
-.top_card .company_info .point_item{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
-}
-.top_card .company_info .point_item text{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 28rpx;
-  color: #FF9C39;
-}
-
-/*职位信息*/
-.container .position{
-  padding: 44rpx;
-  padding-bottom: 22rpx;
-  border-bottom: 22rpx solid #F6F6F6;
-}
-.container .position view{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.container .position .salary{
-  border-bottom: 1rpx solid #F6F6F6;
-}
-.container .position .reward{
-  padding: 8rpx 0;
-}
-.container .position .title .name{
-  font-size: 34rpx;
-}
-.container .position .title .area{
-  font-size: 28rpx;
-  color: #898989;
-}
-.container .position .salary .salary-number{
-  font-size: 30rpx;
-  color: #FF9C39;
-}
-.container .position .salary .salary-type,.container .position .reward .reward-detail{
-  font-size: 28rpx;
-  color: #898989;
-}
-.container .position .reward .reward-go{
-  font-size: 26rpx;
-  color: #4086FF;
-  text-decoration: underline;
-}
-.container .position .reward .reward-detail{
-  display: inline-block;
-  width: 70%;
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
 }
 
 /* 导航栏 */

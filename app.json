@@ -9,7 +9,9 @@
     "pages/selectCity/selectCity",
     "pages/selectSalary/selectSalary",
     "pages/selectJobType/selectJobType",
-    "pages/jobDetail/jobDetail"
+    "pages/jobDetail/jobDetail",
+    "pages/entryReward/entryReward",
+    "pages/companyDetail/companyDetail"
   ],
   "tabBar": {
     "list": [
