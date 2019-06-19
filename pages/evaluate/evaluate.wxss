@@ -1,0 +1,142 @@
+/* 导航栏 */
+.container .weui-bar__item_on{
+  color: #FF870F;
+}
+.container .weui-navbar__slider{
+  background-color: #FF870F;
+}
+.container .weui-navbar__title{
+  font-size: 32rpx;
+}
+
+/*企业信息*/
+.container .company_info{
+  justify-content: space-between;
+  align-items: center;
+  padding: 33rpx 22rpx;
+  border-bottom: 22rpx solid #F6F6F6;
+}
+.container .company_info .basic_item{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.container .company_info .basic_item .iconfont{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  border: 1rpx solid #EAEAEA;
+}
+.container .company_info .basic_item .words{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 11rpx; 
+  width: 90%;
+}
+.words .words-name{
+  color:#707070;
+  font-size: 30rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.words .words-list{
+  font-size: 26rpx;
+  color: #898989;
+}
+.container .company_info .point_item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.container .company_info .point_item text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26rpx;
+  color: #898989;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.evaluate-star{
+  width: 180rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.evaluate-star image{
+  margin: 0 4rpx;
+}
+
+/*评价*/
+.evaluate_area{
+  padding: 22rpx 44rpx;
+  border-bottom: 22rpx solid #F6F6F6;
+}
+.evaluate_area .user_info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 11rpx;
+}
+.evaluate_area .user_info .left{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.evaluate_area .user_info .left .avatar{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  margin-right: 11rpx;
+}
+.evaluate_area .user_info .left .basic_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.evaluate_area .user_info .left .basic_info .top{
+  font-size: 30rpx;
+}
+.evaluate_area .user_info .left .basic_info .bottom{
+  font-size: 28rpx;
+  color:#939393;
+}
+.evaluate_area .user_info .scoring{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.evaluate_area .user_info .scoring text{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  font-size: 26rpx;
+  color:#939393;
+}
+.evaluate_area .evaluate_content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 30rpx;
+  color:#939393;
+}
+.evaluate_area .follow{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 22rpx;
+  border-top: 1rpx solid #F4F4F4;
+}
+.evaluate_area .follow text{
+  color: #FF850B;
+  font-size: 30rpx;
+}

@@ -12,7 +12,9 @@ const isEmpty = help.isEmpty;
 function CompanyDetailPage(title) {
   pageBasic.call(this, title);
   this.vm = {
-    db: {},
+    db: {
+      company_jobs: []
+    },
     id: '',
     tabs: [
       {
@@ -33,7 +35,7 @@ function CompanyDetailPage(title) {
     company_info: {},
     reward: {},
     evaluate: {},
-    agency: false,
+    company_jobs: {},
 
     activeIndex: 0,
     sliderOffset: 0,
@@ -67,6 +69,36 @@ CompanyDetailPage.prototype.onPreload = function (option) {
   });
 
   service.initRender(this);
+}
+
+/**
+ * 更多职位
+ */
+CompanyDetailPage.prototype.completeJob = function(){
+  service.completeJob(this);
+}
+
+/**
+ * 查看详细评价
+ */
+CompanyDetailPage.prototype.goEvaluate = function(){
+  this.go('/pages/evaluate/evaluate?id=' + this.vm.company_info.pid);
+}
+
+
+/** ui **/
+
+/**
+ * 选项卡事件
+ */
+CompanyDetailPage.prototype.tabClick = function (e) {
+  let detail = e.currentTarget.dataset;
+
+  this.renderDetail({
+    sliderOffset: e.currentTarget.offsetLeft,
+    activeIndex: e.currentTarget.id,
+    scroll_into: detail.label
+  });
 }
 
 Page(new CompanyDetailPage(lang.companyDetail));

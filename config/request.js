@@ -16,6 +16,7 @@ let request = {
   job_type_list:   'https://wx.upjob.com.cn/api/v2/public/job_type_List',
   recruit_datails: 'https://wx.upjob.com.cn/api/v1/recruit_datails',
   company_datails: 'https://wx.upjob.com.cn/api/v1/company_datails',
+  evaluate_info:   'https://wx.upjob.com.cn/api/v2/evaluate/evaluate_list_for_organ',
 };
 
 module.exports = request;

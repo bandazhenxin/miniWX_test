@@ -44,6 +44,7 @@ let lang = {
   companyAddress:           "企业地址",
   companyDetail:            "公司详情",
   linkPhone:                "联系电话",
+  shareJob:                 "分享职位",
 
   entryReward:              "入职补贴",
   whatEntryReward:          "什么是入职补贴",
@@ -61,6 +62,12 @@ let lang = {
   linkType:                 "联系方式",
   companyEvaluate:          "企业评价",
   relevantPositions:        "相关职位",
+
+  evaluate:                 "评价",
+  newest:                   "最新",
+  praise:                   "好评",
+  passable:                 "中评",
+  negative:                 "差评",
 };
 
 module.exports = lang;

@@ -37,7 +37,8 @@ function service() {
    * 构造打星布尔数组
    */
   this.contructStars = function (num) {
-    num = parseInt(num);
+    num = parseFloat(num);
+    num = Math.round(num);
     let preObj = [1, 1, 1, 1, 1, 0, 0, 0, 0, 0];
     let length = preObj.length;
     let obj = preObj.slice(length/2 - num, length - num);
@@ -52,7 +53,7 @@ function service() {
 
     return {
       id: agency.sp_id,
-      name: agency.custom_name,
+      name: agency.sp_name,
       address: lang.companyAddress + '：' + agency.address
     };
   }
@@ -89,6 +90,7 @@ service.prototype = {
           banner_list: info.company_images,
           company_info: {
             id: info.organ_id,
+            pid: info.partner_id,
             logo: info.logo_images,
             name: info.partner_name,
             info_list: info.partner_province + info.partner_province+ '|' + info.scale + '|' + info.industry_name

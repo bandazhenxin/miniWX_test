@@ -65,8 +65,8 @@
         </view>
 
         <view 
-        class="weui-navbar__slider" 
-        style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+          class="weui-navbar__slider" 
+          style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
       </block>
     </view>
 
@@ -92,7 +92,14 @@
               <text class='count-title'>评价人数</text>
               <text class='count-number'>{{evaluate.count}}</text>
             </view>
-            <button class="weui-btn detail-btn" type="default" role="button" >查看详细评价</button>
+            <button 
+              class="weui-btn detail-btn" 
+              type="default" 
+              role="button" 
+              data-route='evaluate' 
+              data-params='?id={{company_info.pid}}' 
+              bindtap='goLink'
+            >查看详细评价</button>
           </view>
           <view id='evaluate-right'>
             <view class='tight-item' wx:for="{{evaluate.list}}">
@@ -118,7 +125,14 @@
         <view class='show-content'>
           <text class='name'>{{agency.name}}</text>
           <text class='address'>{{agency.address}}</text>
-          <button class="weui-btn detail-btn" type="default" role="button" >查看机构详情</button>
+          <button 
+            class="weui-btn detail-btn" 
+            type="default" 
+            role="button" 
+            data-route='companyDetail' 
+            data-params='?id={{agency.id}}' 
+            bindtap='goLink'
+          >查看机构详情</button>
         </view>
       </view>
 
@@ -187,7 +201,7 @@
           <text>咨询</text>
         </view>
 
-        <button class='recommend' type="default" role="button" >推荐给好友</button>
+        <button class='recommend' type="default" role="button" open-type="share" >推荐给好友</button>
 
         <button class='signup' type="default" role="button" >立即报名</button>
       </view>

@@ -1,3 +1,6 @@
+<!--reply-->
+<import src='../common/positionItem.wxml' />
+
 <!--pages/companyDetail/companyDetail.wxml-->
 <scroll-view class='container' scroll-y="{{true}}" scroll-into-view="{{scroll_into}}">
   <!--banner卡片-->
@@ -59,15 +62,15 @@
     <!--其它详情-->
     <view class='show'>
       <!--企业评价-->
-      <view class='item_description evaluate'>
-        <text class='title'>企业评价</text>
+      <view class='item_description evaluate' id="{{evaluate.label}}">
+        <text class='item_description-title'>企业评价</text>
         <view class='show-content'>
           <view id='evaluate-left'>
             <view class='count'>
               <text class='count-title'>评价人数</text>
               <text class='count-number'>{{evaluate.count}}</text>
             </view>
-            <button class="weui-btn detail-btn" type="default" role="button" >查看详细评价</button>
+            <button class="weui-btn detail-btn" bindtap='goEvaluate' type="default" role="button" >查看详细评价</button>
           </view>
           <view id='evaluate-right'>
             <view class='tight-item' wx:for="{{evaluate.list}}">
@@ -84,6 +87,19 @@
               </view>
             </view>
           </view> 
+        </view>
+      </view>
+
+      <!--相关职位-->
+      <view class='item_description jobs' id="{{company_jobs.label}}">
+        <text class='item_description-title'>相关职位</text>
+        <view class='show-content'>
+          <block wx:for="{{company_jobs.list}}" wx:key="id">
+            <template is="positionItem" data="{{...item}}"/>
+          </block>
+        </view>
+        <view hidden='{{company_jobs.is_complete}}' class='btn-area'>
+          <button bindtap='completeJob'>更多职位</button>
         </view>
       </view>
     </view>

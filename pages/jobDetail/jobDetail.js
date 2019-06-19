@@ -77,6 +77,15 @@ JobDetailPage.prototype.onPreload = function (option) {
 }
 
 /**
+ * 分享操作
+ */
+JobDetailPage.prototype.onShareAppMessage = function (e) {
+  return {
+    title: lang.shareJob + '：' + this.vm.position_info.title
+  }
+}
+
+/**
  * 跳转页面
  */
 JobDetailPage.prototype.goLink = function (e){

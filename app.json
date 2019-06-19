@@ -11,7 +11,9 @@
     "pages/selectJobType/selectJobType",
     "pages/jobDetail/jobDetail",
     "pages/entryReward/entryReward",
-    "pages/companyDetail/companyDetail"
+    "pages/companyDetail/companyDetail",
+    "pages/evaluate/evaluate",
+    "pages/webGo/webGo"
   ],
   "tabBar": {
     "list": [

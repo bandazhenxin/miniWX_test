@@ -1,0 +1,62 @@
+<!--reply-->
+<import src='../common/evaluateItem.wxml' />
+
+<view class='container'>
+  <!--公司信息-->
+  <view class='company_info weui-flex'>
+    <view class='basic_item weui-flex'>
+      <image
+        src='{{company_info.logo}}'
+        class='iconfont'
+      >logo</image>
+      <view class='words'>
+        <text class='words-name'>{{company_info.name}}</text>
+        <text class='words-list'>{{company_info.info_list}}</text>
+      </view>
+    </view>
+    <view class='point_item'>
+      <view class='evaluate-star'>
+        <image 
+          wx:for="{{company_info.stars}}" 
+          wx:for-index="idx" 
+          wx:for-item="bloon"
+          class='iconfont'
+          mode='widthFix'
+          src="{{bloon?'../../style/images/icon/starActiv.png':'../../style/images/icon/star.png'}}"
+        >{{bloon}}</image>
+      </view>
+      <text>{{company_info.number_info}}</text>
+    </view>
+  </view>
+
+  <!--基于weui的选项卡-->
+  <view class="weui-tab">
+    <!--导航栏-->
+    <view class="weui-navbar">
+      <block wx:for="{{tabs}}" wx:key="*this">
+          <view 
+            id="{{index}}" 
+            class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" 
+            bindtap="tabClick"
+          ><view class="weui-navbar__title">{{item.name}}</view>
+          </view>
+      </block>
+
+      <view 
+        class="weui-navbar__slider" 
+        style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+    </view>
+
+    <!--内容区-->
+    <view class="weui-tab__panel">
+      <block wx:for="{{evaluate_list}}">
+        <view class="weui-tab__content" hidden="{{activeIndex != index}}">
+          <block wx:for="{{item}}" wx:for-index="idx" wx:for-item="evaluateItem" wx:key="id">
+            <template is="evaluateItem" data="{{...evaluateItem}}"/>
+          </block>
+        </view>
+      </block>
+      <button bindtap='webGo'></button>
+    </view>
+  </view>
+</view>

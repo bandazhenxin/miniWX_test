@@ -281,6 +281,7 @@ scroll-view{
   justify-content: flex-start;
   padding-top: 6rpx;
   padding-bottom: 6rpx; 
+  flex-wrap: wrap;
 }
 .scroll_item .item_company .label{
   font-size: 16rpx;
@@ -301,4 +302,5 @@ scroll-view{
   padding-left:6rpx; 
   padding-right:6rpx; 
   margin-right: 10rpx;
+  margin-bottom: 1rpx;
 }
