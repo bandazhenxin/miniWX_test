@@ -6,6 +6,7 @@ let lang = {
   none:                     "无",
   search:                   "搜索",
   noNull:                   "内容不能为空",
+  networkError:             "网络错误",
 
   screen:                   "筛选",
   city:                     "城市",
@@ -68,6 +69,8 @@ let lang = {
   praise:                   "好评",
   passable:                 "中评",
   negative:                 "差评",
+
+  signUp:                   "报名",
 };
 
 module.exports = lang;

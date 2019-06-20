@@ -15,6 +15,8 @@ function JobDetailPage(title) {
     db: {},
 
     scroll_into: '',
+    is_collect:false,
+    is_enroll: false,
 
     id: 0,
     tabs: [
@@ -59,7 +61,7 @@ JobDetailPage.prototype.onPreload = function (option) {
   let id = option.id;
   this.vm.id = id;
   this.render();
-
+  
   //导航栏初始化
   let that = this;
   let sliderWidth = 96;
@@ -74,6 +76,12 @@ JobDetailPage.prototype.onPreload = function (option) {
 
   //渲染初始页面
   service.initRender(this);
+
+  //获取收藏信息
+  service.getCollect(this);
+
+  //是否已报名
+  service.isEnroll(this);
 }
 
 /**
@@ -83,6 +91,13 @@ JobDetailPage.prototype.onShareAppMessage = function (e) {
   return {
     title: lang.shareJob + '：' + this.vm.position_info.title
   }
+}
+
+/**
+ * 收藏和取消收藏
+ */
+JobDetailPage.prototype.collectAction = function (e) {
+  service.collection(this);
 }
 
 /**

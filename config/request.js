@@ -4,7 +4,7 @@
 let request = {
   key:             'GhU6G4FK5iiyeCRoLw',
   system:          'wechat',
-  version:         1,
+  version:         'v1',
   initUrl:         'https://wx.upjob.com.cn/api/v2/login/mini_login',
   job_list:        'https://wx.upjob.com.cn/api/v2/index/get_index_job_list',
   get_mobile:      'https://wx.upjob.com.cn/api/v2/login/mini_bind_mobile',
@@ -17,6 +17,10 @@ let request = {
   recruit_datails: 'https://wx.upjob.com.cn/api/v1/recruit_datails',
   company_datails: 'https://wx.upjob.com.cn/api/v1/company_datails',
   evaluate_info:   'https://wx.upjob.com.cn/api/v2/evaluate/evaluate_list_for_organ',
+  is_collect:      'https://wx.upjob.com.cn/api/v1/is_collect',
+  collection:      'https://wx.upjob.com.cn/api/v1/collection',
+  nation_list:     'https://wx.upjob.com.cn/api/v2/public/nation_List',
+  is_enroll:       'https://wx.upjob.com.cn/api/v2/register/is_enroll',
 };
 
 module.exports = request;

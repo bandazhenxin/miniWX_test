@@ -70,7 +70,7 @@ service.prototype.initGet = function (that){
       let sign = signMd5(config.key, params);
       params.sign = sign;
       return api.post(url, params);
-    }
+    } 
   },msg => {
     layer.busy(false);
     layer.toast('登录失败');
@@ -78,7 +78,6 @@ service.prototype.initGet = function (that){
   //数据初始化
   .then(res => { 
     if(pass){
-      console.log(res);
       if(res.status_code == 200){
         storage.setData('unionid', res.data.union_id);
         that.globalData.userBasicInfo = mergeObj(res.data.sys_user_info, res.data.wx_user_info);

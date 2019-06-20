@@ -85,6 +85,14 @@ CompanyDetailPage.prototype.goEvaluate = function(){
   this.go('/pages/evaluate/evaluate?id=' + this.vm.company_info.pid);
 }
 
+/**
+ * 跳转详情页
+ */
+CompanyDetailPage.prototype.goDetail = function (e) {
+  let detail = e.currentTarget.dataset;
+  this.go('/pages/jobDetail/jobDetail?id=' + detail.id);
+}
+
 
 /** ui **/
 

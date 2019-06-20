@@ -140,7 +140,6 @@ service.prototype = {
     let sign = signMd5(config.key, params);
     params.sign = sign;
     api.post(url, params).then(res => {
-      console.log(res);
       return;
       if (res.status_code == 200) {
         app.globalData.token = res.data.token;
@@ -202,7 +201,6 @@ service.prototype = {
     wx.getLocation({
       type: 'wgs84',
       success: function (res) {
-        console.log(res);
         that.vm.latitude = res.latitude;
         that.vm.longitude = res.longitude;
         that.vm.speed = res.speed;
@@ -216,7 +214,6 @@ service.prototype = {
             longitude: that.vm.longitude
           },
           success: function (res) {
-            console.log(res);
             let province = res.result.ad_info.province
             let city = res.result.ad_info.city
             that.vm.province = province;
@@ -293,8 +290,6 @@ service.prototype = {
 
     //post
     api.post(url, params).then(res => {
-      console.log('cdd');
-      console.log(res);
       if (res.status_code == 200) {
         let listArr = self.handleTagsInfo(res.data);
         that.vm.tags_list = listArr;

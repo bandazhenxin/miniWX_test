@@ -1,4 +1,5 @@
 //reply
+const app      = getApp();
 const config   = require('../../config/request.js');
 const apiBasic = require('../../core/apiBasic.js');
 const layer    = require('../../utils/webServer/layer.js');
@@ -16,8 +17,115 @@ function service() {
    * 接口路径
    */
   this.urlList = {
-    recruit_datails: config.recruit_datails
+    recruit_datails: config.recruit_datails,
+    is_collect: config.is_collect,
+    collection: config.collection,
+    is_enroll: config.is_enroll
   };
+
+  /**
+   * 构造详情数据
+   */
+  this.constructDetai = function (info) {
+    return {
+      banner_list: info.company_images,
+        company_info: {
+        id: info.organ_id,
+        pid: info.partner_id,
+        logo: info.logo_images,
+        name: info.partner_name,
+        info_list: info.partner_province + info.partner_province + '|' + info.scale + '|' + info.industry_name
+      },
+      position_info: {
+        title: info.position_name,
+        area: info.province_name + ' ' + info.city_name,
+        pay: info.salary_entry,
+        type: info.is_full_time,
+        reward: lang.reward + '：' + info.entry_reward_details,
+        whatReward: lang.whatReward
+      },
+      reward: [
+        {
+          label: 'treatment',
+          title: lang.treatment,
+          info: [
+            {
+              name: lang.payrollDay + '：',
+              value: info.salary_pay_date
+            }, {
+              name: lang.salaryType + '：',
+              value: info.salary_pay_type
+            }, {
+              name: lang.basicSalary + '：',
+              value: info.salary_base
+            }, {
+              name: lang.fullAttendance + '：',
+              value: isEmpty(parseFloat(info.entry_reward)) ? lang.none : info.entry_reward
+            }, {
+              name: lang.overtimeReward + '：',
+              value: isEmpty(parseFloat(info.salary_overtime)) ? lang.none : info.salary_overtime
+            }
+          ]
+        }, {
+          label: 'jobDescription',
+          title: lang.jobDescription,
+          info: [
+            {
+              name: lang.jobContent + '：',
+              value: info.work_content
+            }, {
+              name: lang.jobTime + '：',
+              value: info.work_time
+            }, {
+              name: lang.jobTimes + '：',
+              value: info.work_shift
+            }, {
+              name: lang.jobExplain + '：',
+              value: isEmpty(info.work_remark) ? lang.none : info.work_remark
+            }
+          ]
+        }, {
+          label: 'welfare',
+          title: lang.welfare,
+          info: [
+            {
+              name: lang.basicWelfare + '：',
+              value: info.benefits_tags
+            }, {
+              name: lang.entryDuration + '：',
+              value: info.full_roll_days
+            }, {
+              name: lang.returnCash + '：',
+              value: info.entry_reward
+            }
+          ]
+        }, {
+          label: 'admissionCondition',
+          title: lang.admissionCondition,
+          info: [
+            {
+              name: lang.sexCondition + '：',
+              value: info.hire_gender
+            }, {
+              name: lang.ageCondition + '：',
+              value: info.hire_age
+            }, {
+              name: lang.educationCondition + '：',
+              value: info.hire_education
+            }, {
+              name: lang.workExperience + '：',
+              value: info.hire_expert
+            }
+          ]
+        }
+      ],
+        evaluate: {
+        count: info.evaluate_statistics.count,
+          list: this.constructList(info.evaluate_statistics.list)
+      },
+      agency: this.constructAgency(info.partner_agency)
+    }
+  }
 
   /**
    * 构造评价列表
@@ -83,115 +191,123 @@ service.prototype = {
 
     //post
     api.post(url, params).then(res => {
-      console.log(res);
       if (res.status_code == 200) {
         let info = res.data;
-        that.renderDetail({
-          banner_list: info.company_images,
-          company_info: {
-            id: info.organ_id,
-            pid: info.partner_id,
-            logo: info.logo_images,
-            name: info.partner_name,
-            info_list: info.partner_province + info.partner_province+ '|' + info.scale + '|' + info.industry_name
-          },
-          position_info: {
-            title: info.position_name,
-            area: info.province_name + ' ' + info.city_name,
-            pay: info.salary_entry,
-            type: info.is_full_time,
-            reward: lang.reward + '：' + info.entry_reward_details,
-            whatReward: lang.whatReward
-          },
-          reward: [
-            {
-              label: 'treatment',
-              title: lang.treatment,
-              info: [
-                {
-                  name: lang.payrollDay + '：',
-                  value: info.salary_pay_date
-                },{
-                  name: lang.salaryType + '：',
-                  value: info.salary_pay_type
-                },{
-                  name: lang.basicSalary + '：',
-                  value: info.salary_base
-                },{
-                  name: lang.fullAttendance + '：',
-                  value: isEmpty(parseFloat(info.entry_reward)) ? lang.none : info.entry_reward
-                },{
-                  name: lang.overtimeReward + '：',
-                  value: isEmpty(parseFloat(info.salary_overtime)) ? lang.none : info.salary_overtime
-                }
-              ]
-            },{
-              label: 'jobDescription',
-              title: lang.jobDescription,
-              info: [
-                {
-                  name: lang.jobContent + '：',
-                  value: info.work_content
-                },{
-                  name: lang.jobTime + '：',
-                  value: info.work_time
-                },{
-                  name: lang.jobTimes + '：',
-                  value: info.work_shift
-                },{
-                  name: lang.jobExplain + '：',
-                  value: isEmpty(info.work_remark) ? lang.none : info.work_remark
-                }
-              ]
-            },{
-              label: 'welfare',
-              title: lang.welfare,
-              info: [
-                {
-                  name: lang.basicWelfare + '：',
-                  value: info.benefits_tags
-                },{
-                  name: lang.entryDuration + '：',
-                  value: info.full_roll_days
-                },{
-                  name: lang.returnCash + '：',
-                  value: info.entry_reward
-                }
-              ]
-            },{
-              label: 'admissionCondition',
-              title: lang.admissionCondition,
-              info: [
-                {
-                  name: lang.sexCondition + '：',
-                  value: info.hire_gender
-                },{
-                  name: lang.ageCondition + '：',
-                  value: info.hire_age
-                },{
-                  name: lang.educationCondition + '：',
-                  value: info.hire_education
-                },{
-                  name: lang.workExperience + '：',
-                  value: info.hire_expert
-                }
-              ]
-            }
-          ],
-          evaluate: {
-            count: info.evaluate_statistics.count,
-            list: this.constructList(info.evaluate_statistics.list)
-          },
-          agency: this.constructAgency(info.partner_agency)
-        });
+        console.log('job');
+        console.log(info);
+        let rendData = this.constructDetai(info);
+        that.renderDetail(rendData);
       } else {
         that.goBack();
         layer.toast(res.message);
       }
     }, msg => {
-      layer.toast(msg.message);
+      layer.toast(lang.networkError);
     });
-  }
+  },
+
+  /**
+   * 获取收藏信息
+   */
+  getCollect: function (that) {
+    //init
+    var self = this;
+
+    //construct
+    let params = {
+      system: config.system,
+      version: config.version,
+      sign: null,
+      id: that.vm.id,
+      token: app.globalData.token
+    };
+
+    //singn
+    let url = this.urlList.is_collect;
+    let sign = signMd5(config.key, params);
+    params.sign = sign;
+    
+    //post
+    api.post(url, params).then(res => {
+      if (res.status_code == 200) {
+        let info = res.data;
+        that.renderDetail({
+          is_collect: Boolean(info.is_collect)
+        });
+      } else {
+        layer.toast(res.message);
+      }
+    }, msg => {
+      layer.toast(lang.networkError);
+    });
+  },
+
+  /**
+   * 收藏或取消收藏
+   */
+  collection: function (that) {
+    //init
+    var self = this;
+    
+    //construct
+    let params = {
+      system: config.system,
+      version: config.version,
+      sign: null,
+      token: app.globalData.token,
+      job_id: that.vm.id,
+      user_id: app.globalData.userBasicInfo.user_id
+    };
+
+    //singn
+    let url = this.urlList.collection;
+    let sign = signMd5(config.key, params);
+    params.sign = sign;
+
+    //post
+    api.post(url, params).then(res => {
+      if (res.status_code == 200) {
+        this.getCollect(that);
+      } else {
+        layer.toast(res.message);
+      }
+    }, msg => {
+      layer.toast(lang.networkError);
+    });
+  },
+
+  isEnroll: function (that) {
+    //init
+    var self = this;
+
+    //construct
+    let params = {
+      system: config.system,
+      version: config.version,
+      sign: null,
+      token: app.globalData.token,
+      id: that.vm.id
+    };
+
+    //singn
+    let url = this.urlList.is_enroll;
+    let sign = signMd5(config.key, params);
+    params.sign = sign;
+    
+    //post
+    api.post(url, params).then(res => {
+      console.log(res);
+      if (res.status_code == 200) {
+        that.renderDetail({
+          is_enroll: Boolean(res.data)
+        });
+      } else {
+        layer.toast(res.message);
+      }
+    }, msg => {
+      layer.toast(lang.networkError);
+    });
+  },
 }
 
 module.exports = service;

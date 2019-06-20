@@ -13,7 +13,8 @@
     "pages/entryReward/entryReward",
     "pages/companyDetail/companyDetail",
     "pages/evaluate/evaluate",
-    "pages/webGo/webGo"
+    "pages/webGo/webGo",
+    "pages/signDetail/signDetail"
   ],
   "tabBar": {
     "list": [

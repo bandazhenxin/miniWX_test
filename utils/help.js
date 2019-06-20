@@ -220,6 +220,61 @@ function b64MD5w(str) { return binl2b64(coreMD5(strw2binl(str))) }
 /* Backward compatibility */
 function calcMD5(str) { return binl2hex(coreMD5(str2binl(str))) } 
 
+function base64_encode(str) { // 编码，配合encodeURIComponent使用
+  var c1, c2, c3;
+  var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  var i = 0, len = str.length, strin = '';
+  while (i < len) {
+    c1 = str.charCodeAt(i++) & 0xff;
+    if (i == len) {
+      strin += base64EncodeChars.charAt(c1 >> 2);
+      strin += base64EncodeChars.charAt((c1 & 0x3) << 4);
+      strin += "==";
+      break;
+    }
+    c2 = str.charCodeAt(i++);
+    if (i == len) {
+      strin += base64EncodeChars.charAt(c1 >> 2);
+      strin += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+      strin += base64EncodeChars.charAt((c2 & 0xF) << 2);
+      strin += "=";
+      break;
+    }
+    c3 = str.charCodeAt(i++);
+    strin += base64EncodeChars.charAt(c1 >> 2);
+    strin += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+    strin += base64EncodeChars.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));
+    strin += base64EncodeChars.charAt(c3 & 0x3F)
+  }
+  return strin
+}
+
+function base64_decode(input) { // 解码，配合decodeURIComponent使用
+  var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  var output = "";
+  var chr1, chr2, chr3;
+  var enc1, enc2, enc3, enc4;
+  var i = 0;
+  input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+  while (i < input.length) {
+    enc1 = base64EncodeChars.indexOf(input.charAt(i++));
+    enc2 = base64EncodeChars.indexOf(input.charAt(i++));
+    enc3 = base64EncodeChars.indexOf(input.charAt(i++));
+    enc4 = base64EncodeChars.indexOf(input.charAt(i++));
+    chr1 = (enc1 << 2) | (enc2 >> 4);
+    chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+    chr3 = ((enc3 & 3) << 6) | enc4;
+    output = output + String.fromCharCode(chr1);
+    if (enc3 != 64) {
+      output = output + String.fromCharCode(chr2);
+    }
+    if (enc4 != 64) {
+      output = output + String.fromCharCode(chr3);
+    }
+  }
+  return utf8_decode(output);
+}
+
 /**
  * 严格字符串判断
  */
@@ -308,6 +363,39 @@ function mergeArr(arr1,arr2){
 }
 
 /**
+ * 转utf-8
+ */
+function utf8(inputStr){
+  var outputStr = "";
+  for (var i = 0; i < inputStr.length; i++) {
+    var temp = inputStr.charCodeAt(i);
+    //0xxxxxxx
+    if (temp < 128) {
+      outputStr += String.fromCharCode(temp);
+    }
+    //110xxxxx 10xxxxxx
+    else if (temp < 2048) {
+      outputStr += String.fromCharCode((temp >> 6) | 192);
+      outputStr += String.fromCharCode((temp & 63) | 128);
+    }
+    //1110xxxx 10xxxxxx 10xxxxxx
+    else if (temp < 65536) {
+      outputStr += String.fromCharCode((temp >> 12) | 224);
+      outputStr += String.fromCharCode(((temp >> 6) & 63) | 128);
+      outputStr += String.fromCharCode((temp & 63) | 128);
+    }
+    //11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+    else {
+      outputStr += String.fromCharCode((temp >> 18) | 240);
+      outputStr += String.fromCharCode(((temp >> 12) & 63) | 128);
+      outputStr += String.fromCharCode(((temp >> 6) & 63) | 128);
+      outputStr += String.fromCharCode((temp & 63) | 128);
+    }
+  }
+  return outputStr;
+}
+
+/**
  * u聘加签
  */
 function sign(key,params){
@@ -317,12 +405,13 @@ function sign(key,params){
   
   //sign
   let arr = [];
+  let base64_key = base64_encode(key);
   for (let i in params){
     if (i !== 'sign') arr.push(params[i]);
   }
-  arr.push(key);
-
-  return hexMD5(arr.join('.'));
+  arr.push(base64_key);
+  
+  return hexMD5(utf8(arr.join('')));
 }
 
 /**
@@ -387,6 +476,9 @@ function compare(propertyName) {
 module.exports = {
   date: formatTime,
   getSingle: getSingle,
+  utf8: utf8,
+  base64_encode: base64_encode,
+  base64_decode: base64_decode,
   hexMD5: hexMD5,
   hexMD5w: hexMD5w,
   b64MD5: b64MD5,

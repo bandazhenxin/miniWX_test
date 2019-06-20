@@ -311,6 +311,3 @@
 .action .recommend{
   background-color: #069842; 
 }
-.action .signup{
-  background-color: #FF850B; 
-}
