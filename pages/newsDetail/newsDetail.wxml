@@ -1,0 +1,17 @@
+<view class='container'>
+  <view class='detail'>
+    <!--title-->
+    <view class='title'>
+      <text class='h'>{{detail.title}}</text>
+      <text class='time'>{{detail.created_at}}</text>
+    </view>
+
+    <!--content-->
+    <text class='content'>{{detail.contents}}</text>
+
+    <!--btn-->
+    <view class='btn-area'>
+      <button>查看详情</button>
+    </view>
+  </view>
+</view>

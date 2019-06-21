@@ -1,5 +1,13 @@
+page{
+  background-color: #F1F1F1;
+}
+.container{
+  padding-top: 0;
+}
+
 /*职位*/
 .scroll_item{
+  background-color: #FFFFFF;
   width: 100%;
   display: flex;
   flex-direction: column;

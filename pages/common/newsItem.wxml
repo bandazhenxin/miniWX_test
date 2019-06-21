@@ -1,0 +1,13 @@
+<template name='newsItem'>
+  <view class='news_item' data-id="{{catalog}}" data-title="{{catalog_name}}" bindtap='goDetail'>
+    <image class='icon' src='{{img}}' mode='widthFix'>logo</image>
+    <view class='description'>
+      <view class="title">
+        <view style="display: inline-block; vertical-align: middle">{{catalog_name}}</view>
+        <view hidden='{{unread_count == 0?true:false}}' class="weui-badge" style="margin-left: 5px;">{{unread_count}}</view>
+      </view>
+      <text class='content'>{{contents}}</text>
+      <text class='time'>{{created_at}}</text>
+    </view>
+  </view>
+</template>

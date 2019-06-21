@@ -10,14 +10,16 @@ const service = new serviceClass();
 const isEmpty = help.isEmpty;
 
 //继承基类
-function NewsPage(title) {
+function NewsListPage(title) {
   pageBasic.call(this, title);
   this.vm = {
     db: {},
+
+    catalog: '',
     news_list: []
   }
 }
-NewsPage.prototype = new pageBasic();
+NewsListPage.prototype = new pageBasic();
 
 
 
@@ -26,24 +28,32 @@ NewsPage.prototype = new pageBasic();
 /**
  * 逻辑初始化
  */
-NewsPage.prototype.onPreload = function (option) {
+NewsListPage.prototype.onPreload = function (option) {
+  //init
+  let catalog = option.catalog;
+  this.vm.catalog = catalog;
+  this.render();
+
+  //title
+  this.setTitle(option.title);
+
   service.initRender(this);
 }
 
 /**
  * 显示时
  */
-NewsPage.prototype.onShow = function () {
+NewsListPage.prototype.onShow = function () {
   this.onLoad();
 }
 
 /**
- * 消息详情
+ * 跳转详情
  */
-NewsPage.prototype.goDetail = function (e) {
-  let catalog = e.currentTarget.dataset.id;
-  let title = e.currentTarget.dataset.title;
-  this.go('/pages/newsList/newsList?catalog=' + catalog + '&title=' + title);
+NewsListPage.prototype.goDetail = function (e) {
+  let catalog = e.currentTarget.dataset.catalog;
+  let id = e.currentTarget.dataset.id;
+  this.go('/pages/newsDetail/newsDetail?catalog=' + catalog + '&id=' + id);
 }
 
-Page(new NewsPage(lang.news));
+Page(new NewsListPage(lang.news));

@@ -363,6 +363,16 @@ function mergeArr(arr1,arr2){
 }
 
 /**
+ * 去换行转义
+ */
+function feedFilter(text){
+  if (!isString(text)) return false;
+
+  let target = '\n';
+  return text.replace(/\\n/g, target);
+}
+
+/**
  * 转utf-8
  */
 function utf8(inputStr){
@@ -476,6 +486,7 @@ function compare(propertyName) {
 module.exports = {
   date: formatTime,
   getSingle: getSingle,
+  feedFilter: feedFilter,
   utf8: utf8,
   base64_encode: base64_encode,
   base64_decode: base64_decode,

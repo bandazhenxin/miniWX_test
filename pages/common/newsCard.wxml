@@ -1,0 +1,12 @@
+<template name='newsCard'>
+  <view class='news_card' data-catalog="{{catalog}}" data-id="{{id}}" bindtap='goDetail'>
+    <view class='basic'>
+      <image mode='widthFix' class='icon' src='../../style/images/icon/laba.png'></image>
+      <text class='time'>{{created_at}}</text>
+      <view hidden='{{is_read}}' class="weui-badge weui-badge_dot" style="margin-left: 15px;margin-right: 5px;"></view>
+    </view>
+    <view class='content'>
+      {{contents}}
+    </view>
+  </view>
+</template>

@@ -71,6 +71,10 @@ let lang = {
   negative:                 "差评",
 
   signUp:                   "报名",
+  signUpSuccess:            "报名成功",
+
+  news:                     "消息",
+  newsDetail:               "消息详情",
 };
 
 module.exports = lang;

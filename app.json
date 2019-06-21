@@ -14,7 +14,9 @@
     "pages/companyDetail/companyDetail",
     "pages/evaluate/evaluate",
     "pages/webGo/webGo",
-    "pages/signDetail/signDetail"
+    "pages/signDetail/signDetail",
+    "pages/newsList/newsList",
+    "pages/newsDetail/newsDetail"
   ],
   "tabBar": {
     "list": [
