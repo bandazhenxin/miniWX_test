@@ -1,2 +1,62 @@
-<!--pages/signUp/signUp.wxml-->
-<text>pages/signUp/signUp.wxml</text>
+<!--reply-->
+<import src='../common/positionItem.wxml' />
+
+<!--基于weui的选项卡-->
+<view class="weui-tab">
+  <!--导航栏-->
+  <view class="weui-navbar">
+    <block wx:for="{{tabs}}" wx:key="*this">
+        <view 
+          id="{{index}}" 
+          class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" 
+          bindtap="tabClick"
+        ><view class="weui-navbar__title">{{item}}</view>
+        </view>
+    </block>
+
+    <view 
+      class="weui-navbar__slider" 
+      style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+  </view>
+
+  <!--内容区-->
+  <view class="weui-tab__panel">
+    <block wx:for="{{content_list}}">
+      <scroll-view 
+        scroll-y="{{true}}" 
+        class="weui-tab__content" 
+        hidden="{{activeIndex != index}}" 
+        bindscrolltolower='scrollRender'
+      >
+          <block wx:for="{{item}}" wx:for-index="idx" wx:for-item="itemObj" wx:key="id">
+            <view class='job_item'>
+              <template is="positionItem" data="{{...itemObj}}"/>
+              <view class='btn-area'>
+                <button 
+                  data-index="{{index}}"
+                  data-idx="{{idx}}" 
+                  data-id='{{itemObj.id}}' 
+                  data-rid='{{itemObj.register_id}}' 
+                  bindtap='{{itemObj.is_interview?"sureInterview":""}}' 
+                  class='{{itemObj.is_interview?"yellow-btn":"prohibit-btn"}}' 
+                  hidden='{{activeIndex != 0}}'
+                >确认面试</button>
+                <button data-id='{{itemObj.id}}' class='white-btn' hidden='{{activeIndex != 2}}'>入职登记</button>
+                <button data-id='{{itemObj.id}}' class='yellow-btn' hidden='{{activeIndex != 2 && activeIndex != 3}}'>领取返现</button>
+                <button data-id='{{itemObj.id}}' class='yellow-btn' hidden='{{activeIndex != 5}}'>立即报名</button>
+                <button data-id='{{itemObj.id}}' data-title='{{itemObj.position_name}}' open-type="share" class='green-btn'>推荐给好友</button>
+                <button data-id='{{itemObj.id}}' class='del-btn' hidden='{{activeIndex != 5}}'>删除</button>
+                <button 
+                  data-index="{{index}}"
+                  data-id='{{itemObj.id}}' 
+                  data-rid='{{itemObj.register_id}}'
+                  bindtap='goInfo' 
+                  class='white-btn'
+                >查看</button>
+              </view>
+            </view>
+          </block>
+      </scroll-view>
+    </block>
+  </view>
+</view>

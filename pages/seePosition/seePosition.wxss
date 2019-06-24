@@ -1,67 +1,19 @@
-/* pages/signUp/signUp.wxss */
 page{
-    height:100%;
+  background-color: #F1F1F1;
 }
-.weui-tab .weui-bar__item_on .weui-navbar__title{
-  color: #FF850B;
-}
-.weui-tab .weui-navbar__slider{
-  background-color: #FF850B;
-}
-.weui-tab__content{
-  height: 100%;
-}
-
-/*职位列表*/
-.job_item{
-  padding: 0 44rpx;
-  border-bottom: 22rpx solid #F1F1F1;
-}
-.job_item .btn-area{
-  padding: 22rpx 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-.job_item .btn-area button{
-  font-size: 26rpx;
-  border-radius: 8rpx;
-  margin: 0;
-  margin-left: 22rpx;
-  white-space:nowrap;
-}
-.prohibit-btn{
-  color: #FFFFFF;
-  background-color: #C7C7C7;
-}
-.yellow-btn{
-  color: #FFFFFF;
-  background-color: #FF850B;
-}
-.white-btn{
-  background-color: #FFFFFF;
-  border:1rpx solid #FF850B;
-  color: #FF850B;
-}
-.green-btn{
-  color: #FFFFFF;
-  background-color: #069842;
-}
-.del-btn{
-  background-color: #FFFFFF;
-  border:1rpx solid #8D8D8D;
-  color: #8D8D8D;
+.container{
+  padding-top: 0;
 }
 
 /*职位*/
 .scroll_item{
+  background-color: #FFFFFF;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding-top: 22rpx;
-  padding-bottom: 22rpx; 
+  padding: 22rpx 44rpx;
   border-bottom: 2rpx solid #F5F5F5;
 }
 .scroll_item .item{
@@ -121,4 +73,31 @@ page{
   padding-right:6rpx; 
   margin-right: 10rpx;
   margin-bottom: 1rpx;
+}
+
+/*表单区域*/
+.form_area{
+  background-color: #F1F1F1;
+  padding: 44rpx;
+  padding-bottom: 0;
+}
+/*表单*/
+.form-input{
+  border-radius: 6rpx;
+}
+
+/*按钮区*/
+.btn-area{
+  padding: 88rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-area button{
+  padding: 11rpx 0;
+  background-color: #FF850B;
+  color: #FFFFFF;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  width: 90%;
 }
