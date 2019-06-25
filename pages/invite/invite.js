@@ -16,7 +16,8 @@ function Invite(title) {
     index: 1,
     imgSrc: '',
     current: 0,
-    swiperShow: true
+    swiperHide: false,
+    shareImg:''
   }
 }
 Invite.prototype = new pageBasic();
@@ -27,10 +28,14 @@ Invite.prototype = new pageBasic();
  */
 Invite.prototype.onPreload = function (option) {
   //init
-  if (option && option.imgSrc) {
-    this.vm.swiperShow = false
+  if (option.imgSrc) {
+    this.vm.swiperHide = true
     app.globalData.imgSrc = option.imgSrc
+    this.vm.shareImg=option.imgSrc
+  }else{
+    this.vm.swiperHide = false
   }
+  console.log(this.vm.swiperHide)
   // 获取轮播图
   service.invitingFriends(this)
   this.render();
@@ -38,8 +43,9 @@ Invite.prototype.onPreload = function (option) {
 // 轮播
 Invite.prototype.onSlideChangeEnd = function (e) {
   // console.log(e.detail.current)
-  if (!swiperShow) return
+  
   var that = this;
+  if (!that.vm.swiperShow) return
   that.vm.index = e.detail.current + 1
   that.setData({
     index: e.detail.current + 1

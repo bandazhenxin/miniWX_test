@@ -8,7 +8,7 @@
 .imgWrap image{
     width: 80vw;
     margin:0 auto;
-    height:calc(80vw / 0.562);
+    height:calc(78vw / 0.562);
 }
 .swiper{
     min-height: 80vh;
@@ -26,5 +26,6 @@
     border-radius:10rpx;
     line-height: 80rpx;
     color:#fff;
+    padding-bottom: 20rpx;
     font-size:30rpx;
 }

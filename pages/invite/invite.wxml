@@ -2,7 +2,7 @@
 <view class="container">
   <view class="invite">
     <!-- 轮播图 -->
-    <swiper display-multiple-items='1' class="swiper" hidden="{{swiperShow}}"
+    <swiper display-multiple-items='1' class="swiper" hidden="{{swiperHide}}"
       interval="3000" duration="1000" current="{{current}}" bindchange='onSlideChangeEnd'>
       <block wx:for='{{qrList}}'>
         <swiper-item>
@@ -13,10 +13,10 @@
       </block>
     </swiper>
     <!-- 分享的图片 -->
-    <view class="imgWrap" hidden="{{swiperShow}}">
+    <view class="imgWrap" hidden="{{!swiperHide}}">
       <image class="inviteQr" src='{{shareImg}}'></image>
     </view>
-    <view class="count">{{index}}/{{qrList.length}}</view>
+    <view class="count" hidden="{{swiperHide}}">{{index}}/{{qrList.length}}</view>
   </view>
   <button class="bottomBtn" open-type='share' bindtap='share'>分享并保存图片</button>
 </view>
