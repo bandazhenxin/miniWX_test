@@ -1,66 +1,44 @@
-// pages/personal/personal.js
-Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+//reply
+const serviceClass = require('service.js');
+const pageBasic = require('../../core/pageBasic.js');
+const help = require('../../utils/help.js');
+const lang = require('../../config/lang.js');
+const layer = require('../../utils/webServer/layer.js');
+const app = getApp()
+//instance
+const service = new serviceClass();
+//继承基类
+function Personal(title) {
+  pageBasic.call(this, title);
+  this.vm = {
+    db: {},
+    userInfo: {},
   }
-})
+}
+Personal.prototype = new pageBasic();
+
+
+
+/** 业务逻辑控制 **/
+
+/**
+ * 逻辑初始化
+ */
+Personal.prototype.onPreload = function (option) {
+  //init
+  this.vm.userInfo=app.globalData.userBasicInfo
+  this.render();
+  // 获取个人中心信息
+  service.getPersonalInfo(this)
+
+}
+
+/**
+ * 显示时
+ */
+Personal.prototype.onShow = function () {
+  this.onLoad();
+}
+
+
+Page(new Personal());

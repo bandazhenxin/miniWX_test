@@ -27,6 +27,7 @@ let request = {
   messages_catalog: 'https://wx.upjob.com.cn/api/v1/messages_catalog',
   messages_list:    'https://wx.upjob.com.cn/api/v1/messages_catalog_list',
   messages_detail:  'https://wx.upjob.com.cn/api/v1/message_detail',
+  personal_info:    'https://wx.upjob.com.cn/api/v1/user_datails_v2'
 };
 
 module.exports = request;

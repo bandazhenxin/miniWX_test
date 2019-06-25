@@ -1,2 +1,82 @@
-<!--pages/personal/personal.wxml-->
-<text>pages/personal/personal.wxml</text>
+<view>
+  <!--头部-->
+  <view class='basic_info'>
+    <image src='{{userInfo.avatarUrl}}'>headimg</image>
+    <view class='words'>
+      <text class='name'>{{userInfo.nickName}}</text>
+      <text class='phone'>{{userInfo.mobile}}</text>
+    </view>
+  </view>
+
+  <!--菜单-->
+  <view class='menu'>
+    <view class='menu_item'>
+      <image 
+        mode='widthFix' 
+        class='iconfont menu_icon' 
+        src='../../style/images/icon/starActiv.png'
+      >icon</image>
+      <text class='menu_name'>当前职位：{{userInfo.grade}}</text>
+      <image 
+        mode='widthFix' 
+        class='iconfont menu_link' 
+        src='../../style/images/icon/select.png'
+      >icon</image>
+    </view>
+
+    <view class='menu_item'>
+      <image 
+        mode='widthFix' 
+        class='iconfont menu_icon' 
+        src='../../style/images/icon/starActiv.png'
+      >icon</image>
+      <text class='menu_name'>我的推荐</text>
+      <image 
+        mode='widthFix' 
+        class='iconfont menu_link' 
+        src='../../style/images/icon/select.png'
+      >icon</image>
+    </view>
+
+    <view class='menu_item'>
+      <image 
+        mode='widthFix' 
+        class='iconfont menu_icon' 
+        src='../../style/images/icon/starActiv.png'
+      >icon</image>
+      <text class='menu_name'>邀请好友</text>
+      <image 
+        mode='widthFix' 
+        class='iconfont menu_link' 
+        src='../../style/images/icon/select.png'
+      >icon</image>
+    </view>
+  </view>
+</view>
+<!-- 获取头像昵称
+<block wx:elif="{{!hasBasicUserInfo}}">
+  <view class='default'>
+    <image
+      src='../../style/images/banner/default.png'
+      mode='widthFix'
+    >default</image>
+  </view>
+  <view class='display'>
+    <view class='auth'>
+      <view class='title'>
+        <image
+          src='../../style/images/banner/default.png'
+          mode='widthFix'
+          class='iconfont'
+        >logo</image>
+        <text>申请使用</text>
+      </view>
+      <button 
+        type="primary" 
+        class='auth-btn weui-btn button-hover' 
+        open-type="getUserInfo" 
+        bindgetuserinfo="getUserInfo"
+      >获取头像昵称</button>
+    </view>
+  </view>
+</block> -->
