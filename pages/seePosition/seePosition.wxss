@@ -4,6 +4,9 @@ page{
 .container{
   padding-top: 0;
 }
+.weui-cell__bd .weui-input{
+  white-space: nowrap;
+}
 
 /*职位*/
 .scroll_item{

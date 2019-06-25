@@ -203,7 +203,15 @@
 
         <button class='recommend' type="default" role="button" open-type="share" >推荐给好友</button>
 
-        <button class='signup' type="default" role="button" data-route='signDetail' data-params='?id={{id}}' bindtap='{{is_enroll?"":"goLink"}}' style="background-color:{{is_enroll?'#CDCDCD':'#FF850B'}};">{{is_enroll?'已报名':'立即报名'}}</button>
+        <button 
+          class='signup' 
+          type="default" 
+          role="button" 
+          data-route='signDetail' 
+          data-params='?id={{id}}' 
+          bindtap='{{is_enroll?"":"goLink"}}' 
+          style="background-color:{{is_enroll?'#CDCDCD':'#FF850B'}};"
+        >{{is_enroll?'已报名':'立即报名'}}</button>
       </view>
     </view>
   </view>
