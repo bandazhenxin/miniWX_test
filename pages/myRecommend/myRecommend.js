@@ -13,9 +13,13 @@ function MyRecommend(title) {
   this.vm = {
     db: {},
     grade: '',
-    teamList: [],
-    currentTab: 0,
-    subordinateList: []
+    recommendList: [],
+    tabs: ['团队', '下属'],
+    activeIndex: 0,
+    teamShow: true,
+    subordinateList: [],
+    sliderOffset: 0,
+    sliderLeft: 0,
   }
 }
 MyRecommend.prototype = new pageBasic();
@@ -42,11 +46,15 @@ MyRecommend.prototype.onPreload = function (option) {
 
 // 切换tab
 MyRecommend.prototype.clickTab = function (e) {
-  var that = this;
-  if (that.vm.currentTab === e.target.dataset.id) {
-    return
+  this.renderDetail({
+    sliderOffset: e.currentTarget.offsetLeft,
+    activeIndex: e.currentTarget.id
+  })
+  // 团队 下属
+  if (e.currentTarget.id == 0) {
+    service.getIntroducerList(this, -1)
   } else {
-    that.vm.currentTab = e.target.dataset.id
+    service.getIntroducerList(this, -2)
   }
 }
 

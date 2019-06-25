@@ -23,13 +23,16 @@ function service() {
 //public
 service.prototype = {
   // 获取推荐列表 
-  // 默认下属 type -1 团队 -2
-  getIntroducerList: function (that) {
+  // 默认团队 -2 下属 type -1 
+  getIntroducerList: function (that, type) {
+    if (!type) {
+      type = -2
+    }
     let params = {
       system: config.system,
       version: config.version,
       sign: null,
-      type:-2,
+      type: type,
       page: 1,
       token: app.globalData.token
     }
@@ -40,7 +43,7 @@ service.prototype = {
     params.sign = sign
     api.post(url, params).then(res => {
       if (res.status_code === 200) {
-        console.log(res)
+        that.vm.recommendList = res.data.list
         layer.busy(false);
         that.render();
       } else {
@@ -50,6 +53,14 @@ service.prototype = {
     }, msg => {
       layer.toast(lang.networkError);
     })
+    // params={
+    //   system:config.system,
+    //   version:config.version,
+    //   uid:app.globalData.userBasicInfo.user_id,
+    // }
+    // api.post('https://wx.upjob.com.cn/api/v1/userFakerPromote',params).then(res=>{
+    //   console.log(res)
+    // })
   }
 }
 

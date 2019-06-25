@@ -41,7 +41,7 @@
   padding-right: 22rpx; 
 }
 .team-item{
-  border-bottom: 1rpx solid #BABABA;
+  border-bottom: 1rpx solid #e3e3e3;
   padding: 22rpx;
   display: flex;
   justify-content: flex-start;
@@ -50,8 +50,8 @@
 .team-item .header{
   width: 80rpx;
   height: 80rpx;
-  border-radius: 40rpx;
-  padding-right: 22rpx;
+  border-radius: 50%;
+  margin-right: 22rpx;
 }
 .team-item .info{
   display: flex;
@@ -91,4 +91,7 @@
 .team-item .info .bottom .right text{
   font-size: 28rpx;
   color:#BABABA;
+}
+.weui-navbar__slider{
+  width:50%;
 }

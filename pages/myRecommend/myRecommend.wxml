@@ -13,49 +13,43 @@
   <view class='team_info weui-tab'>
     <!--导航栏-->
     <view class="weui-navbar">
-      <view 
-        data-id="0" 
-        class="weui-navbar__item {{currentTab=='0'? 'weui-bar__item_on' :''}}"
-        bindtap='clickTab'
-      ><view class="weui-navbar__title">团队</view>
-      </view> 
-
-      <view 
-        data-id="1" 
-        class="weui-navbar__item {{currentTab=='1'? 'weui-bar__item_on' :''}}"
-        bindtap='clickTab'
-      ><view class="weui-navbar__title">下属</view>
-      </view> 
-
+      <block wx:for='{{tabs}}' wx:key="*this">
+        <view 
+            id='{{index}}'
+            class="weui-navbar__item {{activeIndex == 0 ? 'weui-bar__item_on' : ''}}" 
+            bindtap="clickTab"
+        ><view class="weui-navbar__title">{{item}}</view>
+        </view> 
+      </block>
       <view 
         class="weui-navbar__slider" 
-        style="left: 0px; transform: translateX({0px); -webkit-transform: translateX(0px);"></view>
+        style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
     </view>
 
     <!--内容区-->
     <view class="weui-tab__panel">
       <!--团队-->
-      <view class='weui-tab__content'>
-        <view class='team-item'>
-          <image class='header' src='../../style/images/banner/default.png'>header</image>
-          <view class='info'>
-            <view class='top'>
-              <text class='top-left'>王先生</text>
-              <text class='top-right'>在职</text>
-            </view>
-            <view class='bottom'>
-              <text class='left'>HR 经理  |</text>
-              <view class='right'>
-                <image mode='widthFix' class='iconfont' src='../../style/images/icon/dianhua.png'></image>
-                <text>18156253871</text>
+      <block wx:for='{{recommendList}}'>
+        <view class='weui-tab__content'>
+          <view class='team-item'>
+            <image class='header' src='{{item.avatar}}'>header</image>
+            <view class='info'>
+              <view class='top'>
+                <text class='top-left'>{{item.nickname}}</text>
+                <text class='top-right'>{{receiveStatus(2)}}</text>
+              </view>
+              <view class='bottom'>
+                <text class='left'>{{item.grade}}</text>
+                <view class='right'>
+                  <image mode='widthFix' class='iconfont' src='../../style/images/icon/dianhua.png'></image>
+                  <text>{{item.mobile}}</text>
+                </view>
               </view>
             </view>
           </view>
         </view>
-      </view>
-
-      <!--下属-->
-      <view hidden='{{true}}' class='weui-tab__content'></view>
+      </block>
+     
     </view>
   </view>
 </view>

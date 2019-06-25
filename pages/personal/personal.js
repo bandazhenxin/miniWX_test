@@ -43,5 +43,8 @@ Personal.prototype.goMyRecommend = function (e) {
   let { grade } = this.vm.userInfo ;
   this.go('/pages/myRecommend/myRecommend?grade=' + grade)
 }
-
+// 跳转邀请好友
+Personal.prototype.goInvite = function () {
+  this.go('/pages/invite/invite')
+}
 Page(new Personal());

@@ -20,6 +20,7 @@
     "pages/seePosition/seePosition",
     "pages/cashBack/cashBack",
     "pages/myRecommend/myRecommend",
+    "pages/invite/invite",
     "pages/entryReg/entryReg"
   ],
   "tabBar": {
