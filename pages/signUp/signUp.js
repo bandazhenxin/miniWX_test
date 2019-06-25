@@ -58,6 +58,14 @@ SignUpPage.prototype.cashBack = function (e) {
 }
 
 /**
+ * 跳转入职登记
+ */
+SignUpPage.prototype.entryReg = function (e) {
+  let data = e.currentTarget.dataset;
+  this.go('/pages/entryReg/entryReg?id=' + data.id + '&rid=' + data.rid + '&index=' + data.index + '&idx=' + data.idx);
+}
+
+/**
  * 翻页
  */
 SignUpPage.prototype.scrollRender = function (e) {
@@ -97,7 +105,7 @@ SignUpPage.prototype.goInfo = function (e) {
   let data = e.currentTarget.dataset;
   let index = data.index;
   let type = this.vm.db.type_map[index];
-  this.go('/pages/seePosition/seePosition?id=' + data.id + '&rid=' + data.rid + '&type=' + type);
+  this.go('/pages/seePosition/seePosition?id=' + data.id + '&rid=' + data.rid + '&type=' + type + '&index=' + data.index + '&idx=' + data.idx);
 }
 
 /**

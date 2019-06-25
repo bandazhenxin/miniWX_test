@@ -1,2 +1,68 @@
-<!--pages/entryReg/entryReg.wxml-->
-<text>pages/entryReg/entryReg.wxml</text>
+<view class='container'>
+  <!--基本信息-->
+  <form bindsubmit='save'>
+    <view class='weui-cells weui-cells_after-title'>
+      <!--入职公司-->
+      <view class='weui-cell weui-cell_input"'>
+        <view class="weui-cell__hd">
+          <view class="weui-label">入职公司</view>
+        </view>
+        <view class="weui-cell__bd">
+          <text class="weui-input">{{basic_info.job_partner_name}}</text>
+        </view>
+      </view>
+
+      <!--入职职位-->
+      <view class='weui-cell weui-cell_input"'>
+        <view class="weui-cell__hd">
+          <view class="weui-label">入职职位</view>
+        </view>
+        <view class="weui-cell__bd">
+          <text class="weui-input">{{basic_info.position_name}}</text>
+        </view>
+      </view>
+
+      <!--姓名-->
+      <view class='weui-cell weui-cell_input"'>
+        <view class="weui-cell__hd">
+          <view class="weui-label">姓名</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" name='name' placeholder="请输入您的姓名">姓名</input>
+        </view>
+      </view>
+
+      <!--身份证号-->
+      <view class='weui-cell weui-cell_input"'>
+        <view class="weui-cell__hd">
+          <view class="weui-label">身份证号</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name='id_card' class="weui-input" placeholder="请输入您的身份证号">身份证号</input>
+        </view>
+      </view>
+
+      <!--入职时间-->
+      <view class='weui-cell weui-cell_input"'>
+        <view class="weui-cell__hd">
+          <view class="weui-label">入职时间</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker name='entry_time' bindchange="bindDateChange" mode="date">
+            <view class="weui-input">{{time_text}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+  
+
+    <!--上传照片-->
+    <view class="addImg_area" bindtap="chooseImage">
+      <text>上传入职证明照片</text>
+      <input hidden='{{true}}' name='entry_image_url' value='{{file}}'>{{file}}</input>
+      <image mode='widthFix' src='{{file?file:"../../style/images/icon/addImg.png"}}'>add</image>
+    </view>
+
+    <button class='save' form-type='submit'>确认提交</button>
+  </form>
+</view>

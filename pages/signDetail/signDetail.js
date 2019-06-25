@@ -93,15 +93,15 @@ SignDetailPage.prototype.signUp = function (e) {
   //validata
   //require
   if (!data.name){
-    layer.toast('请输入姓名');
+    layer.toast(lang.nameTips);
     return;
   }
   if (!data.id_card) {
-    layer.toast('请输入身份证号');
+    layer.toast(lang.idCardTips);
     return;
   }
   if (!data.mobile) {
-    layer.toast('请输入手机号');
+    layer.toast(lang.phoneTips);
     return;
   }
 

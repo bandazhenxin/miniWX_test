@@ -32,6 +32,7 @@ let request = {
   registration_datails: 'https://wx.upjob.com.cn/api/v2/register/registration_datails',
   personal_info:        'https://wx.upjob.com.cn/api/v1/user_datails_v2',
   cash_back_details:    'https://wx.upjob.com.cn/api/v2/salary/cash_back_details',
+  entry_registration:   'https://wx.upjob.com.cn/api/v2/register/entry_registration',
 };
 
 module.exports = request;

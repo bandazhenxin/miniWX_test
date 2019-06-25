@@ -47,4 +47,12 @@ SeePositionPage.prototype.cashBack = function (e) {
   this.go('/pages/cashBack/cashBack?id=' + data.id + '&rid=' + data.rid);
 }
 
+/**
+ * 跳转入职登记
+ */
+SeePositionPage.prototype.entryReg = function (e) {
+  let data = e.currentTarget.dataset;
+  this.go('/pages/entryReg/entryReg?id=' + data.id + '&rid=' + data.rid + '&index=' + data.index + '&idx=' + data.idx);
+}
+
 Page(new SeePositionPage(lang.signUp));

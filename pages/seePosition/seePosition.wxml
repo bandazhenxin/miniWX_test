@@ -7,7 +7,7 @@
   <view class='form_area'>
     <!--表单-->
     <view class="form-input weui-cells weui-cells_after-title">
-      <!--姓名-->
+      <!--公司名称-->
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">公司名称</view>
@@ -17,7 +17,7 @@
         </view>
       </view>
 
-      <!--身份证号-->
+      <!--公司地址-->
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">公司地址</view>
@@ -27,7 +27,7 @@
         </view>
       </view>
 
-      <!--性别-->
+      <!--集合时间-->
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">集合时间</view>
@@ -37,7 +37,7 @@
         </view>
       </view>
 
-      <!--出生日期-->
+      <!--集合地点-->
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">集合地点</view>
@@ -47,7 +47,7 @@
         </view>
       </view>
 
-      <!--民族列表-->
+      <!--联系人-->
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">联系人</view>
@@ -80,8 +80,16 @@
         data-id='{{basic.id}}'
         data-rid='{{basic.rid}}'
       >领取返现</button>
-      <button hidden='{{basic.type != 3}}' class='white-area' lang='zh_CN'>入职登记</button>
-      <button hidden='{{basic.type != 4}}' class='white-area' lang='zh_CN'>评价企业</button>
+      <button 
+        data-index="{{basic.index}}"
+        data-idx="{{basic.idx}}"
+        data-id='{{basic.id}}'
+        data-rid='{{basic.rid}}'
+        bindtap='entryReg'
+        hidden='{{basic.type != 3}}' 
+        class='white-area' 
+        lang='zh_CN'
+      >入职登记</button>
       <button hidden='{{basic.type != 5}}' class='disable' lang='zh_CN'>该职位已结束</button>
       <button hidden='{{basic.type != 6}}' class='disable' lang='zh_CN'>立即报名</button>
     </view>

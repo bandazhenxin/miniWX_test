@@ -41,7 +41,15 @@
                   class='{{itemObj.is_interview?"yellow-btn":"prohibit-btn"}}' 
                   hidden='{{activeIndex != 0}}'
                 >确认面试</button>
-                <button data-id='{{itemObj.id}}' class='white-btn' hidden='{{activeIndex != 2}}'>入职登记</button>
+                <button 
+                  data-index="{{index}}"
+                  data-idx="{{idx}}"
+                  data-id='{{itemObj.id}}' 
+                  data-rid='{{itemObj.register_id}}'
+                  bindtap='entryReg'
+                  class='white-btn' 
+                  hidden='{{activeIndex != 2}}'
+                >入职登记</button>
                 <button 
                   data-id='{{itemObj.id}}'
                   data-rid='{{itemObj.register_id}}'  
@@ -54,6 +62,7 @@
                 <button data-id='{{itemObj.id}}' class='del-btn' hidden='{{activeIndex != 5}}'>删除</button>
                 <button 
                   data-index="{{index}}"
+                  data-idx="{{idx}}"
                   data-id='{{itemObj.id}}' 
                   data-rid='{{itemObj.register_id}}'
                   bindtap='goInfo' 

@@ -7,6 +7,12 @@ let lang = {
   search:                   "搜索",
   noNull:                   "内容不能为空",
   networkError:             "网络错误",
+  saveSuccess:              "保存成功",
+  nameTips:                 "请输入姓名",
+  idCardTips:               "请输入身份证号",
+  entryTimeTips:            "请选择入职时间",
+  entryImageTips:           "请选择入职图片",
+  phoneTips:                "请输入手机号",
 
   screen:                   "筛选",
   city:                     "城市",
@@ -84,6 +90,8 @@ let lang = {
 
   cashBack:                 "领取返现",      
   cashBackCondition:        "1.满勤天数：30天\n2.满勤条件：无迟到、无早退、无病假、事假、旷工等缺勤\n3.其它条件：无违纪、完成生产任务",
+
+  entryReg:                 "入职登记",
 };
 
 module.exports = lang;
