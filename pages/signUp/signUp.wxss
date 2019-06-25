@@ -7,6 +7,7 @@ page{
 }
 .weui-tab .weui-navbar__slider{
   background-color: #FF850B;
+  width: 4rem;
 }
 .weui-tab__content{
   height: 100%;

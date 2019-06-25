@@ -36,7 +36,7 @@ SignUpPage.prototype = new pageBasic();
 SignUpPage.prototype.onPreload = function (option) {
   this.render();
   let that = this;
-  let sliderWidth = 96;
+  let sliderWidth = 70;
   wx.getSystemInfo({
     success: function (res) {
       that.renderDetail({
@@ -114,6 +114,22 @@ SignUpPage.prototype.goInfo = function (e) {
 SignUpPage.prototype.goDetail = function (e) {
   let detail = e.currentTarget.dataset;
   this.go('/pages/jobDetail/jobDetail?id=' + detail.id);
+}
+
+/**
+ * 删除 即 取消收藏
+ */
+SignUpPage.prototype.collectionDel = function (e) {
+  let data = e.currentTarget.dataset;
+  service.collectionDel(this, data);
+}
+
+/**
+ * 跳转立即报名
+ */
+SignUpPage.prototype.signDetail = function (e) {
+  let detail = e.currentTarget.dataset;
+  this.go('/pages/signDetail/signDetail?id=' + detail.id);
 }
 
 

@@ -57,9 +57,26 @@
                   bindtap='cashBack' 
                   hidden='{{activeIndex != 2 && activeIndex != 3}}'
                 >领取返现</button>
-                <button data-id='{{itemObj.id}}' class='yellow-btn' hidden='{{activeIndex != 5}}'>立即报名</button>
-                <button data-id='{{itemObj.id}}' data-title='{{itemObj.position_name}}' open-type="share" class='green-btn'>推荐给好友</button>
-                <button data-id='{{itemObj.id}}' class='del-btn' hidden='{{activeIndex != 5}}'>删除</button>
+                <button 
+                  data-id='{{itemObj.id}}' 
+                  class='yellow-btn' 
+                  bindtap='signDetail' 
+                  hidden='{{activeIndex != 5}}'
+                >立即报名</button>
+                <button 
+                  data-id='{{itemObj.id}}' 
+                  data-title='{{itemObj.position_name}}' 
+                  open-type="share" 
+                  class='green-btn'
+                >推荐给好友</button>
+                <button
+                  data-index="{{index}}"
+                  data-idx="{{idx}}" 
+                  data-id='{{itemObj.id}}' 
+                  bindtap='collectionDel' 
+                  class='del-btn' 
+                  hidden='{{activeIndex != 5}}'
+                >删除</button>
                 <button 
                   data-index="{{index}}"
                   data-idx="{{idx}}"
