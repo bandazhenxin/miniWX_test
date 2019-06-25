@@ -24,7 +24,7 @@
       >icon</image>
     </view>
 
-    <view class='menu_item'>
+    <view class='menu_item' bindtap='goMyRecommend'>
       <image 
         mode='widthFix' 
         class='iconfont menu_icon' 

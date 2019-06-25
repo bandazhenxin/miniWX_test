@@ -16,29 +16,31 @@ function service() {
    * 接口路径
    */
   this.urlList = {
-    getPersonalInfo: config.personal_info
+    getIntroducerList: 'https://wx.upjob.com.cn/api/v1/get_introducer_list' //获取推荐列表
   };
 }
 
 //public
 service.prototype = {
-  // 获取当前职位
-  getPersonalInfo: function (that) {
+  // 获取推荐列表 
+  // 默认下属 type -1 团队 -2
+  getIntroducerList: function (that) {
     let params = {
       system: config.system,
       version: config.version,
       sign: null,
+      type:-2,
+      page: 1,
       token: app.globalData.token
     }
     // console.log(app.globalData)
-    let url = this.urlList.getPersonalInfo
+    let url = this.urlList.getIntroducerList
     let sign = signMd5(config.key, params)
     // console.log(params)
     params.sign = sign
     api.post(url, params).then(res => {
       if (res.status_code === 200) {
-        var { mobile,grade} = res.data;
-        that.vm.userInfo=mergeObj({mobile,grade},that.vm.userInfo)
+        console.log(res)
         layer.busy(false);
         that.render();
       } else {
