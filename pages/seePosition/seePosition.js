@@ -13,9 +13,12 @@ function SeePositionPage(title) {
   pageBasic.call(this, title);
 
   this.vm = {
-    db: {},
+    db: {
+      basic: {}
+    },
     job_info: {},
-    sign_info: {}
+    sign_info: {},
+    basic: {}
   }
 }
 SeePositionPage.prototype = new pageBasic();
@@ -28,9 +31,20 @@ SeePositionPage.prototype = new pageBasic();
  * 初始化
  */
 SeePositionPage.prototype.onPreload = function (option) {
-  this.vm.db.data = option;
+  this.renderDetail({
+    basic: option
+  });
+
   service.jobInfo(this);
   service.signInfo(this);
+}
+
+/**
+ * 跳转领取返现
+ */
+SeePositionPage.prototype.cashBack = function (e) {
+  let data = e.currentTarget.dataset;
+  this.go('/pages/cashBack/cashBack?id=' + data.id + '&rid=' + data.rid);
 }
 
 Page(new SeePositionPage(lang.signUp));

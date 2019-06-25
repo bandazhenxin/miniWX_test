@@ -81,6 +81,9 @@ let lang = {
 
   news:                     "消息",
   newsDetail:               "消息详情",
+
+  cashBack:                 "领取返现",      
+  cashBackCondition:        "1.满勤天数：30天\n2.满勤条件：无迟到、无早退、无病假、事假、旷工等缺勤\n3.其它条件：无违纪、完成生产任务",
 };
 
 module.exports = lang;

@@ -1,12 +1,11 @@
 //reply
-const app      = getApp();
-const config   = require('../../config/request.js');
-const layer    = require('../../utils/webServer/layer.js');
+const config = require('../../config/request.js');
+const layer = require('../../utils/webServer/layer.js');
 const apiBasic = require('../../core/apiBasic.js');
-const help     = require('../../utils/help.js');
+const help = require('../../utils/help.js');
 
 //instance
-const api     = new apiBasic();
+const api = new apiBasic();
 const signMd5 = help.sign;
 
 //private
@@ -15,7 +14,6 @@ function service() {
    * 接口路径
    */
   this.urlList = {
-    registration_datails: config.registration_datails,
     job_details: config.job_details
   };
 
@@ -59,6 +57,7 @@ service.prototype = {
     api.post(url, params).then(res => {
       if (res.status_code == 200) {
         let list = this.constructJobDetail(res.data);
+        console.log(list);
         that.renderDetail({
           job_info: list
         });
@@ -69,40 +68,6 @@ service.prototype = {
       layer.toast(lang.networkError);
     });
   },
-
-  signInfo: function (that) {
-    //init
-    var self = this;
-
-    //construct
-    let params = {
-      system: config.system,
-      version: config.version,
-      sign: null,
-      token: app.globalData.token,
-      id: that.vm.basic.rid
-    };
-
-    //sign
-    let url = this.urlList.registration_datails;
-    let sign = signMd5(config.key, params);
-    params.sign = sign;
-
-    //post
-    api.post(url, params).then(res => {
-      if (res.status_code == 200) {
-        that.renderDetail({
-          sign_info: res.data
-        });
-      } else {
-        layer.toast(res.message);
-        that.goBack();
-      }
-    }, msg => {
-      layer.toast(lang.networkError);
-      that.goBack();
-    });
-  }
 };
 
 module.exports = service;

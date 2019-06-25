@@ -17,7 +17,8 @@
     "pages/signDetail/signDetail",
     "pages/newsList/newsList",
     "pages/newsDetail/newsDetail",
-    "pages/seePosition/seePosition"
+    "pages/seePosition/seePosition",
+    "pages/cashBack/cashBack"
   ],
   "tabBar": {
     "list": [

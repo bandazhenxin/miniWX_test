@@ -66,15 +66,13 @@ service.prototype = {
     let url = this.urlList.evaluate_info;
     let sign = signMd5(config.key, params);
     params.sign = sign;
-
+    
     //post
     layer.busy('加载中', 0);
     api.post(url, params).then(res => {
       layer.busy(false);
-
       if (res.status_code == 200) {
         let info = res.data;
-        console.log(info);
         that.renderDetail({
           company_info: {
             logo: info.partner_info.avatar,

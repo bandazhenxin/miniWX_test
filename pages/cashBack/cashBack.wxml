@@ -1,0 +1,21 @@
+<!--reply-->
+<import src='../common/positionItem.wxml' />
+
+<view class='container'>
+  <template is="positionItem" data="{{...job_info}}"/>
+
+  <view class='cash_back_detail'>
+    <text class='title'>入职返现详情</text>
+    <view class='cash'>
+      <text class='cash-title'>返回金额：</text>
+      <text class='cash-detail'></text>
+    </view>
+    <view class='condition'>
+      <text class='condition-title'>返现条件：</text>
+      <text class='condition-detail'>{{cashBackCondition}}</text>
+    </view>
+    <view class='btn-area'>
+      <button>开始赚返现</button>
+    </view>
+  </view>
+</view>
