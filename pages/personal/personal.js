@@ -17,10 +17,6 @@ function Personal(title) {
 }
 Personal.prototype = new pageBasic();
 
-
-
-/** 业务逻辑控制 **/
-
 /**
  * 逻辑初始化
  */
