@@ -1,11 +1,12 @@
 //reply
-const config = require('../../config/request.js');
-const layer = require('../../utils/webServer/layer.js');
+const app      = getApp();
+const config   = require('../../config/request.js');
+const layer    = require('../../utils/webServer/layer.js');
 const apiBasic = require('../../core/apiBasic.js');
-const help = require('../../utils/help.js');
+const help     = require('../../utils/help.js');
 
 //instance
-const api = new apiBasic();
+const api     = new apiBasic();
 const signMd5 = help.sign;
 
 //private
@@ -14,7 +15,8 @@ function service() {
    * 接口路径
    */
   this.urlList = {
-    job_details: config.job_details
+    job_details: config.job_details,
+    cash_back_details: config.cash_back_details
   };
 
   /**
@@ -27,6 +29,9 @@ function service() {
     list.entry_reward && list.condition_text_list.push(list.entry_reward);
     list.condition_text_list = list.condition_text_list.join(' | ');
 
+    //提取返现金额
+    list.cashBack = parseFloat(list.share_reward) + '元';
+
     //公司
     if (list.partner_name) list.job_partner_name = list.partner_name;
 
@@ -36,7 +41,7 @@ function service() {
 
 //public
 service.prototype = {
-  jobInfo: function (that) {
+  initRender: function (that) {
     //init
     var self = this;
 
@@ -45,6 +50,7 @@ service.prototype = {
       system: config.system,
       version: config.version,
       sign: null,
+      token: app.globalData.token,
       id: that.vm.basic.id
     };
 
@@ -55,9 +61,9 @@ service.prototype = {
 
     //post
     api.post(url, params).then(res => {
+      console.log(res);
       if (res.status_code == 200) {
         let list = this.constructJobDetail(res.data);
-        console.log(list);
         that.renderDetail({
           job_info: list
         });

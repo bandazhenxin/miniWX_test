@@ -76,10 +76,35 @@
 .cash_back_detail{
   padding: 11rpx 44rpx;
 }
-.cash_back_detail{
-  font-size: 30rpx;
+.cash_back_detail .title{
+  font-size: 36rpx;
   font-weight: 700;
 }
 .cash_back_detail .cash{
-  
+  font-size: 34rpx;
+  padding: 11rpx 0;
+}
+.cash_back_detail .cash .cash-detail{
+  color: #FF850B;
+}
+.cash_back_detail .condition{
+  font-size: 34rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.cash_back_detail .condition .condition-detail{
+  font-size: 26rpx;
+  color: #525252;
+  padding: 11rpx 0;
+}
+.cash_back_detail .btn-area{
+  padding: 44rpx 0;
+}
+.cash_back_detail .btn-area button{
+  font-size: 30rpx;
+  background-color: #FF850B;
+  color: #FFFFFF;
+  width: 100%;
 }

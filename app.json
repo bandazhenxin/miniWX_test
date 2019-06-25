@@ -19,7 +19,8 @@
     "pages/newsDetail/newsDetail",
     "pages/seePosition/seePosition",
     "pages/cashBack/cashBack",
-    "pages/myRecommend/myRecommend"
+    "pages/myRecommend/myRecommend",
+    "pages/entryReg/entryReg"
   ],
   "tabBar": {
     "list": [

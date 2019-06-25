@@ -42,7 +42,13 @@
                   hidden='{{activeIndex != 0}}'
                 >确认面试</button>
                 <button data-id='{{itemObj.id}}' class='white-btn' hidden='{{activeIndex != 2}}'>入职登记</button>
-                <button data-id='{{itemObj.id}}' class='yellow-btn' hidden='{{activeIndex != 2 && activeIndex != 3}}'>领取返现</button>
+                <button 
+                  data-id='{{itemObj.id}}'
+                  data-rid='{{itemObj.register_id}}'  
+                  class='yellow-btn' 
+                  bindtap='cashBack' 
+                  hidden='{{activeIndex != 2 && activeIndex != 3}}'
+                >领取返现</button>
                 <button data-id='{{itemObj.id}}' class='yellow-btn' hidden='{{activeIndex != 5}}'>立即报名</button>
                 <button data-id='{{itemObj.id}}' data-title='{{itemObj.position_name}}' open-type="share" class='green-btn'>推荐给好友</button>
                 <button data-id='{{itemObj.id}}' class='del-btn' hidden='{{activeIndex != 5}}'>删除</button>

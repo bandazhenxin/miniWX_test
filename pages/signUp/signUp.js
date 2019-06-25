@@ -50,6 +50,14 @@ SignUpPage.prototype.onPreload = function (option) {
 }
 
 /**
+ * 跳转领取返现
+ */
+SignUpPage.prototype.cashBack = function (e) {
+  let data = e.currentTarget.dataset;
+  this.go('/pages/cashBack/cashBack?id=' + data.id + '&rid=' + data.rid);
+}
+
+/**
  * 翻页
  */
 SignUpPage.prototype.scrollRender = function (e) {

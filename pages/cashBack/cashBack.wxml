@@ -8,7 +8,7 @@
     <text class='title'>入职返现详情</text>
     <view class='cash'>
       <text class='cash-title'>返回金额：</text>
-      <text class='cash-detail'></text>
+      <text class='cash-detail'>{{job_info.cashBack}}</text>
     </view>
     <view class='condition'>
       <text class='condition-title'>返现条件：</text>

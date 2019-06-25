@@ -34,7 +34,7 @@ CashBackPage.prototype.onPreload = function (option) {
   this.vm.basic = option;
   this.render();
   
-  service.jobInfo(this);
+  service.initRender(this);
 }
 
 Page(new CashBackPage(lang.cashBack));
