@@ -210,6 +210,13 @@ IndexPage.prototype.goDetail = function (e){
 /** ui逻辑控制 **/
 
 /**
+ * 下拉更新
+ */
+IndexPage.prototype.onPullDownRefresh = function (e) {
+  service.refresh(this);
+}
+
+/**
  * 释放滑动判断 && 下拉更新
  */
 IndexPage.prototype.backTop = function(event){

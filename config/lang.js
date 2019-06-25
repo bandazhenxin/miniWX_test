@@ -72,6 +72,12 @@ let lang = {
 
   signUp:                   "报名",
   signUpSuccess:            "报名成功",
+  enrolled:                 "已报名",
+  toBeInterview:            "待面试",
+  toBeAdmitted:             "待入职",
+  checkIn:                  "已入职",
+  itsOver:                  "已结束",
+  collected:                "已收藏",
 
   news:                     "消息",
   newsDetail:               "消息详情",

@@ -16,7 +16,8 @@
     "pages/webGo/webGo",
     "pages/signDetail/signDetail",
     "pages/newsList/newsList",
-    "pages/newsDetail/newsDetail"
+    "pages/newsDetail/newsDetail",
+    "pages/seePosition/seePosition"
   ],
   "tabBar": {
     "list": [
@@ -57,7 +58,8 @@
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "悠聘",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json"
 }

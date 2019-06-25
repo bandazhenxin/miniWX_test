@@ -13,7 +13,9 @@ const isEmpty = help.isEmpty;
 function NewsPage(title) {
   pageBasic.call(this, title);
   this.vm = {
-    db: {},
+    db: {
+      option:{}
+    },
     news_list: []
   }
 }
@@ -27,6 +29,14 @@ NewsPage.prototype = new pageBasic();
  * 逻辑初始化
  */
 NewsPage.prototype.onPreload = function (option) {
+  this.vm.db.option = option;
+  service.initRender(this);
+}
+
+/**
+ * 下拉更新
+ */
+NewsPage.prototype.onPullDownRefresh = function (e) {
   service.initRender(this);
 }
 
@@ -34,7 +44,7 @@ NewsPage.prototype.onPreload = function (option) {
  * 显示时
  */
 NewsPage.prototype.onShow = function () {
-  this.onLoad();
+  this.onLoad(this.vm.db.option);
 }
 
 /**

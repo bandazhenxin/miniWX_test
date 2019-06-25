@@ -1,0 +1,77 @@
+<!--reply-->
+<import src='../common/positionItem.wxml' />
+
+<view class='container'>
+  <template is="positionItem" data="{{...job_info}}"/>
+
+  <form bindsubmit="signUp">
+    <view class='form_area'>
+      <!--表单-->
+      <view class="form-input weui-cells weui-cells_after-title">
+        <!--姓名-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">公司名称</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.job_partner_name}}</text>
+          </view>
+        </view>
+
+        <!--身份证号-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">公司地址</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.location}}</text>
+          </view>
+        </view>
+
+        <!--性别-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">集合时间</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.interview_time}}</text>
+          </view>
+        </view>
+
+        <!--出生日期-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">集合地点</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.interview_time}}</text>
+          </view>
+        </view>
+
+        <!--民族列表-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">联系人</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.interview_time}}</text>
+          </view>
+        </view>
+
+        <!--手机号-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">手机号</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.mobile}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!--按钮-->
+      <view class='btn-area'><button form-type='submit' lang='zh_CN'>立即报名</button></view>
+    </view>
+  </form>
+</view>
+

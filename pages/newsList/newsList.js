@@ -13,7 +13,9 @@ const isEmpty = help.isEmpty;
 function NewsListPage(title) {
   pageBasic.call(this, title);
   this.vm = {
-    db: {},
+    db: {
+      option: {}
+    },
 
     catalog: '',
     news_list: []
@@ -29,6 +31,7 @@ NewsListPage.prototype = new pageBasic();
  * 逻辑初始化
  */
 NewsListPage.prototype.onPreload = function (option) {
+  this.vm.db.option = option;
   //init
   let catalog = option.catalog;
   this.vm.catalog = catalog;
@@ -44,7 +47,7 @@ NewsListPage.prototype.onPreload = function (option) {
  * 显示时
  */
 NewsListPage.prototype.onShow = function () {
-  this.onLoad();
+  this.onLoad(this.vm.db.option);
 }
 
 /**
