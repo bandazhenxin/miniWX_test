@@ -31,8 +31,8 @@ NewsDetailPage.prototype = new pageBasic();
  */
 NewsDetailPage.prototype.onPreload = function (option) {
   //init
-  let catalog = option.catalog;
-  let id = option.id;
+  let { catalog, id } = option;
+  console.log(option);
   this.vm.catalog = catalog;
   this.vm.id = id;
   this.render();

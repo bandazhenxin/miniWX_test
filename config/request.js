@@ -5,6 +5,9 @@ let request = {
   key:                  'GhU6G4FK5iiyeCRoLw',
   system:               'wechat',
   version:              'v1',
+  indexPage:            '/pages/index/index',        //职位列表首页
+  jobDetailPage:        '/pages/jobDetail/jobDetail',//职位详情页
+  signUpPage:           '/pages/signUp/signUp',      //报名首页
   initUrl:              'https://wx.upjob.com.cn/api/v2/login/mini_login',
   job_list:             'https://wx.upjob.com.cn/api/v2/index/get_index_job_list',
   get_mobile:           'https://wx.upjob.com.cn/api/v2/login/mini_bind_mobile',
@@ -29,7 +32,7 @@ let request = {
   messages_detail:      'https://wx.upjob.com.cn/api/v1/message_detail',
   enroll_list:          'https://wx.upjob.com.cn/api/v2/register/enroll_list',
   confirm_interview:    'https://wx.upjob.com.cn/api/v1/Confirm_interview',
-  registration_datails: 'https://wx.upjob.com.cn/api/v2/register/registration_datails',
+  registration_datails: 'https://wx.upjob.com.cn/api/v2/register/all_job_datails',
   personal_info:        'https://wx.upjob.com.cn/api/v1/user_datails_v2',
   cash_back_details:    'https://wx.upjob.com.cn/api/v2/salary/cash_back_details',
   entry_registration:   'https://wx.upjob.com.cn/api/v2/register/entry_registration',

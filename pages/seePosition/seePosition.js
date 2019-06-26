@@ -14,7 +14,7 @@ function SeePositionPage(title) {
 
   this.vm = {
     db: {
-      basic: {}
+      basic: {},
     },
     job_info: {},
     sign_info: {},
@@ -40,11 +40,20 @@ SeePositionPage.prototype.onPreload = function (option) {
 }
 
 /**
+ * 确认面试
+ */
+SeePositionPage.prototype.sureInterview = function (e) {
+  let data = e.currentTarget.dataset;
+  service.sureInterview(this, data);
+}
+
+/**
  * 跳转领取返现
  */
 SeePositionPage.prototype.cashBack = function (e) {
   let data = e.currentTarget.dataset;
-  this.go('/pages/cashBack/cashBack?id=' + data.id + '&rid=' + data.rid);
+  let { id, rid } = data;
+  this.go('/pages/cashBack/cashBack?id=' + id + '&rid=' + rid);
 }
 
 /**
@@ -52,7 +61,8 @@ SeePositionPage.prototype.cashBack = function (e) {
  */
 SeePositionPage.prototype.entryReg = function (e) {
   let data = e.currentTarget.dataset;
-  this.go('/pages/entryReg/entryReg?id=' + data.id + '&rid=' + data.rid + '&index=' + data.index + '&idx=' + data.idx);
+  let { id, rid, index, idx } = data;
+  this.go('/pages/entryReg/entryReg?id=' + id + '&rid=' + rid + '&index=' + index + '&idx=' + idx);
 }
 
 Page(new SeePositionPage(lang.signUp));

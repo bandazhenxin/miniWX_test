@@ -43,7 +43,7 @@ service.prototype = {
             wx.hideLoading()
             if (res.status_code === 200) {
                 that.vm.qrList = res.data.list;
-                app.globalData.imgSrc=res.data.list[0]
+                that.vm.db.imgSrc = res.data.list[0];
                 layer.busy(false);
                 that.render();
             } else {

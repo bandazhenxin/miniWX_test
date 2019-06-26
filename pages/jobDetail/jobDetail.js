@@ -126,5 +126,14 @@ JobDetailPage.prototype.tabClick = function (e) {
   });
 }
 
+/**
+ * 报名成功回传
+ */
+JobDetailPage.prototype.signUpSuccess = function (option) {
+  this.renderDetail({
+    is_enroll: true
+  });
+}
+
 
 Page(new JobDetailPage(lang.up))

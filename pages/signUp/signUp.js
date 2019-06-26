@@ -2,6 +2,7 @@
 const lang         = require('../../config/lang.js');
 const pageBasic    = require('../../core/pageBasic.js');
 const help         = require('../../utils/help.js');
+const layer        = require('../../utils/webServer/layer.js');
 const serviceClass = require('service.js');
 
 //instance
@@ -103,9 +104,10 @@ SignUpPage.prototype.onShareAppMessage = function (e) {
  */
 SignUpPage.prototype.goInfo = function (e) {
   let data = e.currentTarget.dataset;
-  let index = data.index;
+  let { index, id, rid, idx, iid  } = data;
   let type = this.vm.db.type_map[index];
-  this.go('/pages/seePosition/seePosition?id=' + data.id + '&rid=' + data.rid + '&type=' + type + '&index=' + data.index + '&idx=' + data.idx);
+  let basic_url = '/pages/seePosition/seePosition?id='
+  this.go(basic_url + id + '&rid=' + rid + '&type=' + type + '&index=' + index + '&idx=' + idx + '&iid=' + iid);
 }
 
 /**
@@ -120,8 +122,21 @@ SignUpPage.prototype.goDetail = function (e) {
  * 删除 即 取消收藏
  */
 SignUpPage.prototype.collectionDel = function (e) {
-  let data = e.currentTarget.dataset;
-  service.collectionDel(this, data);
+  let data   = e.currentTarget.dataset;
+  let that   = this;
+  let handle = {};
+  handle[lang.thinking] = false;
+  handle[lang.sure] = function(){
+    service.collectionDel(that, data)
+  };
+  layer.confirm(lang.sureDel, lang.delTips, handle);
+}
+
+/**
+ * 回退刷新
+ */
+SignUpPage.prototype.onShow = function () {
+  this.onLoad();
 }
 
 /**
@@ -129,7 +144,8 @@ SignUpPage.prototype.collectionDel = function (e) {
  */
 SignUpPage.prototype.signDetail = function (e) {
   let detail = e.currentTarget.dataset;
-  this.go('/pages/signDetail/signDetail?id=' + detail.id);
+  let { id, index, idx } = detail
+  this.go('/pages/signDetail/signDetail?id=' + id + '&index=' + index + '&idx=' + idx);
 }
 
 
@@ -145,6 +161,18 @@ SignUpPage.prototype.tabClick = function (e) {
     activeIndex: e.currentTarget.id
   });
   service.basicRender(this);
+}
+
+/**
+ * 报名成功回传
+ */
+SignUpPage.prototype.signUpSuccess = function (option) {
+  let { index,idx } = option;
+  let prelist = this.vm.content_list;
+  prelist[index][idx].is_enroll = 0;
+  this.renderDetail({
+    content_list: prelist
+  });
 }
 
 Page(new SignUpPage(lang.signUp));

@@ -58,7 +58,7 @@
 
     <!--上传照片-->
     <view class="addImg_area" bindtap="chooseImage">
-      <text>上传入职证明照片</text>
+      <text>上传工牌照片</text>
       <input hidden='{{true}}' name='entry_image_url' value='{{file}}'>{{file}}</input>
       <image mode='widthFix' src='{{file?file:"../../style/images/icon/addImg.png"}}'>add</image>
     </view>

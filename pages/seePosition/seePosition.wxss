@@ -89,6 +89,15 @@ page{
   border-radius: 6rpx;
 }
 
+/* 工牌照片区域 */
+.preview{
+  padding: 22rpx;
+}
+.preview image{
+  width: 100%;
+  margin-top: 22rpx;
+}
+
 /*按钮区*/
 .btn-area{
   padding: 88rpx 0;

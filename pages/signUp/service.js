@@ -63,19 +63,19 @@ service.prototype.basicRender = function (that, type) {
   let url = this.urlList.enroll_list;
   let sign = signMd5(config.key, params);
   params.sign = sign;
-
+  
   //post
   layer.busy('加载中', 0);
   api.post(url, params).then(res => {
     layer.busy(false);
-    if (res.status_code == 200 && res.data.list.length > 0) {
+    if (res.status_code == 200) {
       let list = this.handleJobInfo(res.data.list);
       let preList = that.vm.content_list;
       preList[active_index] = type ? mergeArr(preList[active_index], list) : list;
       that.renderDetail({
         content_list: preList
       });
-      that.vm.db.page_list[active_index] = page;
+      if(res.data.list.length > 0) that.vm.db.page_list[active_index] = page;
     } else if (res.status_code != 200) {
       layer.toast(res.message);
     }

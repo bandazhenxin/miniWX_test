@@ -7,70 +7,235 @@
   <view class='form_area'>
     <!--表单-->
     <view class="form-input weui-cells weui-cells_after-title">
-      <!--公司名称-->
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">公司名称</view>
+      <!--面试信息-->
+      <block wx:if="{{basic.type != 4 && basic.iid != 0}}">
+        <!--公司名称-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">公司名称</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.job_partner_name}}</text>
+          </view>
         </view>
-        <view class="weui-cell__bd">
-          <text class="weui-input">{{sign_info.job_partner_name}}</text>
-        </view>
-      </view>
 
-      <!--公司地址-->
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">公司地址</view>
+        <!--公司地址-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">公司地址</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.location}}</text>
+          </view>
         </view>
-        <view class="weui-cell__bd">
-          <text class="weui-input">{{sign_info.location}}</text>
-        </view>
-      </view>
 
-      <!--集合时间-->
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">集合时间</view>
+        <!--集合时间-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">集合时间</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.interview_time}}</text>
+          </view>
         </view>
-        <view class="weui-cell__bd">
-          <text class="weui-input">{{sign_info.interview_time}}</text>
-        </view>
-      </view>
 
-      <!--集合地点-->
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">集合地点</view>
+        <!--集合地点-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">集合地点</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.interview_time}}</text>
+          </view>
         </view>
-        <view class="weui-cell__bd">
-          <text class="weui-input">{{sign_info.interview_time}}</text>
-        </view>
-      </view>
 
-      <!--联系人-->
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">联系人</view>
+        <!--联系人-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">联系人</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.interview_time}}</text>
+          </view>
         </view>
-        <view class="weui-cell__bd">
-          <text class="weui-input">{{sign_info.interview_time}}</text>
-        </view>
-      </view>
 
-      <!--手机号-->
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">手机号</view>
+        <!--手机号-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">手机号</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.mobile}}</text>
+          </view>
         </view>
-        <view class="weui-cell__bd">
-          <text class="weui-input">{{sign_info.mobile}}</text>
+      </block>
+
+      <!--报名信息-->
+      <block wx:if="{{basic.type != 4 && basic.iid == 0}}">
+        <!--姓名-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">姓名</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.name}}</text>
+          </view>
         </view>
-      </view>
+
+        <!--身份证号-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">身份证号</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.id_card}}</text>
+          </view>
+        </view>
+
+        <!--性别-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">性别</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.sex}}</text>
+          </view>
+        </view>
+
+        <!--出生日期-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">出生日期</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.birthday}}</text>
+          </view>
+        </view>
+
+        <!--民族-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">民族</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.nation}}</text>
+          </view>
+        </view>
+
+        <!--学历-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">学历</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.education}}</text>
+          </view>
+        </view>
+
+        <!--手机号-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">手机号</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.mobile}}</text>
+          </view>
+        </view>
+
+        <!--微信-->
+        <view hidden='{{!sign_info.wechat}}' class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">微信</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.wechat}}</text>
+          </view>
+        </view>
+      </block>
+
+      <!--入职信息信息-->
+      <block wx:if="{{basic.type == 4}}">
+        <!--入职公司-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">入职公司</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.job_partner_name}}</text>
+          </view>
+        </view>
+
+        <!--入职职位-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">入职职位</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.position_name}}</text>
+          </view>
+        </view>
+
+        <!--姓名-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">姓名</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.name}}</text>
+          </view>
+        </view>
+
+        <!--身份证号-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">身份证号</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.id_card}}</text>
+          </view>
+        </view>
+
+        <!--入职日期-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">入职日期</view>
+          </view>
+          <view class="weui-cell__bd">
+            <text class="weui-input">{{sign_info.entry_time}}</text>
+          </view>
+        </view>
+
+        <!--入职照片-->
+        <view class='preview'>
+          <text>工牌照片</text>
+          <image mode='widthFix' src='{{sign_info.entry_image_url}}'>入职照片</image>
+        </view>
+      </block>
     </view>
 
     <!--按钮-->
     <view class='btn-area'>
-      <button hidden='{{basic.type != 1}}' class='yellow-area' lang='zh_CN'>立即报名</button>
+      <block wx:if="{{basic.type == 1 && basic.iid == 0}}">
+        <button
+          class='yellow-area-disable' 
+          lang='zh_CN'
+          data-index="{{basic.index}}"
+          data-idx="{{basic.idx}}" 
+          data-id='{{basic.id}}' 
+          data-rid='{{basic.rid}}'
+        >等待邀请中</button>
+      </block>
+      <block wx:elif="{{basic.type == 1 && basic.iid != 0}}">
+        <button
+          class='yellow-area' 
+          lang='zh_CN'
+          data-index="{{basic.index}}"
+          data-idx="{{basic.idx}}" 
+          data-id='{{basic.id}}' 
+          data-rid='{{basic.rid}}'
+          bindtap='sureInterview'  
+        >确认面试</button>
+      </block>
       <button hidden='{{basic.type != 2}}' class='yellow-area-disable' lang='zh_CN'>面试已确认</button>
       <button 
         hidden='{{basic.type != 3 && basic.type != 4}}' 

@@ -18,6 +18,7 @@ function SignDetailPage(title) {
     db: {
       nation_id: 0,
       education_id: 0,
+      option: {},
       form_data: {}
     },
 
@@ -43,8 +44,9 @@ SignDetailPage.prototype = new pageBasic();
  */
 SignDetailPage.prototype.onPreload = function (option) {
   //init
-  let id = option.id;
+  let { id } = option;
   this.vm.id = id;
+  this.vm.db.option = option;
   this.render();
 
   //渲染职位信息

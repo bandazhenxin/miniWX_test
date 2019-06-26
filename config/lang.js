@@ -13,6 +13,10 @@ let lang = {
   entryTimeTips:            "请选择入职时间",
   entryImageTips:           "请选择入职图片",
   phoneTips:                "请输入手机号",
+  sureDel:                  "确定删除吗？",
+  delTips:                  "删除之后不可恢复",
+  thinking:                 "我再想想",
+  sure:                     "确定",
 
   screen:                   "筛选",
   city:                     "城市",
@@ -92,6 +96,7 @@ let lang = {
   cashBackCondition:        "1.满勤天数：30天\n2.满勤条件：无迟到、无早退、无病假、事假、旷工等缺勤\n3.其它条件：无违纪、完成生产任务",
 
   entryReg:                 "入职登记",
+  invite:                   "邀请好友",
 };
 
 module.exports = lang;

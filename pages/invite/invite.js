@@ -1,17 +1,21 @@
 //reply
 const serviceClass = require('service.js');
-const pageBasic = require('../../core/pageBasic.js');
-const help = require('../../utils/help.js');
-const lang = require('../../config/lang.js');
-const layer = require('../../utils/webServer/layer.js');
-const app = getApp()
+const pageBasic    = require('../../core/pageBasic.js');
+const help         = require('../../utils/help.js');
+const lang         = require('../../config/lang.js');
+const layer        = require('../../utils/webServer/layer.js');
+const app          = getApp()
+
 //instance
 const service = new serviceClass();
+
 //继承基类
-function Invite(title) {
+function InvitePage(title) {
   pageBasic.call(this, title);
   this.vm = {
-    db: {},
+    db: {
+      imgSrc: ''
+    },
     qrList: [],
     index: 1,
     imgSrc: '',
@@ -20,42 +24,46 @@ function Invite(title) {
     shareImg:''
   }
 }
-Invite.prototype = new pageBasic();
+InvitePage.prototype = new pageBasic();
 
 
 /**
  * 逻辑初始化
  */
-Invite.prototype.onPreload = function (option) {
+InvitePage.prototype.onPreload = function (option) {
   //init
-  if (option.imgSrc) {
+  if (option && option.imgSrc) {
+    //被分享时
     this.vm.swiperHide = true
-    app.globalData.imgSrc = option.imgSrc
-    this.vm.shareImg=option.imgSrc
+    this.vm.shareImg = option.imgSrc
+    this.render();
   }else{
     this.vm.swiperHide = false
+    this.render();
+
+    // 获取轮播图
+    service.invitingFriends(this)
   }
-  console.log(this.vm.swiperHide)
-  // 获取轮播图
-  service.invitingFriends(this)
-  this.render();
 }
-// 轮播
-Invite.prototype.onSlideChangeEnd = function (e) {
-  // console.log(e.detail.current)
-  
-  var that = this;
-  if (!that.vm.swiperShow) return
-  that.vm.index = e.detail.current + 1
-  that.setData({
+
+/**
+ * 轮播
+ */
+InvitePage.prototype.onSlideChangeEnd = function (e) {
+  if (this.vm.swiperHide) return;
+
+  this.vm.index = e.detail.current + 1;
+  this.renderDetail({
     index: e.detail.current + 1
   })
-  app.globalData.imgSrc = that.vm.qrList[that.vm.index - 1]
+  this.vm.db.imgSrc = this.vm.qrList[this.vm.index - 1];
 }
-// 分享并保存图片
-Invite.prototype.share = function () {
+
+/**
+ * 分享并保存图片
+ */
+InvitePage.prototype.share = function () {
   var that = this
-  console.log(that.vm.index)
   var imgSrc = that.vm.qrList[that.vm.index - 1]
   wx.downloadFile({
     url: imgSrc,
@@ -94,28 +102,33 @@ Invite.prototype.share = function () {
     }
   })
 }
-//转发
-Invite.prototype.onShareAppMessage = function (res) {
-  // console.log( app.globalData)
-  if (res.from === 'button') {
-    return {
-      title: '',
-      imageUrl: app.globalData.imgSrc,
-      path: '/pages/invite/invite?imgSrc=' + app.globalData.imgSrc,
-      success: function (res) {
-        wx.showToast({
-          title: '分享成功',
-          icon: 'success'
-        })
-      }
+
+/**
+ * 转发
+ */
+InvitePage.prototype.onShareAppMessage = function (res) {
+  return {
+    title: '',
+    imageUrl: this.vm.db.imgSrc,
+    path: '/pages/invite/invite?imgSrc=' + this.vm.db.imgSrc,
+    success: function (res) {
+      wx.showToast({
+        title: '分享成功',
+        icon: 'success'
+      })
     }
   }
 }
+
 /**
- * 显示时
+ * 图片预览
  */
-Invite.prototype.onShow = function (option) {
-  this.onLoad();
+InvitePage.prototype.preview = function (e) {
+  let { src } = e.currentTarget.dataset;
+  wx.previewImage({
+    current: src,
+    urls: [src]
+  })
 }
 
-Page(new Invite());
+Page(new InvitePage(lang.invite));

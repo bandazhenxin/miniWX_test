@@ -39,7 +39,7 @@
                   data-rid='{{itemObj.register_id}}' 
                   bindtap='{{itemObj.is_interview?"sureInterview":""}}' 
                   class='{{itemObj.is_interview?"yellow-btn":"prohibit-btn"}}' 
-                  hidden='{{activeIndex != 0}}'
+                  hidden='{{index != 0}}'
                 >确认面试</button>
                 <button 
                   data-index="{{index}}"
@@ -48,20 +48,22 @@
                   data-rid='{{itemObj.register_id}}'
                   bindtap='entryReg'
                   class='white-btn' 
-                  hidden='{{activeIndex != 2}}'
+                  hidden='{{index != 2}}'
                 >入职登记</button>
                 <button 
                   data-id='{{itemObj.id}}'
                   data-rid='{{itemObj.register_id}}'  
                   class='yellow-btn' 
                   bindtap='cashBack' 
-                  hidden='{{activeIndex != 2 && activeIndex != 3}}'
+                  hidden='{{index != 2 && index != 3}}'
                 >领取返现</button>
-                <button 
+                <button
+                  data-index="{{index}}"
+                  data-idx="{{idx}}" 
                   data-id='{{itemObj.id}}' 
                   class='yellow-btn' 
                   bindtap='signDetail' 
-                  hidden='{{activeIndex != 5}}'
+                  hidden='{{index != 5 || itemObj.interview_id}}'
                 >立即报名</button>
                 <button 
                   data-id='{{itemObj.id}}' 
@@ -75,14 +77,15 @@
                   data-id='{{itemObj.id}}' 
                   bindtap='collectionDel' 
                   class='del-btn' 
-                  hidden='{{activeIndex != 5}}'
+                  hidden='{{index != 5}}'
                 >删除</button>
                 <button 
                   data-index="{{index}}"
                   data-idx="{{idx}}"
                   data-id='{{itemObj.id}}' 
                   data-rid='{{itemObj.register_id}}'
-                  bindtap='goInfo' 
+                  data-iid='{{itemObj.interview_id}}'
+                  bindtap='{{index == 5 ? "goDetail" : "goInfo"}}'
                   class='white-btn'
                 >查看</button>
               </view>
