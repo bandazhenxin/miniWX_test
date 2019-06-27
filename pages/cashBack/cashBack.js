@@ -37,4 +37,11 @@ CashBackPage.prototype.onPreload = function (option) {
   service.initRender(this);
 }
 
+/**
+ * 跳转引导下载页
+ */
+CashBackPage.prototype.webGo = function () {
+  this.go(lang.webGoPage);
+}
+
 Page(new CashBackPage(lang.cashBack));

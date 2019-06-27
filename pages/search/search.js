@@ -3,6 +3,7 @@ const serviceClass = require('service.js');
 const pageBasic    = require('../../core/pageBasic.js');
 const lang         = require('../../config/lang.js');
 const layer        = require('../../utils/webServer/layer.js');
+const link         = require('../../config/link.js');
 
 //instance
 const service = new serviceClass();
@@ -14,6 +15,7 @@ function SearchPage(title) {
     db: {},
     history_list: [],
     hot_list: [],
+    link: link,
   }
 };
 SearchPage.prototype = new pageBasic();
@@ -26,6 +28,8 @@ SearchPage.prototype = new pageBasic();
  * 初始化
  */
 SearchPage.prototype.onPreload = function (option){
+  this.render();
+
   //初始化历史记录
   service.historyRender(this);
 

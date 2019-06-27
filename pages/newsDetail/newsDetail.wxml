@@ -10,8 +10,10 @@
     <text class='content'>{{detail.contents}}</text>
 
     <!--btn-->
-    <view class='btn-area'>
-      <button>查看详情</button>
-    </view>
+    <blcock wx:if='{{catalog == 3}}'>
+      <view class='btn-area'>
+        <button data-id='{{jid}}' bindtap='goDetail'>查看详情</button>
+      </view>
+    </blcock>
   </view>
 </view>

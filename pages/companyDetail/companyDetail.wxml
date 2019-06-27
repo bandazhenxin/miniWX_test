@@ -82,7 +82,7 @@
                   wx:for-item="bloon"
                   class='iconfont'
                   mode='widthFix'
-                  src="{{bloon?'../../style/images/icon/starActiv.png':'../../style/images/icon/star.png'}}"
+                  src="{{bloon?link.icon.starActiv:link.icon.star}}"
                 >{{bloon}}</image>
               </view>
             </view>

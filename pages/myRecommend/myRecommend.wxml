@@ -4,7 +4,7 @@
     <text class='title'>当前等级</text>
     <view class='name'>
       <text>{{grade}}</text>
-      <image mode='widthFix' class='iconfont' src='../../style/images/icon/select.png'></image>
+      <image mode='widthFix' class='iconfont' src='{{link.icon.select}}'></image>
     </view>
     <text class='description'>等级越高奖励越大，快来查看更多权益吧。</text>
   </view>
@@ -41,7 +41,7 @@
               <view class='bottom'>
                 <text class='left'>{{item.grade}}</text>
                 <view class='right'>
-                  <image mode='widthFix' class='iconfont' src='../../style/images/icon/dianhua.png'></image>
+                  <image mode='widthFix' class='iconfont' src='{{link.icon.dianhua}}'></image>
                   <text>{{item.mobile}}</text>
                 </view>
               </view>

@@ -27,7 +27,7 @@
       <view class='point_item'>
         <text>查看详情</text>
         <image
-          src='../../style/images/icon/jiantou.png'
+          src='{{link.icon.jiantou}}'
           mode='widthFix'
           class='iconfont'
         >jiantou</image>
@@ -111,7 +111,7 @@
                   wx:for-item="bloon"
                   class='iconfont'
                   mode='widthFix'
-                  src="{{bloon?'../../style/images/icon/starActiv.png':'../../style/images/icon/star.png'}}"
+                  src="{{bloon?link.icon.starActiv:link.icon.star}}"
                 >{{bloon}}</image>
               </view>
             </view>
@@ -144,7 +144,7 @@
             <image
               class='iconfont'
               mode='widthFix'
-              src="../../style/images/icon/baomin.png"
+              src="{{link.icon.baomin}}"
             >免费报名</image>
             <text>免费报名</text>
           </view>
@@ -155,7 +155,7 @@
             <image
               class='iconfont'
               mode='widthFix'
-              src="../../style/images/icon/baoche.png"
+              src="{{link.icon.baoche}}"
             >安排面试</image>
             <text>安排面试</text>
           </view>
@@ -166,7 +166,7 @@
             <image
               class='iconfont'
               mode='widthFix'
-              src="../../style/images/icon/flag.png"
+              src="{{link.icon.flag}}"
             >集合报道</image>
             <text>集合报道</text>
           </view>
@@ -177,7 +177,7 @@
             <image
               class='iconfont'
               mode='widthFix'
-              src="../../style/images/icon/liwu.png"
+              src="{{link.icon.liwu}}"
             >领取返费</image>
             <text>领取返费</text>
           </view>
@@ -185,19 +185,22 @@
       </view>
 
       <!--底部banner-->
-      <view class='bottom_banner'>
-        <image mode='widthFix' src="../../style/images/banner/bottom.png">GO</image>
+      <view class='bottom_banner' bindtap='webGo'>
+        <image mode='widthFix' src="{{link.banner.bottom}}">GO</image>
       </view>
 
       <!--操作区域-->
       <view class='action'>
         <view class='basic_action' bindtap='collectAction'>
-          <image mode='widthFix' src='{{is_collect?"../../style/images/icon/shoucangSelect.png":"../../style/images/icon/shoucang.png"}}'>收藏</image>
+          <image 
+            mode='widthFix' 
+            src='{{is_collect?link.icon.shoucangSelect:link.icon.shoucang}}'
+          >收藏</image>
           <text>收藏</text>
         </view>
 
-        <view class='basic_action'>
-          <image mode='widthFix' src='../../style/images/icon/dianhua.png'>咨询</image>
+        <view class='basic_action' bindtap='webGo'>
+          <image mode='widthFix' src='{{link.icon.dianhua}}'>咨询</image>
           <text>咨询</text>
         </view>
 

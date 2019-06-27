@@ -1,7 +1,7 @@
 <!--pages/entryReward/entryReward.wxml-->
 <view class='root'>
   <!--banner-->
-  <image class='top' mode='widthFix' src='../../style/image/banner/entryReward.png'></image>
+  <image class='top' mode='widthFix' src='{{link.banner.entryReward}}'></image>
 
   <!--详情-->
   <view class='detail_area'>

@@ -21,7 +21,7 @@
             wx:for-item="bloon"
             class='iconfont'
             mode='widthFix'
-            src="{{bloon?'../../style/images/icon/starActiv.png':'../../style/images/icon/star.png'}}"
+            src="{{bloon?link.icon.starActiv:link.icon.star}}"
           >{{bloon}}</image>
         </view>
         <text>{{created_at}}</text>
@@ -34,10 +34,9 @@
       <text>缺点：{{shortcoming}}</text>
     </view>
 
-    <!--关注公众号-->
-    <view class='follow'>
+    <!--查看完整点评-->
+    <view class='follow' bindtap='webGo'>
       <text>查看完整点评</text>
-      <official-account></official-account>
     </view>
   </view>
 </template>

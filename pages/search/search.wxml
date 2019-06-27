@@ -21,7 +21,7 @@
       <text class='title'>历史记录</text>
       <view class='top_del weui-flex' bindtap='clearHistory'>
         <image
-          src='../../style/images/icon/shanchu_1.png'
+          src='{{link.icon.shanchu}}'
           mode='widthFix'
           class='iconfont'
         >清除</image>
@@ -45,7 +45,7 @@
       <text class='title'>热门搜索</text>
       <view class='top_del weui-flex' bindtap='goScreen'>
         <image
-          src='../../style/images/icon/shaixuan.png'
+          src='{{link.icon.shaixuan}}'
           mode='widthFix'
           class='iconfont'
         >筛选</image>

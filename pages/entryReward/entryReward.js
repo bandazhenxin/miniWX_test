@@ -1,8 +1,9 @@
 //reply
 const serviceClass = require('service.js');
-const pageBasic = require('../../core/pageBasic.js');
-const help = require('../../utils/help.js');
-const lang = require('../../config/lang.js');
+const pageBasic    = require('../../core/pageBasic.js');
+const help         = require('../../utils/help.js');
+const lang         = require('../../config/lang.js');
+const link         = require('../../config/link.js');
 
 //instance
 const service = new serviceClass();
@@ -16,7 +17,8 @@ function EntryRewardPage(title) {
       phone: ''
     },
     detail: [],
-    tips: ''
+    tips: '',
+    link: link
   }
 }
 EntryRewardPage.prototype = new pageBasic();
@@ -40,6 +42,13 @@ EntryRewardPage.prototype.goLink = function (){
   wx.makePhoneCall({
     phoneNumber: this.vm.db.phone
   })
+}
+
+/**
+ * 跳转引导下载页
+ */
+EntryRewardPage.prototype.webGo = function () {
+  this.go(lang.webGoPage);
 }
 
 

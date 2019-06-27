@@ -1,66 +1,32 @@
-// pages/webGo/webGo.js
-Page({
+//reply
+const pageBasic = require('../../core/pageBasic.js');
+const lang      = require('../../config/lang.js');
+const link      = require('../../config/link.js');
+const layer     = require('../../utils/webServer/layer.js');
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+//继承基类
+function WebGoPage(title) {
+  pageBasic.call(this, title);
+  this.vm = {
+    db: {},
+    link: link.web.goApp
   }
-})
+}
+WebGoPage.prototype = new pageBasic();
+
+WebGoPage.prototype.onPreload = function (option) {
+  this.render();
+}
+
+
+
+/* 业务 */
+/**
+ * 加载失败
+ */
+WebGoPage.prototype.goFail = function (e) {
+  layer.toast(lang.networkError);
+  this.goBack();
+}
+
+Page(new WebGoPage(lang.goApp));

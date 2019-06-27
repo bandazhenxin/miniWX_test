@@ -60,7 +60,7 @@
     <view class="addImg_area" bindtap="chooseImage">
       <text>上传工牌照片</text>
       <input hidden='{{true}}' name='entry_image_url' value='{{file}}'>{{file}}</input>
-      <image mode='widthFix' src='{{file?file:"../../style/images/icon/addImg.png"}}'>add</image>
+      <image mode='widthFix' src='{{file?file:link.icon.addImg}}'>add</image>
     </view>
 
     <button class='save' form-type='submit'>确认提交</button>

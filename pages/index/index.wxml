@@ -5,7 +5,7 @@
 <block wx:if="{{!isOpen}}">
   <view class='default'>
     <image
-      src='../../style/images/banner/default.png'
+      src='{{link.banner.cover}}'
       mode='widthFix'
     >default</image>
   </view>
@@ -15,7 +15,7 @@
 <block wx:elif="{{!hasBasicUserInfo}}">
   <view class='default'>
     <image
-      src='../../style/images/banner/default.png'
+      src='{{link.banner.cover}}'
       mode='widthFix'
     >default</image>
   </view>
@@ -23,7 +23,7 @@
     <view class='auth'>
       <view class='title'>
         <image
-          src='../../style/images/banner/default.png'
+          src='{{link.banner.cover}}'
           mode='widthFix'
           class='iconfont'
         >logo</image>
@@ -43,7 +43,7 @@
 <!-- <block wx:elif="{{!hasUserPhone}}">
   <view class='default'>
     <image
-      src='../../style/images/banner/default.png'
+      src='{{link.banner.cover}}'
       mode='widthFix'
     >default</image>
   </view>
@@ -51,7 +51,7 @@
     <view class='auth'>
       <view class='title'>
         <image
-          src='../../style/images/banner/default.png'
+          src='{{link.banner.cover}}'
           mode='widthFix'
           class='iconfont'
         >logo</image>
@@ -74,22 +74,28 @@
     <movable-view direction="none" class="weui-flex moveContainer_top">
       <view class='top_position weui-flex' bindtap='goSelectCity'>
         <image
-          src='../../style/images/icon/weizhi.png'
+          src='{{link.icon.weizhi}}'
           mode='aspectFit'
           class='iconfont'
         >位置</image>
         <text>{{city}}</text>
         <image
-          src='../../style/images/icon/xiala.png'
+          src='{{link.icon.xiala}}'
           mode='aspectFit'
           class='iconfont'
         >下拉</image>
       </view>
       <view class='top_banner'>
-        <image
-          src='../../style/images/banner/indexBanner.png'
-          mode='widthFix'
-        >banner</image>
+        <swiper 
+          indicator-dots="{{true}}" 
+          indicator-color="rgba(255,255,255,0.1)"
+          indicator-active-color="rgba(255,255,255,1)"
+          autoplay='{{true}}'
+        >
+          <swiper-item wx:for="{{banner_list}}" wx:key="image_url">
+            <image src='{{item.image_url}}'>{{item.image_url}}</image>
+          </swiper-item>
+        </swiper>
       </view>
     </movable-view>
 
@@ -116,7 +122,7 @@
           </view>
           <view class='screen' bindtap='goScreen'>
             <image 
-              src='../../style/images/icon/shaixuan.png'
+              src='{{link.icon.shaixuan}}'
               mode='aspectFit'
               class='iconfont'
             >筛选</image>
@@ -129,7 +135,7 @@
           <text class='text'>{{screen_text}}</text>
           <view class='top_del weui-flex' bindtap='clearHistory'>
             <image
-              src='../../style/images/icon/shanchu_1.png'
+              src='{{link.icon.shanchu}}'
               mode='widthFix'
               class='iconfont'
             >清除</image>

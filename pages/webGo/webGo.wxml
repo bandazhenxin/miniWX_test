@@ -1,2 +1,2 @@
 <!--pages/webGo/webGo.wxml-->
-<web-view></web-view>
+<web-view src='{{link}}' binderror='goFail'></web-view>

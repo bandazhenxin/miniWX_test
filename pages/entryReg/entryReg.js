@@ -5,6 +5,7 @@ const layer         = require('../../utils/webServer/layer.js');
 const help          = require('../../utils/help.js');
 const serviceClass  = require('service.js');
 const validataClass = require('../../utils/webServer/validata.js');
+const link          = require('../../config/link.js');
 
 //instance
 const service  = new serviceClass();
@@ -22,7 +23,8 @@ function EntryRegPage(title) {
     },
     basic_info: {},
     file: false,
-    time_text: ''
+    time_text: '',
+    link: link
   };
 }
 EntryRegPage.prototype = new pageBasic();

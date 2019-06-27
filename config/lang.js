@@ -2,6 +2,11 @@
  * 语言包
  */
 let lang = {
+  indexPage:                '/pages/index/index',        //职位列表首页
+  jobDetailPage:            '/pages/jobDetail/jobDetail',//职位详情页
+  signUpPage:               '/pages/signUp/signUp',      //报名首页
+  webGoPage:                '/pages/webGo/webGo',        //跳转下载引导页
+
   up:                       "悠聘",
   none:                     "无",
   search:                   "搜索",
@@ -97,6 +102,9 @@ let lang = {
 
   entryReg:                 "入职登记",
   invite:                   "邀请好友",
+
+  myRecommend:              "我的推荐",
+  goApp:                    "下载app",
 };
 
 module.exports = lang;

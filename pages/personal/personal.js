@@ -5,6 +5,7 @@ const help         = require('../../utils/help.js');
 const lang         = require('../../config/lang.js');
 const layer        = require('../../utils/webServer/layer.js');
 const app          = getApp()
+const link         = require('../../config/link.js');
 
 //instance
 const service = new serviceClass();
@@ -15,6 +16,7 @@ function Personal(title) {
   this.vm = {
     db: {},
     userInfo: {},
+    link: link
   }
 }
 Personal.prototype = new pageBasic();

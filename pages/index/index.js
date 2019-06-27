@@ -6,6 +6,7 @@ const layer        = require('../../utils/webServer/layer.js');
 const help         = require('../../utils/help.js');
 const config       = require('../../config/basic.js');
 const lang         = require('../../config/lang.js');
+const link         = require('../../config/link.js');
 
 //instance
 const service = new serviceClass();
@@ -24,6 +25,8 @@ function IndexPage(title) {
     isOpen:    false,//是否可以打开页面
     isScroll:  false,
     bottom_is: true,
+    banner_list: [],
+    link: link,
 
     userInfo:         {},
     hasBasicUserInfo: false,
@@ -84,6 +87,9 @@ IndexPage.prototype.onPreload = function(option){
     //职位初始渲染与初始定位
     service.indexRender(this);
   }
+
+  //渲染banner
+  service.bannerList(this);
 
   //渲染标签列表
   service.tagsRender(this);

@@ -3,6 +3,7 @@ const serviceClass = require('service.js');
 const pageBasic    = require('../../core/pageBasic.js');
 const help         = require('../../utils/help.js');
 const lang         = require('../../config/lang.js');
+const link         = require('../../config/link.js');
 
 //instance
 const service = new serviceClass();
@@ -17,6 +18,7 @@ function JobDetailPage(title) {
     scroll_into: '',
     is_collect:false,
     is_enroll: false,
+    link: link,
 
     id: 0,
     tabs: [
@@ -107,6 +109,13 @@ JobDetailPage.prototype.goLink = function (e){
   let route = e.currentTarget.dataset.route;
   let params = e.currentTarget.dataset.params;
   this.go('/pages/' + route + '/' + route + params);
+}
+
+/**
+ * 跳转引导下载页
+ */
+JobDetailPage.prototype.webGo = function () {
+  this.go(lang.webGoPage);
 }
 
 

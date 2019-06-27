@@ -1,5 +1,5 @@
 const serviceClass = require('service.js');
-const service = new serviceClass();
+const service      = new serviceClass();
 
 //app.js
 App({

@@ -15,7 +15,7 @@
       <text class='condition-detail'>{{cashBackCondition}}</text>
     </view>
     <view class='btn-area'>
-      <button>开始赚返现</button>
+      <button bindtap='webGo'>开始赚返现</button>
     </view>
   </view>
 </view>

@@ -3,6 +3,7 @@ const serviceClass = require('service.js');
 const pageBasic    = require('../../core/pageBasic.js');
 const help         = require('../../utils/help.js');
 const lang         = require('../../config/lang.js');
+const link         = require('../../config/link.js');
 
 //instance
 const service = new serviceClass();
@@ -34,7 +35,8 @@ function EvaluatelPage(title) {
     sliderLeft: 0,
 
     company_info: {},
-    evaluate_list: []
+    evaluate_list: [],
+    link: link
   }
 }
 EvaluatelPage.prototype = new pageBasic();

@@ -23,40 +23,41 @@ function service() {
 }
 
 //public
-service.prototype = {
-  initRender: function (that) {
-    //init
-    var self = this;
+/**
+ * 初始渲染
+ */
+service.prototype.initRender = function (that) {
+  //init
+  var self = this;
 
-    //construct
-    let params = {
-      system: config.system,
-      version: config.version,
-      sign: null,
-      token: app.globalData.token,
-      catalog: that.vm.catalog,
-      id: that.vm.id
-    };
+  //construct
+  let params = {
+    system: config.system,
+    version: config.version,
+    sign: null,
+    token: app.globalData.token,
+    catalog: that.vm.catalog,
+    id: that.vm.id
+  };
 
-    //singn
-    let url = this.urlList.messages_detail;
-    let sign = signMd5(config.key, params);
-    params.sign = sign;
+  //singn
+  let url = this.urlList.messages_detail;
+  let sign = signMd5(config.key, params);
+  params.sign = sign;
 
-    //post
-    api.post(url, params).then(res => {
-      if (res.status_code == 200) {
-        res.data.contents = feedFilter(res.data.contents);
-        that.renderDetail({
-          detail: res.data
-        });
-      } else {
-        layer.toast(res.message);
-      }
-    }, msg => {
-      layer.toast(lang.networkError);
-    });
-  },
+  //post
+  api.post(url, params).then(res => {
+    if (res.status_code == 200) {
+      res.data.contents = feedFilter(res.data.contents);
+      that.renderDetail({
+        detail: res.data
+      });
+    } else {
+      layer.toast(res.message);
+    }
+  }, msg => {
+    layer.toast(lang.networkError);
+  });
 }
 
 module.exports = service;

@@ -3,8 +3,7 @@ const app  = getApp();
 const help = require('../utils/help.js');
 
 //instance
-const isFunction = help.isFunction;
-const isObj      = help.isObj;
+const { isFunction, isObj } = help;
 
 /**
  * 基类控制器
@@ -145,6 +144,23 @@ pageBasic.prototype.goIndex = function () {
   wx.navigateBack({
     delta: length - 1
   })
+}
+
+/**
+ * 构造url参数
+ */
+pageBasic.prototype.creatUrlParams = function (params) {
+  //init
+  if (!isObj(params)) return '';
+  let params_arr = [];
+
+  Object.keys(params).forEach(function (key) {
+    let str = key + '=' + params[key];
+    params_arr.push(str);
+  });
+  let params_str = '?' + params_arr.join('&');
+
+  return params_str;
 }
 
 /**

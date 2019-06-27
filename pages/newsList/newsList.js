@@ -4,6 +4,7 @@ const pageBasic    = require('../../core/pageBasic.js');
 const help         = require('../../utils/help.js');
 const lang         = require('../../config/lang.js');
 const layer        = require('../../utils/webServer/layer.js');
+const link         = require('../../config/link.js');
 
 //instance
 const service = new serviceClass();
@@ -18,7 +19,8 @@ function NewsListPage(title) {
     },
 
     catalog: '',
-    news_list: []
+    news_list: [],
+    link: link
   }
 }
 NewsListPage.prototype = new pageBasic();
@@ -54,9 +56,9 @@ NewsListPage.prototype.onShow = function () {
  * 跳转详情
  */
 NewsListPage.prototype.goDetail = function (e) {
-  let catalog = e.currentTarget.dataset.catalog;
-  let id = e.currentTarget.dataset.id;
-  this.go('/pages/newsDetail/newsDetail?catalog=' + catalog + '&id=' + id);
+  let data = e.currentTarget.dataset;
+  let { catalog, id, jid } = data;
+  this.go('/pages/newsDetail/newsDetail?catalog=' + catalog + '&id=' + id + '&jid=' + jid);
 }
 
 Page(new NewsListPage(lang.news));

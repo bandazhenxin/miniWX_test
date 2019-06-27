@@ -1,14 +1,17 @@
 //reply
 const serviceClass = require('service.js');
-const pageBasic = require('../../core/pageBasic.js');
-const help = require('../../utils/help.js');
-const lang = require('../../config/lang.js');
-const layer = require('../../utils/webServer/layer.js');
-const app = getApp()
+const pageBasic    = require('../../core/pageBasic.js');
+const help         = require('../../utils/help.js');
+const lang         = require('../../config/lang.js');
+const layer        = require('../../utils/webServer/layer.js');
+const app          = getApp()
+const link          = require('../../config/link.js');
+
 //instance
 const service = new serviceClass();
+
 //继承基类
-function MyRecommend(title) {
+function MyRecommendPage(title) {
   pageBasic.call(this, title);
   this.vm = {
     db: {},
@@ -20,15 +23,16 @@ function MyRecommend(title) {
     subordinateList: [],
     sliderOffset: 0,
     sliderLeft: 0,
+    link: link
   }
 }
-MyRecommend.prototype = new pageBasic();
+MyRecommendPage.prototype = new pageBasic();
 
 
 /**
  * 逻辑初始化
  */
-MyRecommend.prototype.onPreload = function (option) {
+MyRecommendPage.prototype.onPreload = function (option) {
   //init
   let grade = option.grade;
   this.vm.grade = grade;
@@ -37,19 +41,13 @@ MyRecommend.prototype.onPreload = function (option) {
   service.getIntroducerList(this)
 }
 
-/**
- * 显示时
- */
-// MyRecommend.prototype.onShow = function () {
-//   this.onLoad();
-// }
-
 // 切换tab
-MyRecommend.prototype.clickTab = function (e) {
+MyRecommendPage.prototype.clickTab = function (e) {
   this.renderDetail({
     sliderOffset: e.currentTarget.offsetLeft,
     activeIndex: e.currentTarget.id
   })
+  
   // 团队 下属
   if (e.currentTarget.id == 0) {
     service.getIntroducerList(this, -1)
@@ -58,4 +56,4 @@ MyRecommend.prototype.clickTab = function (e) {
   }
 }
 
-Page(new MyRecommend(lang.MyRecommend));
+Page(new MyRecommendPage(lang.myRecommend));

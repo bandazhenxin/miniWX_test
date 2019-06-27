@@ -3,6 +3,6 @@
 
 <view class='container'>
   <block wx:for="{{news_list}}">
-    <template is="newsCard" data="{{...item}}"/>
+    <template is="newsCard" data="{{...link.icon,...item}}"/>
   </block>
 </view>

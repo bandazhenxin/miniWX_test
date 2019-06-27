@@ -1,8 +1,9 @@
 //reply
 const serviceClass = require('service.js');
-const pageBasic = require('../../core/pageBasic.js');
-const help = require('../../utils/help.js');
-const lang = require('../../config/lang.js');
+const pageBasic    = require('../../core/pageBasic.js');
+const help         = require('../../utils/help.js');
+const lang         = require('../../config/lang.js');
+const link         = require('../../config/link.js');
 
 //instance
 const service = new serviceClass();
@@ -36,6 +37,8 @@ function CompanyDetailPage(title) {
     reward: {},
     evaluate: {},
     company_jobs: {},
+
+    link:link,
 
     activeIndex: 0,
     sliderOffset: 0,
