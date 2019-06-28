@@ -289,6 +289,8 @@ service.prototype.bannerList = function (that) {
 
   //post
   api.post(url, params).then(res => {
+    console.log(params);
+    console.log(res);
     if (res.status_code == 200) {
       that.renderDetail(({
         banner_list: res.data

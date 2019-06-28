@@ -482,6 +482,16 @@ function compare(propertyName) {
   }
 }
 
+/**
+ * 获取url参数
+ */
+function getQueryString(url, name){
+  let reg   = new RegExp('(^|&|/?)' + name + '=([^&|/?]*)(&|/?|$)', 'i');
+  let judge = url.substr(1).match(reg);
+  if (judge != null) return judge[2];
+  return null;
+}
+
 //exports
 module.exports = {
   date: formatTime,
@@ -504,5 +514,6 @@ module.exports = {
   mergeArr: mergeArr,
   sign: sign,
   levenshtein: levenshtein,
-  sortObj: sortObj
+  sortObj: sortObj,
+  getQueryString: getQueryString
 }

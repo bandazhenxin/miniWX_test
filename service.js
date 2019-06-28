@@ -78,6 +78,7 @@ service.prototype.initGet = function (that){
   //数据初始化
   .then(res => { 
     if(pass){
+      console.log(res);
       if(res.status_code == 200){
         storage.setData('unionid', res.data.union_id);
         that.globalData.userBasicInfo = mergeObj(res.data.sys_user_info, res.data.wx_user_info);
